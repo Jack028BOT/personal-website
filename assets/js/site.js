@@ -530,19 +530,35 @@
     let active = 0, acc = 0, lock = false;
 
     function layout() {
-      /* 探出偏移自适应：窄屏下卡片几乎占满一行，右缘放不下固定的 11px
-         步进（5 张卡会探出 44px → 横向滚动），按剩余空间收缩，下限 2px。
+      /* 探出偏移自适应：窄屏下卡片几乎占满一行，两侧放不下固定的步进
+         （5 张卡会探出 40+px → 横向滚动），按剩余空间收缩，下限 2px。
          再预留 ~14px 给 1.8° 旋转让卡角外扩的宽度。 */
       const rect = deck.getBoundingClientRect();
-      const slack = window.innerWidth - 8 - rect.right;   // 右缘留 8px 安全边
-      const stepOff = Math.max(2, Math.min(11,
-        (slack - 14) / Math.max(1, cards.length - 1)));
+      const slackL = rect.left - 8;                       // 左缘安全边
+      const stepL = Math.max(2, Math.min(10,
+        (slackL - 14) / Math.max(1, cards.length - 1)));
+      const slackR = window.innerWidth - 8 - rect.right;  // 右缘安全边
+      const stepR = Math.max(2, Math.min(11,
+        (slackR - 14) / Math.max(1, cards.length - 1)));
       cards.forEach(function (c, i) {
-        const pos = (i - active + cards.length) % cards.length;   // 0 = 最前
-        c.style.zIndex = 10 - pos;
-        c.style.transform = "rotate(" + (pos * 1.8) + "deg) translate(" +
-          (pos * stepOff) + "px," + (pos * 4) + "px)";
-        c.style.opacity = pos > 0 ? 0.85 : 1;
+        const rel = i - active;   // <0 已看过 → 左后；0 当前；>0 待看 → 右后
+        let z, rot, tx, ty, op;
+        if (rel < 0) {
+          z = 10 + rel;           // 刚看过在最上，越早越靠底
+          rot = rel * 2;
+          tx = rel * stepL;
+          ty = rel * 3;
+          op = 0.9;
+        } else {
+          z = 10 - rel;
+          rot = rel * 1.8;
+          tx = rel * stepR;
+          ty = rel * 4;
+          op = rel > 0 ? 0.85 : 1;
+        }
+        c.style.zIndex = z;
+        c.style.transform = "rotate(" + rot + "deg) translate(" + tx + "px," + ty + "px)";
+        c.style.opacity = op;
       });
     }
     function step(dir) {

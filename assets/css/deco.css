@@ -269,12 +269,6 @@ html[data-theme="dark"] .theme-toggle .icon-moon { opacity: 1; transform: none; 
 }
 [data-theme="dark"] .mode-btn:not(.is-active) { color: var(--grey2); }
 [data-theme="dark"] .homepage .article p:not(.profile-role) { color: #b7b7bf; }
-[data-theme="dark"] .badge {
-  color: color-mix(in srgb, var(--c) 42%, #fff);
-  border-color: color-mix(in srgb, var(--c) 38%, transparent);
-  background: color-mix(in srgb, var(--c) 16%, #17171c);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
 
 /* =====================================================================
    动效尊重系统设置

@@ -18,7 +18,7 @@ NODE_PATH="C:/Users/86198/.workbuddy/binaries/node/workspace/node_modules" node 
 python _static_check.py
 ```
 
-- `_e2e.js` —— 42 项端到端测试（首页结构、View all 开合、主题切换与记忆、云热区转发、轮播卡组、详情页加载、上下站闭环、移动端无横滚、console error = 0）
+- `_e2e.js` —— 41 项端到端测试（首页结构、作品卡无装饰件、主题切换与记忆、云热区转发、轮播卡组、详情页加载、上下站闭环、移动端无横滚、console error = 0）
 - `_static_check.py` —— 静态校验（占位符残留、旧数据口径污染、链接与图片可达性、数据口径上下文、编码完整性）
 
 **重新生成详情页**：`python .workbuddy/tools/_gen_works.py`（6 页内容集中在脚本顶部的 `PAGES` 字典里，改内容改那里）
@@ -51,10 +51,9 @@ assets/
 │  ├─ work.css              详情页 11 模块
 │  └─ deco.css              像素装饰 + 响应式断点
 ├─ js/
-│  ├─ site.js               像素画生成 / 云视差 / 戳云彩 / 像素鸟 / 主题切换 / 摇树 / 轮播卡组（共享）
-│  └─ home.js               View all 折叠
+│  └─ site.js               像素画生成 / 云视差 / 戳云彩 / 像素鸟 / 主题切换 / 摇树 / 轮播卡组（共享）
 ├─ fonts/                   6 个 latin 子集 woff2（252 KB）
-└─ img/shots/               9 张真实截图（1.9 MB）
+└─ img/shots/               21 张素材截图（3.3 MB）
 ```
 
 ---
@@ -103,7 +102,6 @@ assets/
 | `.fv-desc` | `58ch` | `36em` | 同上 |
 | `.gm-note` | `62ch` | `40em` | 口径说明段是长中文句 |
 | `.project-title` | `nowrap` | `normal` + `overflow-wrap` | 中文标题长，nowrap 会横向溢出 |
-| `.badge` | `nowrap` | `normal` | 中文徽章会撑破胶囊 |
 | `.kw-pop` | `nowrap` | `normal` + `max-width: 240px` | hover 弹卡内容变长 |
 | 字体栈 | 仅拉丁 | 追加 PingFang SC / 微软雅黑 / Noto Sans SC | 三款 Google 字体都没有中文字形 |
 
@@ -119,7 +117,7 @@ assets/
 
 | 素材 | 来源 | 授权 |
 |---|---|---|
-| 9 张界面截图 | 本人作品实测截图（自采） | 自有 |
+| 21 张界面截图 | 本人作品实测截图 / 腾讯训练营结课证书（自采） | 自有 |
 | `caotai-cover.jpg` | 《什么是草台班子》pptx 内 `docProps/thumbnail.jpeg` | 自有 |
 | 6 个 woff2 | Google Fonts latin 子集 | OFL 1.1 |
 | 像素云 / 日月 / 小鸟 / 鸟窝 | 字符画代码生成，无位图素材 | 自有 |
