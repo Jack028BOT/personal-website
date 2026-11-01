@@ -179,9 +179,9 @@
 }
 @keyframes dogWag { from { transform: rotate(-12deg); } to { transform: rotate(16deg); } }
 /* hover 互动层：小狗可悬停 */
-.mascot-dog { pointer-events: auto; }
+.mascot-dog, .mascot-cat { pointer-events: auto; }
 /* hover 飘出的像素爱心（mask 出心形，floatUp 上浮消散） */
-.mascot-dog::after {
+.mascot-dog::after, .mascot-cat::after {
   content: "";
   position: absolute;
   left: 20px;
@@ -193,10 +193,10 @@
   opacity: 0;
   pointer-events: none;
 }
-.mascot-dog:hover::after { animation: floatUp 1.3s ease-out both; }
-.mascot-dog:hover .dog-head { animation: dogTilt 1.4s ease-in-out infinite; }
-.mascot-dog:hover .dog-tail { animation-duration: 0.14s; }
-.mascot-dog:hover svg { animation: mascotHop 0.45s cubic-bezier(0.3, 1.5, 0.5, 1); }
+.mascot-dog:hover::after, .mascot-cat:hover::after { animation: floatUp 1.3s ease-out both; }
+.mascot-dog:hover .dog-head, .mascot-cat:hover .dog-head { animation: dogTilt 1.4s ease-in-out infinite; }
+.mascot-dog:hover .dog-tail, .mascot-cat:hover .dog-tail { animation-duration: 0.14s; }
+.mascot-dog:hover svg, .mascot-cat:hover svg { animation: mascotHop 0.45s cubic-bezier(0.3, 1.5, 0.5, 1); }
 @keyframes floatUp {
   0%   { opacity: 0; transform: translateY(4px) scale(0.6); }
   20%  { opacity: 1; transform: translateY(0) scale(1); }
