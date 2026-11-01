@@ -1,0 +1,170 @@
+/* ============================================================
+   基础层 —— reset / 骨架 / 模式开关 / 动效
+   ============================================================ */
+
+/* =====================================================================
+   基础
+   ===================================================================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; border: 0 solid var(--border); }
+
+html {
+  font-size: 14px;
+  background: var(--body-bg);
+  color: var(--body-color);
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  overflow-y: scroll;
+  /* 50vw 全出血横滑条会把滚动条宽度算进去，裁掉多出的几个像素 */
+  overflow-x: hidden;
+  /* 让页底的 garden（树+蝴蝶）锚定到文档末尾而不是首屏底部；
+     top 锚定的装饰（日月/云）不受影响 */
+  position: relative;
+  line-height: var(--line-height);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-family: var(--font-primary);
+  min-height: 100%;
+}
+
+::selection { color: var(--selection-color); background: var(--selection-bg); }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: transparent; border-radius: 100px; }
+:hover::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.25); }
+
+a { color: inherit; text-decoration: inherit; }
+ul, ol { list-style: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+svg { display: block; }
+img { display: block; max-width: 100%; height: auto; }
+
+:where(a, button, [tabindex="0"]):focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--grey1);
+  color: var(--body-bg);
+  padding: 8px 14px;
+  border-radius: 0 0 8px 0;
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* =====================================================================
+   页面骨架：窄栏 + 顶部渐隐遮罩
+   ===================================================================== */
+/* 宽屏主栏：Minimal 1000px，Creative 1120px（≤900px 收回窄栏） */
+.page-shell {
+  position: relative;
+  max-width: var(--shell-max, 1240px);
+  margin: 0 auto;
+  /* 底部 211px = 树高 111 + 文字与树冠之间 100px 空白 */
+  padding: 96px 48px 211px;
+  transition: opacity 0.25s ease;
+}
+/* 滚动内容从顶部渐隐出的那层白雾 */
+.page-shell::before {
+  content: "";
+  pointer-events: none;
+  z-index: 9;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 8rem;
+  background: linear-gradient(180deg,
+    var(--body-bg),
+    color-mix(in srgb, var(--body-bg) 74%, transparent) 19%,
+    color-mix(in srgb, var(--body-bg) 54%, transparent) 34%,
+    color-mix(in srgb, var(--body-bg) 38%, transparent) 47%,
+    color-mix(in srgb, var(--body-bg) 28%, transparent) 56.5%,
+    color-mix(in srgb, var(--body-bg) 19%, transparent) 65%,
+    color-mix(in srgb, var(--body-bg) 12%, transparent) 73%,
+    color-mix(in srgb, var(--body-bg) 7%, transparent) 80%,
+    color-mix(in srgb, var(--body-bg) 3%, transparent) 88%,
+    transparent);
+}
+
+
+.homepage { display: flex; flex-direction: column; gap: 88px; }
+.homepage > .article { gap: 13px; }
+/* 宽屏节奏：段落贴紧、区块之间拉开 */
+.homepage > .article > section { margin-top: 76px; }
+
+/* 入场：逐块上浮 */
+@keyframes staggerIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.homepage > .article > * { animation: staggerIn 0.42s var(--ease-out) both; }
+.homepage > .article > :nth-child(1) { animation-delay: 0s; }
+.homepage > .article > :nth-child(2) { animation-delay: 0.05s; }
+.homepage > .article > :nth-child(3) { animation-delay: 0.1s; }
+.homepage > .article > :nth-child(4) { animation-delay: 0.15s; }
+.homepage > .article > :nth-child(5) { animation-delay: 0.2s; }
+.homepage > .article > :nth-child(6) { animation-delay: 0.25s; }
+.homepage > .article > :nth-child(7) { animation-delay: 0.3s; }
+.homepage > .article > :nth-child(n + 8) { animation-delay: 0.35s; }
+.homepage > section { animation: staggerIn 0.42s var(--ease-out) both; animation-delay: 0.45s; }
+.homepage > footer { animation: staggerIn 0.42s var(--ease-out) both; animation-delay: 0.55s; }
+
+/* =====================================================================
+   模式切换胶囊（Minimal / Creative）
+   ===================================================================== */
+.mode-toggle {
+  position: absolute;
+  top: 26px;
+  left: 48px;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  padding: 2.5px;
+  border-radius: 999px;
+  background: var(--toggle-track);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  width: fit-content;
+}
+.mode-btn {
+  position: relative;
+  z-index: 1;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 999px;
+  color: var(--grey3);
+  transition: color 0.25s ease;
+}
+.mode-btn.is-active { color: var(--grey1); }
+.mode-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: calc(100% - 6px);
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: var(--toggle-thumb);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s var(--ease-pop);
+}
+body.creative-mode .mode-thumb { transform: translateX(100%); }
+
+/* 模式互斥显示 */
+.creative-only { display: none; }
+body.creative-mode .article,
+body.creative-mode .site-footer { display: none; }
+body.creative-mode .creative-only {
+  display: block;
+  animation: fvIn 0.4s var(--ease-out) both;
+}
+

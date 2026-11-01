@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能体农场 · 培育你的求职AI伙伴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF6EF; --brown:#2B2620; --pink:#FF5DA2; --cyan:#22D3EE;
+  --green:#7CB342; --gold:#F5B841; --wood:#8D6E63; --panel:#FFFDF7;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Noto Sans SC',sans-serif; background:var(--cream); color:var(--brown);
+  background-image:radial-gradient(circle,#e8e0d0 1.5px,transparent 1.5px); background-size:28px 28px;
+  min-height:100vh;
+}
+.pixel{font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif;}
+.wrap{max-width:860px;margin:0 auto;padding:16px;}
+/* ---------- 像素风面板 ---------- */
+.panel{
+  background:var(--panel); border:4px solid var(--brown); border-radius:6px;
+  box-shadow:0 6px 0 rgba(43,38,32,.35), inset 0 0 0 3px #fff;
+  padding:18px; position:relative;
+}
+.btn{
+  font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif; cursor:pointer; user-select:none;
+  background:var(--green); color:#fff; border:3px solid var(--brown); border-radius:6px;
+  padding:10px 22px; font-size:18px; box-shadow:0 4px 0 var(--brown);
+  transition:transform .06s, box-shadow .06s; text-shadow:1px 1px 0 rgba(0,0,0,.25);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--brown);}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--brown);}
+.btn.pink{background:var(--pink);}
+.btn.cyan{background:var(--cyan);color:var(--brown);text-shadow:none;}
+.btn.gray{background:#B7AFA4;}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+/* ---------- 开始界面 ---------- */
+#start-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;}
+.game-logo{
+  font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif; font-size:clamp(34px,7vw,60px);
+  color:var(--brown); line-height:1.25; margin-bottom:6px;
+}
+.game-logo em{font-style:normal;color:var(--pink);}
+.sub-logo{color:var(--wood);font-size:16px;margin-bottom:26px;}
+.seed-row{font-size:34px;letter-spacing:12px;margin-bottom:20px;}
+.name-input{
+  font-family:'Noto Sans SC',sans-serif; font-size:18px; text-align:center;
+  border:3px solid var(--brown); border-radius:6px; padding:10px 14px; width:240px;
+  background:#fff; outline:none; box-shadow:0 4px 0 var(--brown);
+}
+.name-input:focus{border-color:var(--pink);}
+.continue-tip{margin-top:14px;font-size:13px;color:var(--wood);}
+/* ---------- HUD ---------- */
+#hud{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+  background:var(--panel);border:4px solid var(--brown);border-radius:6px;
+  box-shadow:0 5px 0 rgba(43,38,32,.35);padding:10px 14px;margin-bottom:14px;position:sticky;top:10px;z-index:50;
+}
+.hud-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.avatar{
+  width:44px;height:44px;border:3px solid var(--brown);border-radius:6px;background:#FFE9F3;
+  display:flex;align-items:center;justify-content:center;font-size:24px;flex:none;
+}
+.player-name{font-weight:900;font-size:15px;}
+.lvl-tag{font-size:12px;color:var(--pink);font-weight:700;}
+.xp-bar{width:110px;height:12px;background:#E8E0D0;border:2px solid var(--brown);border-radius:4px;overflow:hidden;}
+.xp-fill{height:100%;background:var(--pink);width:0%;transition:width .4s;}
+.hud-stats{display:flex;gap:8px;flex-wrap:wrap;}
+.stat-chip{
+  border:3px solid var(--brown);border-radius:6px;background:#fff;
+  padding:4px 10px;font-size:14px;font-weight:700;display:flex;align-items:center;gap:4px;
+  box-shadow:0 3px 0 var(--brown);
+}
+/* ---------- 地图 ---------- */
+.zone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+.zone-card{
+  background:var(--panel);border:4px solid var(--brown);border-radius:8px;padding:16px;
+  box-shadow:0 5px 0 rgba(43,38,32,.35);cursor:pointer;transition:transform .1s;position:relative;overflow:hidden;
+}
+.zone-card:hover{transform:translateY(-4px) rotate(-.5deg);}
+.zone-card.locked{filter:grayscale(1);opacity:.55;cursor:not-allowed;}
+.zone-card.locked:hover{transform:none;}
+.zone-card.done{background:#F0F7E6;border-color:var(--green);}
+.zone-icon{font-size:38px;margin-bottom:6px;}
+.zone-title{font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif;font-size:20px;margin-bottom:2px;}
+.zone-phase{display:inline-block;font-size:11px;font-weight:900;color:#fff;background:var(--brown);border-radius:4px;padding:2px 8px;margin-bottom:6px;}
+.zone-card.done .zone-phase{background:var(--green);}
+.zone-desc{font-size:13px;color:var(--wood);line-height:1.5;}
+.zone-progress{margin-top:10px;font-size:12px;font-weight:700;color:var(--pink);}
+.zone-badge{position:absolute;top:10px;right:10px;font-size:22px;}
+/* ---------- 区域视图 ---------- */
+.npc-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;}
+.npc-face{
+  font-size:44px;width:64px;height:64px;flex:none;border:4px solid var(--brown);border-radius:8px;
+  background:#FFF3D6;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 var(--brown);
+}
+.dialogue{
+  flex:1;background:#FFF9E8;border:3px solid var(--brown);border-radius:6px;padding:12px 14px;
+  font-size:15px;line-height:1.7;min-height:64px;box-shadow:0 4px 0 rgba(43,38,32,.3);
+}
+.dialogue b{color:var(--pink);}
+.task-list{display:flex;flex-direction:column;gap:10px;}
+.task-item{
+  display:flex;align-items:center;gap:12px;background:#fff;border:3px solid var(--brown);
+  border-radius:6px;padding:10px 14px;cursor:pointer;transition:transform .08s;box-shadow:0 3px 0 var(--brown);
+}
+.task-item:hover{transform:translateX(4px);}
+.task-item.done{background:#EFF7E9;border-color:var(--green);cursor:default;}
+.task-item.done:hover{transform:none;}
+.task-item.locked-t{opacity:.5;cursor:not-allowed;}
+.task-item.locked-t:hover{transform:none;}
+.task-ico{font-size:24px;flex:none;}
+.task-name{font-weight:900;font-size:15px;}
+.task-meta{font-size:12px;color:var(--wood);}
+.task-check{margin-left:auto;font-size:20px;flex:none;}
+/* ---------- 任务表单 ---------- */
+.task-form{margin-top:14px;}
+.q-label{font-weight:900;font-size:14px;margin:12px 0 6px;display:block;}
+.q-hint{font-size:12px;color:var(--wood);margin-bottom:8px;}
+.t-input,.t-area{
+  width:100%;font-family:'Noto Sans SC',sans-serif;font-size:14px;border:3px solid var(--brown);
+  border-radius:6px;padding:9px 12px;background:#fff;outline:none;
+}
+.t-area{resize:vertical;min-height:70px;line-height:1.6;}
+.t-input:focus,.t-area:focus{border-color:var(--pink);}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+.choice-card{
+  border:3px solid var(--brown);border-radius:6px;background:#fff;padding:12px 10px;text-align:center;
+  cursor:pointer;transition:all .1s;box-shadow:0 3px 0 var(--brown);
+}
+.choice-card:hover{transform:translateY(-2px);}
+.choice-card.sel{background:#FFE9F3;border-color:var(--pink);box-shadow:0 3px 0 var(--pink);}
+.choice-card .c-ico{font-size:26px;}
+.choice-card .c-name{font-weight:900;font-size:14px;margin:4px 0 2px;}
+.choice-card .c-desc{font-size:11px;color:var(--wood);line-height:1.45;}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  border:3px solid var(--brown);border-radius:20px;background:#fff;padding:6px 14px;
+  font-size:13px;font-weight:700;cursor:pointer;transition:all .1s;
+}
+.chip.sel{background:var(--cyan);border-color:var(--brown);transform:scale(1.05);}
+.check-item{
+  display:flex;gap:10px;align-items:flex-start;background:#fff;border:3px solid var(--brown);
+  border-radius:6px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:13px;line-height:1.5;
+}
+.check-item .box{
+  width:20px;height:20px;flex:none;border:3px solid var(--brown);border-radius:4px;background:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;
+}
+.check-item.on{background:#EFF7E9;}
+.check-item.on .box{background:var(--green);color:#fff;}
+.formula-steps{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+.f-step{
+  border:3px dashed var(--brown);border-radius:6px;padding:8px 12px;font-size:13px;font-weight:700;
+  cursor:pointer;background:#fff;
+}
+.f-step.used{opacity:.3;cursor:not-allowed;}
+.f-slot{
+  border:3px solid var(--brown);border-radius:6px;padding:8px 12px;font-size:13px;font-weight:900;
+  background:#FFF3D6;min-width:90px;text-align:center;
+}
+.f-slot.ok{background:var(--green);color:#fff;}
+.feedback-box{
+  background:#E8F7FA;border:3px solid var(--cyan);border-radius:6px;padding:12px;margin-top:10px;
+  font-size:13px;line-height:1.7;display:none;
+}
+.feedback-box.show{display:block;}
+.reward-line{display:flex;gap:14px;align-items:center;margin-top:14px;flex-wrap:wrap;}
+/* ---------- 背包 / 证书 ---------- */
+.modal-mask{
+  position:fixed;inset:0;background:rgba(43,38,32,.55);z-index:100;display:none;
+  align-items:center;justify-content:center;padding:16px;
+}
+.modal-mask.show{display:flex;}
+.modal{
+  background:var(--panel);border:5px solid var(--brown);border-radius:10px;max-width:560px;width:100%;
+  max-height:86vh;overflow-y:auto;padding:22px;box-shadow:0 10px 0 rgba(0,0,0,.3);
+}
+.modal h3{font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif;font-size:22px;margin-bottom:12px;text-align:center;}
+.item-row{
+  display:flex;align-items:center;gap:12px;background:#fff;border:3px solid var(--brown);
+  border-radius:6px;padding:9px 12px;margin-bottom:8px;
+}
+.item-row .i-ico{font-size:24px;}
+.item-row .i-name{font-weight:900;font-size:14px;}
+.item-row .i-desc{font-size:12px;color:var(--wood);}
+.cert{
+  border:5px double var(--gold);border-radius:8px;padding:18px;background:#FFFDF2;
+  font-size:13px;line-height:1.9;
+}
+.cert h4{text-align:center;font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif;font-size:20px;color:var(--pink);margin-bottom:8px;}
+.cert .ck{color:var(--wood);}
+.cert b{color:var(--brown);}
+/* ---------- Toast ---------- */
+#toast{
+  position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);
+  background:var(--brown);color:#fff;border:3px solid #fff;border-radius:8px;
+  padding:10px 20px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;
+  transition:all .3s;z-index:200;max-width:90vw;text-align:center;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* ---------- 其他 ---------- */
+.back-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px;flex-wrap:wrap;}
+.zone-head-title{font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif;font-size:22px;}
+.sleep-zone{margin-top:20px;text-align:center;}
+.hidden{display:none!important;}
+@media(max-width:520px){.xp-bar{width:70px;}.npc-face{width:52px;height:52px;font-size:34px;}}
+</style>
+</head>
+<body>
+
+<!-- ============ 开始界面 ============ -->
+<div id="start-screen">
+  <div class="seed-row">🌱 ⛏️ 🧺 ✨ 🏆</div>
+  <div class="game-logo">智能体<em>农场</em></div>
+  <div class="sub-logo">像星露谷一样，一步一步培育你的专属求职 AI 伙伴</div>
+  <input class="name-input" id="player-name" maxlength="10" placeholder="输入你的农场主名字">
+  <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+    <button class="btn pink" id="btn-start">🌾 开辟新农场</button>
+    <button class="btn cyan hidden" id="btn-continue">📂 继续游戏</button>
+  </div>
+  <div class="continue-tip">进度自动保存在本地 · 全程约 30 分钟 · 不需要写代码</div>
+</div>
+
+<!-- ============ 游戏主界面 ============ -->
+<div id="game" class="wrap hidden">
+  <!-- HUD -->
+  <div id="hud">
+    <div class="hud-left">
+      <div class="avatar" id="hud-avatar">🧑‍🌾</div>
+      <div>
+        <div class="player-name" id="hud-name">农场主</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="lvl-tag" id="hud-lvl">Lv.1 新手农夫</span>
+          <div class="xp-bar"><div class="xp-fill" id="hud-xp"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hud-stats">
+      <div class="stat-chip" title="第几天">📅 第 <span id="hud-day">1</span> 天</div>
+      <div class="stat-chip" title="精力，任务会消耗">⚡ <span id="hud-energy">10</span>/<span id="hud-maxEnergy">10</span></div>
+      <div class="stat-chip" title="金币">🪙 <span id="hud-coins">0</span></div>
+      <div class="stat-chip" style="cursor:pointer" id="btn-backpack">🎒 背包</div>
+      <button class="btn cyan" style="padding:5px 12px;font-size:14px;" id="btn-sleep" title="睡觉恢复精力，推进到下一天">😴 睡觉</button>
+    </div>
+  </div>
+
+  <!-- 地图视图 -->
+  <div id="map-view">
+    <div class="panel" style="margin-bottom:14px;">
+      <div style="font-family:'ZCOOL KuaiLe',sans-serif;font-size:20px;">🗺️ 你的农场地图</div>
+      <div style="font-size:13px;color:var(--wood);margin-top:4px;line-height:1.6;">
+        传说中，把 <b>简历、JD 和题库</b> 三颗种子种进地里，就能长出一个替你面试的智能体。<br>
+        按 <b>开垦 → 采集 → 建造 → 浇灌 → 收获</b> 的顺序经营，每完成一个任务都会获得材料。
+      </div>
+    </div>
+    <div class="zone-grid" id="zone-grid"></div>
+    <div class="panel sleep-zone" style="margin-top:14px;">
+      <div style="font-size:13px;color:var(--wood);margin-bottom:8px;">💡 精力用完了？点右上角「😴 睡觉」——就像游戏里一样，休息是为了走更远的路（现实中=每天15分钟，细水长流）</div>
+    </div>
+  </div>
+
+  <!-- 区域视图 -->
+  <div id="zone-view" class="hidden">
+    <div class="back-row">
+      <button class="btn gray" style="padding:6px 14px;font-size:14px;" id="btn-back">← 回地图</button>
+      <div class="zone-head-title" id="zone-title"></div>
+    </div>
+    <div class="panel">
+      <div class="npc-row">
+        <div class="npc-face" id="npc-face"></div>
+        <div class="dialogue" id="npc-dialogue"></div>
+      </div>
+      <div class="task-list" id="task-list"></div>
+      <div id="task-form-area" class="task-form"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 背包 -->
+<div class="modal-mask" id="backpack-mask">
+  <div class="modal">
+    <h3>🎒 农夫背包</h3>
+    <div id="backpack-items"></div>
+    <div style="text-align:center;margin-top:14px;">
+      <button class="btn" id="btn-close-backpack">关闭</button>
+    </div>
+  </div>
+</div>
+
+<!-- 证书 -->
+<div class="modal-mask" id="cert-mask">
+  <div class="modal">
+    <h3>🏆 智能体培育毕业证书</h3>
+    <div class="cert" id="cert-body"></div>
+    <div style="text-align:center;margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn pink" id="btn-copy-cert">📋 复制全文</button>
+      <button class="btn gray" id="btn-close-cert">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* =====================================================
+   智能体农场 —— 星露谷式求职智能体养成游戏
+   Phase0定位(开垦) → Phase1弹药(采集) → Phase2创建(建造)
+   → Phase3调教(浇灌) → 验收(收获节)
+===================================================== */
+const $ = s => document.querySelector(s);
+const SAVE_KEY = 'agent-farm-save-v1';
+
+/* ---------- 关卡数据 ---------- */
+const ZONES = [
+{
+  id:'farm', icon:'🌱', name:'开垦农田', phase:'PHASE 0 · 定位',
+  npc:'👴 老村长', face:'🧙‍♂️',
+  intro:'欢迎来到智能体农场！开垦前先想清楚：<b>你要种出一个什么样的伙伴？</b>回答我 4 个问题，农田就翻好了。',
+  tasks:[
+    { id:'t1', icon:'🏷️', name:'给智能体起名字', meta:'消耗⚡2 · 奖励🪙10 · 掉落【名字铭牌】', cost:2, xp:20, coins:10, item:'🏷️ 名字铭牌', itemDesc:'它有名字了！',
+      form:{type:'text', label:'你想叫它什么？（比如：鹅厂面试官小腾 / Offer陪练）', hint:'好名字=角色+职能，一看就知道它是干嘛的', key:'name'} },
+    { id:'t2', icon:'🎭', name:'选定人设（3选1）', meta:'消耗⚡2 · 奖励🪙10 · 掉落【人设种子】', cost:2, xp:20, coins:10, item:'🎭 人设种子', itemDesc:'决定它用哪种口吻和你说话',
+      form:{type:'choice', key:'persona', options:[
+        {ico:'👔', name:'犀利面试官', desc:'扮演面试官直接出题+点评，代入感最强'},
+        {ico:'🤝', name:'温和陪练', desc:'陪你慢慢练，以你的档案为核心展开'},
+        {ico:'🧐', name:'行业前辈', desc:'偏运营思维教学，帮你建立行业认知'}]}},
+    { id:'t3', icon:'🧰', name:'分配职责（可多选）', meta:'消耗⚡2 · 奖励🪙10 · 掉落【职责清单】', cost:2, xp:20, coins:10, item:'🧰 职责清单', itemDesc:'它每天帮你干哪些活',
+      form:{type:'multi', key:'duties', hint:'新手建议先选 1-2 个，跑通后再加', options:[
+        '🎤 模拟面试出题','📄 简历逐条打磨','📦 作品集包装','📊 失分复盘分析','🗣️ 英文面试陪练']}},
+    { id:'t4', icon:'💬', name:'定点评风格（3选1）', meta:'消耗⚡2 · 奖励🪙10 · 掉落【风格蓝图】', cost:2, xp:20, coins:10, item:'💬 风格蓝图', itemDesc:'它怎么给你反馈',
+      form:{type:'choice', key:'style', options:[
+        {ico:'🧾', name:'面试官式', desc:'先总评分 → 再拆维度 → 最后给修改版（最推荐）'},
+        {ico:'✏️', name:'教练式', desc:'每句话直接给改写版，适合快速抄作业'},
+        {ico:'🎯', name:'陪练式', desc:'只提问不给答案，逼你自己迭代，强度最大'}]}},
+  ]
+},
+{
+  id:'forest', icon:'🌲', name:'迷雾森林采集', phase:'PHASE 1 · 备弹药',
+  npc:'🧝‍♀️ 采集师梅露', face:'🧝‍♀️',
+  intro:' 农田翻好了！但种子还没着落。传说<b>三颗神种子</b>藏在森林深处：<b>个人档案、岗位JD、面试题库</b>。<br>记住老话：<b>智能体强不强，80% 看你喂了什么。</b>',
+  tasks:[
+    { id:'t5', icon:'📋', name:'采集【个人档案】种子', meta:'消耗⚡3 · 奖励🪙20 · 掉落【档案种子】', cost:3, xp:30, coins:20, item:'📋 档案种子', itemDesc:'让 AI 一开口就认识你',
+      form:{type:'text', label:'写下你的 3 个经历亮点（一行一个）', hint:'例如：独立运营小红书账号，51篇笔记累计7996赞藏 / 会用数据复盘内容 / 做过2款小工具', key:'profile', area:true} },
+    { id:'t6', icon:'🗺️', name:'采集【岗位JD】地图', meta:'消耗⚡3 · 奖励🪙20 · 掉落【JD地图】', cost:3, xp:30, coins:20, item:'🗺️ JD地图', itemDesc:'定好靶心，练习才有针对性',
+      form:{type:'jd', key:'jd'} },
+    { id:'t7', icon:'📚', name:'采集【题库】种子包', meta:'消耗⚡3 · 奖励🪙20 · 掉落【题库种子包】', cost:3, xp:30, coins:20, item:'📚 题库种子包', itemDesc:'经历类/运营思维/行业认知/情景类/HR类',
+      form:{type:'text', label:'写下你最怕被问到的 3 道面试题', hint:'写不出就抄通用模板：①介绍一下你自己 ②你有什么出彩的经历 ③你为什么选我们公司', key:'questions', area:true} },
+  ]
+},
+{
+  id:'workshop', icon:'🔨', name:'山间工坊组装', phase:'PHASE 2 · 创建',
+  npc:'🧑‍🔧 铁匠罗盘', face:'👩‍🔧',
+  intro:'材料齐了！把它放进锻造炉，<b>你不用写一行代码</b>——对着 AI 助手说一句话，它就帮你把专家包组装出来。',
+  tasks:[
+    { id:'t8', icon:'⚙️', name:'锻造：投料进炉', meta:'消耗⚡2 · 奖励🪙20 · 掉落【专家包核心】', cost:2, xp:30, coins:20, item:'⚙️ 专家包核心', itemDesc:'名字+人设+职责+风格 已装配',
+      form:{type:'forge', key:'forge'} },
+    { id:'t9', icon:'📣', name:'说出创建咒语', meta:'消耗⚡2 · 奖励🪙10 · 掉落【咒语纸条】', cost:2, xp:20, coins:10, item:'📜 咒语纸条', itemDesc:'一句话让 AI 帮你建包',
+      form:{type:'choice', key:'spell', options:[
+        {ico:'✅', name:'标准咒语（推荐）', desc:'「帮我创建一个专家包：名字叫____，人设是____，职责是____，点评风格是____，用我背包里的资料初始化。」'},
+        {ico:'⚡', name:'极简咒语', desc:'「按下面的档案，帮我建一个面试陪练智能体。」（然后粘贴档案）'},
+        {ico:'🧑‍🏫', name:'手把手咒语', desc:'「我要建一个求职智能体但不知道怎么写人设，请先采访我 5 个问题再帮我生成。」'}]}},
+  ]
+},
+{
+  id:'greenhouse', icon:'💧', name:'魔法温室浇灌', phase:'PHASE 3 · 调教',
+  npc:'🧚 调教师小樱', face:'🧚‍♀️',
+  intro:'种下去只是开始！<b>投喂 → 演练 → 纠偏 → 固化 → 复盘</b>，每天浇 15 分钟水，它才会越长越懂你。',
+  tasks:[
+    { id:'t10', icon:'🎤', name:'第一场演练', meta:'消耗⚡3 · 奖励🪙20 · 掉落【演练笔记】', cost:3, xp:30, coins:20, item:'🎤 演练笔记', itemDesc:'第一次实战记录',
+      form:{type:'sim', key:'sim'} },
+    { id:'t11', icon:'🔁', name:'学会纠偏三连', meta:'消耗⚡2 · 奖励🪙15 · 掉落【纠偏口诀】', cost:2, xp:20, coins:15, item:'🔁 纠偏口诀', itemDesc:'答错了就纠正它，别惯着',
+      form:{type:'formula', key:'formula'} },
+    { id:'t12', icon:'💾', name:'固化记忆', meta:'消耗⚡2 · 奖励🪙15 · 掉落【记忆存档】', cost:2, xp:20, coins:15, item:'💾 记忆存档', itemDesc:'让它永久记住你的偏好',
+      form:{type:'choice', key:'memory', options:[
+        {ico:'📌', name:'存偏好', desc:'「记住：我的回答要口语化，别背稿子感。」'},
+        {ico:'📕', name:'存定稿', desc:'「把我这段自我介绍的定稿存进你的记忆，以后引用它。」'},
+        {ico:'🚫', name:'存禁区', desc:'「不要替我编造经历，数据只能用我提供过的。」（重要！）'}]}},
+  ]
+},
+{
+  id:'festival', icon:'🎪', name:'收获节验收', phase:'最终 · 验收',
+  npc:'👵 村长奶奶', face:'👩‍🌾',
+  intro:'收获节到了！按这份清单<b>自查 6 项</b>，全打勾就能领取毕业证书——你的专属智能体正式出师！',
+  tasks:[
+    { id:'t13', icon:'✅', name:'收获自查 · 6 项全过', meta:'消耗⚡3 · 奖励🪙50 · 掉落【毕业证书】', cost:3, xp:50, coins:50, item:'🏆 毕业证书', itemDesc:'智能体出师！',
+      form:{type:'checklist', key:'checklist', options:[
+        '它能在 10 秒内报出我的核心数据（不编造）',
+        '点评必先总结再拆解，最后给修改版',
+        '我不知道说什么时，它会先给提示而不是直接报答案',
+        '纠正过它 2 次以上，它不再犯同样的错',
+        '它说话的口吻和人设一致，不跳戏',
+        '演练过至少 3 道题，我有进步的感觉']} },
+  ]
+}
+];
+
+const LEVELS = [
+  {xp:0, name:'新手农夫'},{xp:60, name:'见习农夫'},{xp:150, name:'正式农夫'},
+  {xp:260, name:'高级农夫'},{xp:380, name:'农场大师'},{xp:520, name:'传奇农场主'}
+];
+
+/* ---------- 状态 ---------- */
+let S = null;
+function freshState(name){
+  return { name, day:1, energy:10, maxEnergy:10, coins:0, xp:0,
+    done:[], answers:{}, items:[] };
+}
+function save(){ localStorage.setItem(SAVE_KEY, JSON.stringify(S)); }
+function load(){ try{ return JSON.parse(localStorage.getItem(SAVE_KEY)); }catch(e){ return null; } }
+
+/* ---------- HUD ---------- */
+function lvlInfo(){ let l=LEVELS[0], li=0;
+  LEVELS.forEach((x,i)=>{ if(S.xp>=x.xp){l=x;li=i;} }); return {l,li};
+}
+function renderHUD(){
+  $('#hud-name').textContent = S.name;
+  const {l,li} = lvlInfo();
+  $('#hud-lvl').textContent = `Lv.${li+1} ${l.name}`;
+  const next = LEVELS[li+1];
+  const pct = next ? Math.min(100, (S.xp-l.xp)/(next.xp-l.xp)*100) : 100;
+  $('#hud-xp').style.width = pct+'%';
+  $('#hud-day').textContent = S.day;
+  $('#hud-energy').textContent = S.energy;
+  $('#hud-maxEnergy').textContent = S.maxEnergy;
+  $('#hud-coins').textContent = S.coins;
+}
+
+/* ---------- Toast ---------- */
+let toastTimer=null;
+function toast(msg){
+  const t=$('#toast'); t.innerHTML=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+/* ---------- 地图渲染 ---------- */
+function zoneState(z){
+  const done = z.tasks.filter(t=>S.done.includes(t.id)).length;
+  return {done, total:z.tasks.length, complete:done===z.tasks.length};
+}
+function zoneUnlocked(idx){
+  if(idx===0) return true;
+  return zoneState(ZONES[idx-1]).complete;
+}
+function renderMap(){
+  const grid=$('#zone-grid'); grid.innerHTML='';
+  ZONES.forEach((z,i)=>{
+    const st=zoneState(z); const open=zoneUnlocked(i);
+    const card=document.createElement('div');
+    card.className='zone-card'+(open?'':' locked')+(st.complete?' done':'');
+    card.innerHTML=`
+      ${st.complete?'<div class="zone-badge">🌟</div>':(open?'':'<div class="zone-badge">🔒</div>')}
+      <div class="zone-icon">${z.icon}</div>
+      <div class="zone-phase">${z.phase}</div>
+      <div class="zone-title">${z.name}</div>
+      <div class="zone-desc">${z.npc} · ${z.intro.replace(/<[^>]+>/g,'').slice(0,28)}…</div>
+      <div class="zone-progress">任务进度 ${st.done}/${st.total}${open?'':' · 需先完成上一区域'}</div>`;
+    if(open) card.onclick=()=>openZone(i);
+    grid.appendChild(card);
+  });
+}
+
+/* ---------- 区域视图 ---------- */
+let curZone=-1, curTask=null;
+function openZone(i){
+  curZone=i; const z=ZONES[i];
+  $('#map-view').classList.add('hidden');
+  $('#zone-view').classList.remove('hidden');
+  $('#zone-title').textContent = z.icon+' '+z.name;
+  $('#npc-face').textContent = z.face;
+  typewrite(z.npc+'：'+z.intro);
+  $('#task-form-area').innerHTML='';
+  curTask=null;
+  renderTasks(z);
+}
+function typewrite(html){
+  const el=$('#npc-dialogue');
+  // 保留HTML的简易打字机：直接淡入
+  el.style.opacity=0; el.innerHTML=html;
+  let o=0; const iv=setInterval(()=>{ o+=0.12; el.style.opacity=o; if(o>=1){clearInterval(iv);el.style.opacity=1;} },30);
+}
+function renderTasks(z){
+  const list=$('#task-list'); list.innerHTML='';
+  z.tasks.forEach(t=>{
+    const done=S.done.includes(t.id);
+    const idx=z.tasks.indexOf(t);
+    const unlocked = idx===0 || S.done.includes(z.tasks[idx-1].id);
+    const div=document.createElement('div');
+    div.className='task-item'+(done?' done':'')+((!done&&!unlocked)?' locked-t':'');
+    div.innerHTML=`<div class="task-ico">${t.icon}</div>
+      <div><div class="task-name">${t.name}</div><div class="task-meta">${t.meta}</div></div>
+      <div class="task-check">${done?'✅':(unlocked?'▶️':'🔒')}</div>`;
+    if(!done && unlocked) div.onclick=()=>openTask(z,t);
+    list.appendChild(div);
+  });
+}
+function openTask(z,t){
+  curTask=t;
+  const area=$('#task-form-area');
+  area.innerHTML=`<div class="panel" style="background:#FFFBF2;box-shadow:0 4px 0 rgba(43,38,32,.3);">
+    <div style="font-family:'ZCOOL KuaiLe',sans-serif;font-size:18px;margin-bottom:4px;">${t.icon} ${t.name}</div>
+    <div id="form-body"></div>
+    <div class="reward-line">
+      <button class="btn pink" id="btn-submit">${done? '✅ 已完成':'提交任务'}</button>
+      <span style="font-size:13px;color:var(--wood);">完成后将掉落 <b>${t.item}</b></span>
+    </div>
+  </div>`;
+  renderForm(t);
+  $('#btn-submit').onclick=()=>submitTask(z,t);
+  area.scrollIntoView({behavior:'smooth',block:'center'});
+}
+const a = k => S.answers[k]||'';
+
+function renderForm(t){
+  const f=t.form, body=$('#form-body');
+  const v=a(t.form.key);
+  if(f.type==='text'){
+    body.innerHTML=`<label class="q-label">${f.label}</label>
+      <div class="q-hint">💡 ${f.hint}</div>
+      <textarea class="t-area" id="f-input" placeholder="在这里写下你的真实情况…">${v}</textarea>`;
+  }
+  else if(f.type==='choice'){
+    body.innerHTML=`<div class="choice-grid">`+f.options.map((o,i)=>`
+      <div class="choice-card${v===o.name?' sel':''}" data-i="${i}">
+        <div class="c-ico">${o.ico}</div><div class="c-name">${o.name}</div><div class="c-desc">${o.desc}</div>
+      </div>`).join('')+`</div>`;
+    body.querySelectorAll('.choice-card').forEach(c=>c.onclick=()=>{
+      body.querySelectorAll('.choice-card').forEach(x=>x.classList.remove('sel'));
+      c.classList.add('sel');
+      S.answers[f.key]=f.options[+c.dataset.i].name; save();
+    });
+  }
+  else if(f.type==='multi'){
+    const sel=v? v.split('、'):[];
+    body.innerHTML=`<div class="q-hint">💡 ${f.hint}</div><div class="chip-row">`+
+      f.options.map(o=>`<div class="chip${sel.includes(o)?' sel':''}">${o}</div>`).join('')+`</div>`;
+    body.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+      c.classList.toggle('sel');
+      const set=[...body.querySelectorAll('.chip.sel')].map(x=>x.textContent);
+      S.answers[f.key]=set.join('、'); save();
+    });
+  }
+  else if(f.type==='jd'){
+    body.innerHTML=`
+      <label class="q-label">目标岗位（公司+岗位名）</label>
+      <input class="t-input" id="f-jd1" placeholder="例如：腾讯 · 新媒体运营（实习）" value="${v&&v.p1||''}">
+      <label class="q-label">JD 里的 3 个关键词（去招聘页复制）</label>
+      <div class="q-hint">💡 比如：小红书运营 / 数据复盘 / 热点敏感度——之后你的模拟面试题都从这些词出发</div>
+      <textarea class="t-area" id="f-jd2" placeholder="关键词1，关键词2，关键词3">${v&&v.p2||''}</textarea>`;
+  }
+  else if(f.type==='forge'){
+    const parts=[a('name'),a('persona'),a('duties'),a('style'),a('profile'),a('jd')];
+    const ready=parts.every(x=>x&&(x.name? x.name : true));
+    body.innerHTML=`
+      <div class="q-hint">🔍 检查投料：名字 / 人设 / 职责 / 风格 / 档案 / JD 是否都已集齐</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-bottom:12px;">
+        ${['🏷️名字','🎭人设','🧰职责','💬风格','📋档案','🗺️JD'].map((p,i)=>
+          `<div class="f-slot ${parts[i]?'ok':''}">${parts[i]?'✔':'✘'} ${p}</div>`).join('')}
+      </div>
+      ${ready? '<div style="font-size:13px;color:var(--green);font-weight:700;">✅ 材料齐全！点击下方「提交任务」点火锻造 🔥</div>'
+             : '<div style="font-size:13px;color:var(--pink);font-weight:700;">⚠️ 还有材料没集齐，先回前面的任务补一补</div>'}`;
+  }
+  else if(f.type==='sim'){
+    body.innerHTML=`
+      <div style="background:#FFF3D6;border:3px solid var(--brown);border-radius:6px;padding:12px;font-size:14px;line-height:1.7;">
+        🎤 <b>面试官提问：</b>「我看你运营了一个账号，说说你最有成就感的一篇内容，以及它为什么效果好？」
+      </div>
+      <label class="q-label">你的回答（口语化，像说话一样写）</label>
+      <textarea class="t-area" id="f-input" placeholder="就按你平时讲话的方式写…">${v}</textarea>
+      <button class="btn cyan" style="padding:6px 14px;font-size:14px;margin-top:10px;" id="btn-peek">👀 看看高分答案长什么样</button>
+      <div class="feedback-box" id="peek-box">
+        <b>高分答案的骨架（先总评 → 拆 3 点 → 收尾）：</b><br>
+        「最有成就感的是我做的一款小工具笔记（<b>总起+数据</b>：2101 赞 / 1583 藏）。<br>
+        ① <b>选题上</b>：我盯到了官方活动流量 + 工具型内容收藏率高的机会；<br>
+        ② <b>迭代上</b>：我在评论区收集用户反馈，连更二编三编，把功能越改越顺手；<br>
+        ③ <b>数据上</b>：这一篇贡献了全账号近一半的赞藏，验证了内容可以长尾获客。<br>
+        <b>要点</b>：始终讲「我观察→我做了什么→数据证明了什么」，而不是「我觉得」。</div>`;
+    const pk=$('#btn-peek'); if(pk) pk.onclick=()=>$('#peek-box').classList.add('show');
+  }
+  else if(f.type==='formula'){
+    const order=['🧾 先总结：总评分+一句话点评','🔍 再拆解：按内容/结构/用词逐条说','✍️ 后修改：直接给出可用的修改版'];
+    const cur=(S.answers[f.key+'_slots'])||[null,null,null];
+    body.innerHTML=`
+      <div class="q-hint">💡 按正确顺序，把「面试官式点评三步」点进下面的格子</div>
+      <div class="formula-steps">`+order.map((o,i)=>`<div class="f-step${cur.includes(i)?' used':''}" data-i="${i}">${o}</div>`).join('')+`</div>
+      <div class="formula-steps">`+cur.map((c,i)=>`<div class="f-slot ${c!==null?'ok':''}" data-slot="${i}">${c!==null? order[c].slice(0,6)+'…' : (i+1)+'号槽'}</div>`).join('')+`</div>
+      <button class="btn gray" style="padding:5px 12px;font-size:13px;" id="btn-reset-f">重置</button>`;
+    body.querySelectorAll('.f-step').forEach(s=>s.onclick=()=>{
+      const cur2=(S.answers[f.key+'_slots'])||[null,null,null];
+      const i=+s.dataset.i; if(cur2.includes(i)) return;
+      const slot=cur2.indexOf(null); if(slot<0) return;
+      cur2[slot]=i; S.answers[f.key+'_slots']=cur2; save(); renderForm(t);
+      if(!cur2.includes(null)) toast('✨ 顺序正确！这就是它每次点评你的固定节奏');
+    });
+    const rs=$('#btn-reset-f'); if(rs) rs.onclick=()=>{ delete S.answers[f.key+'_slots']; save(); renderForm(t); };
+  }
+  else if(f.type==='checklist'){
+    const cur=(S.answers[f.key])||[];
+    body.innerHTML=`<div class="q-hint">💡 诚实自查：全部打勾才算真的出师（建议先回去多练两场再验收）</div>`+
+      f.options.map((o,i)=>`<div class="check-item${cur.includes(i)?' on':''}" data-i="${i}">
+        <div class="box">${cur.includes(i)?'✔':''}</div><div>${o}</div></div>`).join('');
+    body.querySelectorAll('.check-item').forEach(c=>c.onclick=()=>{
+      const cur2=(S.answers[f.key])||[]; const i=+c.dataset.i;
+      const at=cur2.indexOf(i); if(at>=0) cur2.splice(at,1); else cur2.push(i);
+      S.answers[f.key]=cur2; save(); renderForm(t);
+    });
+  }
+}
+
+function submitTask(z,t){
+  if(S.done.includes(t.id)){ toast('这个任务已经完成啦 🌟'); return; }
+  // 校验
+  const f=t.form; let ok=true, val=S.answers[f.key];
+  if(f.type==='text'||f.type==='sim'){ val=($('#f-input')?$('#f-input').value.trim():val);
+    if(!val||val.length<8){ ok=false; } else S.answers[f.key]=val; }
+  if(f.type==='jd'){
+    const p1=$('#f-jd1').value.trim(), p2=$('#f-jd2').value.trim();
+    if(!p1||p2.length<4){ ok=false; } else { S.answers[f.key]={p1,p2}; val=true; }
+  }
+  if(f.type==='forge'){ const ready=[a('name'),a('persona'),a('duties'),a('style'),a('profile'),a('jd')].every(x=>x); if(!ready){ ok=false; toast('⚠️ 材料没集齐！先完成前面缺的任务'); } }
+  if((f.type==='choice'||f.type==='multi') && !val) ok=false;
+  if(f.type==='formula'){ const s=S.answers[f.key+'_slots']; if(!s||s.includes(null)) ok=false; }
+  if(f.type==='checklist'){ const c=S.answers[f.key]; if(!c||c.length<f.options.length){ ok=false; toast('⚠️ 6 项要全部打勾才能验收'); } }
+  if(!ok){ if(f.type!=='checklist'&&f.type!=='forge') toast('✍️ 内容太少了，认真填一填（8字以上）'); return; }
+  // 精力
+  if(S.energy<t.cost){ toast('😮‍💨 精力不够了！点右上角「😴 睡觉」恢复'); return; }
+  // 结算
+  S.energy-=t.cost; S.coins+=t.coins; S.xp+=t.xp;
+  S.done.push(t.id);
+  S.items.push({ico:t.item.split(' ')[0], name:t.item, desc:t.itemDesc});
+  save(); renderHUD();
+  toast(`🎉 任务完成！+${t.xp}经验 +${t.coins}金币 掉落 ${t.item}`);
+  $('#task-form-area').innerHTML='';
+  curTask=null;
+  renderTasks(z);
+  if(zoneState(z).complete){
+    typewrite(z.npc+'：这片区域经营得漂亮！'+(ZONES.indexOf(z)<ZONES.length-1?'<b>回地图解锁下一区域吧！</b>':'<b>……你听，广场那边音乐响了——收获节开始啦！🏆</b>'));
+  }
+}
+
+/* ---------- 背包 & 证书 ---------- */
+function renderBackpack(){
+  const box=$('#backpack-items');
+  if(!S.items.length){ box.innerHTML='<div style="text-align:center;color:var(--wood);padding:20px;">空空如也，去完成任务收集材料吧 🌱</div>'; return; }
+  box.innerHTML=S.items.map(it=>`<div class="item-row"><div class="i-ico">${it.ico}</div>
+    <div><div class="i-name">${it.name}</div><div class="i-desc">${it.desc}</div></div></div>`).join('');
+}
+function buildCert(){
+  const jd=a('jd')||{};
+  const missing=[];
+  const need=[['name','名字'],['persona','人设'],['duties','职责'],['style','风格'],['profile','档案亮点'],['jd','JD']];
+  need.forEach(([k])=>{ if(!a(k)) missing.push(k); });
+  return `<h4>「${S.name}」的专属智能体培育报告</h4>
+    <div class="ck">🏷️ <b>智能体名字：</b>${a('name')||'（未定）'}<br>
+    🎭 <b>人设：</b>${a('persona')||'（未定）'}<br>
+    🧰 <b>职责：</b>${a('duties')||'（未定）'}<br>
+    💬 <b>点评风格：</b>${a('style')||'（未定）'}<br>
+    📋 <b>我的经历亮点：</b>${a('profile')?'<br>&nbsp;&nbsp;&nbsp;'+String(a('profile')).split('\n').filter(x=>x.trim()).map(x=>'· '+x).join('<br>&nbsp;&nbsp;&nbsp;'):'（未填）'}<br>
+    🗺️ <b>目标岗位：</b>${jd.p1||'（未填）'}<br>
+    &nbsp;&nbsp;&nbsp;<b>JD关键词：</b>${jd.p2||'（未填）'}<br>
+    📚 <b>我的怕问题：</b>${a('questions')?'<br>&nbsp;&nbsp;&nbsp;'+String(a('questions')).split('\n').filter(x=>x.trim()).map(x=>'· '+x).join('<br>&nbsp;&nbsp;&nbsp;'):'（未填）'}<br>
+    📣 <b>创建咒语：</b>${a('spell')||'（未选）'}<br>
+    📅 <b>培育用时：</b>${S.day} 天 · 经验 Lv.${lvlInfo().li+1} · 金币 ${S.coins}</div>
+    ${missing.length? '<div style="margin-top:10px;color:var(--pink);font-weight:700;">⚠️ 还缺：'+missing.join('、')+' ——回对应区域补上，报告会更完整</div>'
+    :'<div style="margin-top:10px;color:var(--green);font-weight:700;">✅ 信息完整！把上面这段话发给任意 AI 助手，你的专属智能体立刻开工。</div>'}
+    <div style="margin-top:10px;font-size:12px;color:var(--wood);">下一步：打开 WorkBuddy / 任意 AI 工具 → 粘贴以上内容说「按这个建一个专家包」→ 开始每天 15 分钟的调教循环（投喂→演练→纠偏→固化→复盘）。</div>`;
+}
+
+/* ---------- 事件 ---------- */
+$('#btn-start').onclick=()=>{
+  const name=$('#player-name').value.trim();
+  if(!name){ toast('先给自己起个农场主名字吧 🌾'); return; }
+  S=freshState(name); save(); enterGame();
+};
+$('#btn-continue').onclick=()=>{ S=load(); if(S) enterGame(); };
+function enterGame(){
+  $('#start-screen').classList.add('hidden');
+  $('#game').classList.remove('hidden');
+  renderHUD(); renderMap();
+  toast('🌾 欢迎来到智能体农场！先去「开垦农田」找老村长');
+}
+$('#btn-back').onclick=()=>{
+  $('#zone-view').classList.add('hidden');
+  $('#map-view').classList.remove('hidden');
+  renderMap();
+};
+$('#btn-sleep').onclick=()=>{
+  S.day++; S.energy=S.maxEnergy; save(); renderHUD();
+  toast('😴 睡了个好觉… 第 '+S.day+' 天开始，精力全满 ⚡');
+};
+$('#btn-backpack').onclick=()=>{ renderBackpack(); $('#backpack-mask').classList.add('show'); };
+$('#btn-close-backpack').onclick=()=>$('#backpack-mask').classList.remove('show');
+$('#btn-close-cert').onclick=()=>$('#cert-mask').classList.remove('show');
+$('#btn-copy-cert').onclick=()=>{
+  const txt=$('#cert-body').innerText;
+  (navigator.clipboard? navigator.clipboard.writeText(txt): Promise.reject())
+    .then(()=>toast('📋 已复制！去发给你的 AI 助手吧'))
+    .catch(()=>{ const ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast('📋 已复制！'); });
+};
+// 收获节：完成所有任务后自动在地图提供证书入口
+setInterval(()=>{
+  if(!S) return;
+  const all=ZONES.every(z=>zoneState(z).complete);
+  const btn=$('#btn-backpack');
+  if(all && !document.getElementById('btn-cert')){
+    const b=document.createElement('div');
+    b.className='stat-chip'; b.id='btn-cert'; b.style.cursor='pointer';
+    b.innerHTML='🏆 毕业证书';
+    b.onclick=()=>{ $('#cert-body').innerHTML=buildCert(); $('#cert-mask').classList.add('show'); };
+    btn.parentNode.insertBefore(b, btn);
+  }
+}, 800);
+document.querySelectorAll('.modal-mask').forEach(m=>m.onclick=e=>{ if(e.target===m) m.classList.remove('show'); });
+
+/* ---------- 启动 ---------- */
+if(load() && load().name){ $('#btn-continue').classList.remove('hidden'); }
+</script>
+</body>
+</html>

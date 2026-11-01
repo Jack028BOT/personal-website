@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10组-JACK-AI时代个人说明书</title>
+<link rel="preconnect" href="https://fonts.loli.net">
+<link href="https://fonts.loli.net/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7e3b6; --cream2:#ffe9c6; --paper:#fbd997;
+    --wood:#8b5a2b; --wood-dark:#5b3a1e; --wood-light:#d9a05e;
+    --ink:#3e2a14; --ink-soft:#6b4f2a;
+    --green:#58a65c; --gold:#e8a33d; --red:#e4573d; --blue:#4fa4d8; --pink:#e87ea1;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'ZCOOL KuaiLe','Microsoft YaHei',sans-serif;
+    color:var(--ink);
+    background:
+      repeating-linear-gradient(0deg,transparent 0 34px,rgba(255,255,255,.06) 34px 36px),
+      repeating-linear-gradient(90deg,transparent 0 34px,rgba(255,255,255,.06) 34px 36px),
+      linear-gradient(180deg,#a8d8ea 0px,#a8d8ea 140px,#8ec97f 140px,#7ab86b 100%);
+    background-attachment:fixed;
+    image-rendering:pixelated;
+  }
+  /* ---------- 天空区 HUD ---------- */
+  .hud{
+    max-width:960px;margin:0 auto;padding:26px 20px 0;
+    display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;
+  }
+  .hud-chip{
+    background:var(--cream);border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px var(--wood-light),3px 3px 0 rgba(0,0,0,.25);
+    padding:6px 14px;font-size:14px;color:var(--ink);
+  }
+  /* ---------- 木牌标题 ---------- */
+  .hero{max-width:960px;margin:26px auto 0;padding:0 20px;text-align:center;}
+  .sign{
+    display:inline-block;background:var(--wood);color:#ffe9c6;
+    border:5px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 4px var(--wood-light),inset 0 0 0 6px var(--wood),6px 6px 0 rgba(0,0,0,.3);
+    padding:22px 40px;position:relative;
+  }
+  .sign::before,.sign::after{
+    content:"";position:absolute;bottom:-34px;width:8px;height:34px;background:var(--wood-dark);
+  }
+  .sign::before{left:18%;} .sign::after{right:18%;}
+  .sign h1{font-size:34px;letter-spacing:4px;text-shadow:3px 3px 0 var(--wood-dark);}
+  .sign p{font-size:15px;margin-top:8px;color:#fbd997;letter-spacing:2px;}
+  .hero-sub{margin-top:48px;font-size:14px;color:#2f4a1f;text-shadow:1px 1px 0 rgba(255,255,255,.5);}
+
+  /* ---------- 导航 ---------- */
+  nav{max-width:960px;margin:18px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  nav a{
+    text-decoration:none;color:var(--ink);font-size:13px;
+    background:var(--cream2);border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px var(--wood-light);padding:5px 12px;
+  }
+  nav a:hover{background:var(--gold);transform:translateY(-2px);}
+  nav a{transition:all .15s;}
+
+  /* ---------- 布局 ---------- */
+  main{max-width:960px;margin:0 auto;padding:30px 20px 60px;}
+  section{margin-bottom:34px;}
+
+  /* ---------- 星露谷面板 ---------- */
+  .panel{
+    background:var(--cream);border:4px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 3px var(--wood-light),6px 6px 0 rgba(0,0,0,.28);
+    padding:22px 24px;position:relative;
+  }
+  .panel-title{
+    display:inline-block;background:var(--wood);color:#ffe9c6;
+    border:3px solid var(--wood-dark);box-shadow:inset 0 0 0 2px var(--wood-light);
+    padding:6px 18px;font-size:18px;letter-spacing:2px;
+    margin:-40px 0 16px -6px;text-shadow:2px 2px 0 var(--wood-dark);
+  }
+  .panel-title .no{color:var(--gold);margin-right:8px;}
+
+  /* ---------- 玩家卡 ---------- */
+  .player{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;}
+  .avatar-frame{
+    flex:0 0 auto;width:150px;background:var(--wood);
+    border:4px solid var(--wood-dark);box-shadow:inset 0 0 0 3px var(--wood-light);
+    padding:10px;text-align:center;
+  }
+  .avatar-frame svg{display:block;width:100%;image-rendering:pixelated;background:#9ad1e8;border:3px solid var(--wood-dark);}
+  .avatar-frame .name{color:#ffe9c6;font-size:15px;margin-top:8px;letter-spacing:2px;}
+  .player-info{flex:1;min-width:260px;}
+  .idline{font-size:16px;margin-bottom:10px;}
+  .idline b{color:var(--red);}
+  .quote{
+    background:var(--cream2);border:3px dashed var(--wood);padding:10px 14px;
+    font-size:14px;color:var(--ink-soft);margin-top:12px;
+  }
+
+  /* ---------- 技能条 ---------- */
+  .skill{margin-bottom:10px;}
+  .skill .lab{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;}
+  .bar{
+    height:18px;background:#c9a86a;border:3px solid var(--wood-dark);position:relative;
+  }
+  .bar i{
+    display:block;height:100%;
+    background:repeating-linear-gradient(90deg,var(--green) 0 8px,#4c9450 8px 10px);
+  }
+  .bar.lv-gold i{background:repeating-linear-gradient(90deg,var(--gold) 0 8px,#d18f2e 8px 10px);}
+  .bar.lv-pink i{background:repeating-linear-gradient(90deg,var(--pink) 0 8px,#d96b8f 8px 10px);}
+  .bar.lv-blue i{background:repeating-linear-gradient(90deg,var(--blue) 0 8px,#3f8cb8 8px 10px);}
+
+  /* ---------- 成就徽章 ---------- */
+  .badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:14px;}
+  .badge{
+    background:var(--cream2);border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px var(--wood-light);padding:12px;text-align:center;
+  }
+  .badge .ico{font-size:26px;}
+  .badge .num{font-size:22px;color:var(--red);letter-spacing:1px;margin:4px 0 2px;}
+  .badge .txt{font-size:12px;color:var(--ink-soft);}
+
+  /* ---------- 任务板 ---------- */
+  .quest li{
+    list-style:none;background:var(--cream2);border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px var(--wood-light);
+    padding:10px 14px;margin-bottom:10px;font-size:14px;display:flex;gap:10px;align-items:flex-start;
+    transition:transform .15s;
+  }
+  .quest li:hover{transform:translateX(4px);}
+  .quest .tick{
+    flex:0 0 22px;height:22px;background:#fff;border:3px solid var(--wood-dark);
+    display:flex;align-items:center;justify-content:center;color:var(--green);font-weight:bold;
+  }
+  .quest b{color:var(--wood-dark);}
+  .story{
+    margin-top:14px;background:#fff3d6;border:3px solid var(--gold);
+    padding:12px 16px;font-size:14px;
+  }
+
+  /* ---------- 两列对比 ---------- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:640px){.cols{grid-template-columns:1fr;}}
+  .col{border:3px solid var(--wood-dark);padding:14px;font-size:14px;}
+  .col.on{background:#e4f2d8;box-shadow:inset 0 0 0 2px #b5d99a;}
+  .col.off{background:#f6ddd3;box-shadow:inset 0 0 0 2px #e8b3a0;}
+  .col h4{font-size:15px;margin-bottom:8px;}
+  .col li{list-style:none;margin:6px 0 6px 4px;padding-left:2px;}
+  .golden{
+    margin-top:14px;text-align:center;font-size:15px;color:var(--wood-dark);
+    background:var(--paper);border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px #fff0c9;padding:10px;
+  }
+
+  /* ---------- 对话框 ---------- */
+  .dialog{display:flex;gap:16px;align-items:flex-start;}
+  .npc{
+    flex:0 0 74px;width:74px;background:var(--wood);border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px var(--wood-light);padding:6px;
+  }
+  .npc svg{display:block;width:100%;background:#9ad1e8;border:2px solid var(--wood-dark);image-rendering:pixelated;}
+  .bubble{
+    flex:1;background:#fffdf4;border:4px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 3px #fff,4px 4px 0 rgba(0,0,0,.2);
+    padding:14px 16px;font-size:14px;position:relative;
+  }
+  .bubble::before{
+    content:"";position:absolute;left:-14px;top:26px;
+    border:8px solid transparent;border-right-color:var(--wood-dark);
+  }
+  .bubble p{margin:6px 0;}
+  .bubble .k{color:var(--red);}
+
+  /* ---------- 反馈：爱心 ---------- */
+  .hearts{font-size:22px;letter-spacing:6px;margin-bottom:10px;}
+  .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;}
+  .tip{
+    background:var(--cream2);border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px var(--wood-light);padding:12px;font-size:13.5px;
+  }
+  .tip h4{font-size:14px;margin-bottom:6px;color:var(--wood-dark);}
+  .flow{
+    margin-top:12px;text-align:center;font-size:13.5px;background:#fff3d6;
+    border:3px solid var(--gold);padding:10px;
+  }
+
+  /* ---------- 精力条 + 道具 ---------- */
+  .energy{margin-bottom:16px;}
+  .energy .lab{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;}
+  .energy .bar i{width:38%;background:repeating-linear-gradient(90deg,var(--red) 0 8px,#c44430 8px 10px);}
+  .warn{
+    background:#f6ddd3;border:3px solid var(--red);padding:10px 14px;font-size:13.5px;margin-bottom:16px;
+  }
+  .inv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+  .slot{
+    background:#e8d5ae;border:3px solid var(--wood-dark);
+    box-shadow:inset 2px 2px 0 #fff7e2,inset -2px -2px 0 #b09468;
+    padding:12px;text-align:center;font-size:13px;min-height:86px;
+    display:flex;flex-direction:column;justify-content:center;gap:4px;
+  }
+  .slot .ico{font-size:24px;}
+  .slot.bad{background:#eccfc5;}
+  .slot .tag{font-size:11px;color:var(--ink-soft);}
+
+  /* ---------- 布告板 ---------- */
+  .board li{list-style:none;font-size:14px;margin:8px 0;display:flex;gap:8px;}
+  .board .m{flex:0 0 auto;}
+  .ok .m{color:var(--green);} .no .m{color:var(--red);}
+
+  /* ---------- 金牌宣言 ---------- */
+  .final{
+    text-align:center;padding:26px 20px;
+  }
+  .final .big{
+    display:inline-block;font-size:19px;line-height:1.9;max-width:640px;
+    background:var(--wood);color:#ffe9c6;border:4px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 3px var(--wood-light),6px 6px 0 rgba(0,0,0,.3);
+    padding:20px 28px;text-shadow:2px 2px 0 var(--wood-dark);
+  }
+  .final .mark{color:var(--gold);font-size:24px;}
+
+  /* ---------- AI 协作 ---------- */
+  /* ---------- 对话实录卡 ---------- */
+  .chat{
+    background:#b8d8f0;border:3px solid var(--wood-dark);
+    box-shadow:inset 0 0 0 2px #e8f4ff,4px 4px 0 rgba(0,0,0,.2);
+    padding:12px;display:flex;flex-direction:column;gap:10px;min-height:150px;
+  }
+  .chat .title{
+    font-size:12.5px;color:#1f3a52;background:#ffffffaa;padding:4px 10px;
+    border:2px solid var(--wood-dark);text-align:center;letter-spacing:1px;
+  }
+  .msg{max-width:88%;padding:9px 12px;font-size:13px;line-height:1.75;border:2.5px solid var(--wood-dark);}
+  .msg.user{
+    align-self:flex-end;background:#d9f2c8;box-shadow:inset 0 0 0 2px #f0ffe4;
+  }
+  .msg.ai{
+    align-self:flex-start;background:#fffdf4;box-shadow:inset 0 0 0 2px #fff;
+  }
+  .msg .who{font-size:11px;color:var(--ink-soft);display:block;margin-bottom:2px;}
+  .msg b{color:var(--red);}
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px;}
+  @media (max-width:640px){.shots{grid-template-columns:1fr;}}
+  .shot-cap{
+    margin-top:8px;font-size:12px;color:var(--ink-soft);text-align:center;
+  }
+  .ai-view{
+    margin-top:12px;background:#e4f2d8;border:3px solid var(--green);padding:12px 14px;font-size:14px;
+  }
+
+  footer{
+    text-align:center;padding:22px 16px 40px;font-size:13px;color:#2f4a1f;
+    text-shadow:1px 1px 0 rgba(255,255,255,.5);
+  }
+
+  /* ---------- 入场动画 ---------- */
+  .panel,.final{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;}
+  .show{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-chip">☀️ 春 · 周四 · 天气晴</div>
+  <div class="hud-chip">📍 第10组农场</div>
+  <div class="hud-chip">🪙 金币：8284 赞藏</div>
+</div>
+
+<!-- 木牌标题 -->
+<div class="hero">
+  <div class="sign">
+    <h1>AI 时代个人说明书</h1>
+    <p>—— JACK 的使用方式 · 交互指南 · 协作须知 ——</p>
+  </div>
+  <div class="hero-sub">▼ 玩家：JACK（冯建燊） · 服务器：第10组 · 职业路线：内容运营</div>
+</div>
+
+<nav>
+  <a href="#s1">👤 玩家档案</a>
+  <a href="#s2">📜 任务系统</a>
+  <a href="#s3">💬 沟通系统</a>
+  <a href="#s4">❤️ 反馈系统</a>
+  <a href="#s5">🔋 状态与补给</a>
+  <a href="#s6">📌 布告板</a>
+  <a href="#s7">✨ AI 协作记录</a>
+</nav>
+
+<main>
+
+  <!-- 01 玩家档案 -->
+  <section id="s1">
+    <div class="panel">
+      <div class="panel-title"><span class="no">01</span>玩家档案 · 我是谁</div>
+      <div class="player">
+        <div class="avatar-frame">
+          <svg viewBox="0 0 8 8" shape-rendering="crispEdges">
+            <rect width="8" height="8" fill="#9ad1e8"/>
+            <rect x="1" y="0" width="6" height="1" fill="#5b3a1e"/>
+            <rect x="0" y="1" width="8" height="1" fill="#5b3a1e"/>
+            <rect x="0" y="2" width="1" height="1" fill="#5b3a1e"/>
+            <rect x="7" y="2" width="1" height="1" fill="#5b3a1e"/>
+            <rect x="1" y="2" width="6" height="1" fill="#f2c9a0"/>
+            <rect x="1" y="3" width="6" height="3" fill="#f2c9a0"/>
+            <rect x="2" y="3" width="1" height="1" fill="#2b1d0e"/>
+            <rect x="5" y="3" width="1" height="1" fill="#2b1d0e"/>
+            <rect x="3" y="5" width="2" height="1" fill="#b3573f"/>
+            <rect x="1" y="6" width="6" height="2" fill="#e4573d"/>
+            <rect x="1" y="6" width="1" height="1" fill="#c44430"/>
+            <rect x="6" y="6" width="1" height="1" fill="#c44430"/>
+          </svg>
+          <div class="name">JACK · Lv.内容运营</div>
+        </div>
+        <div class="player-info">
+          <div class="idline">🧑‍🌾 <b>冯建燊 / JACK</b> ｜ 广东工业大学 · 电子商务专业 · 2028 届</div>
+          <div class="idline">📕 目前最重要的身份：<b>小红书「pre灵感集」主理人</b></div>
+          <div class="skill"><div class="lab"><span>✍️ 写作表达</span><span>Lv.4</span></div><div class="bar lv-pink"><i style="width:85%"></i></div></div>
+          <div class="skill"><div class="lab"><span>🎯 内容策划</span><span>Lv.5</span></div><div class="bar"><i style="width:92%"></i></div></div>
+          <div class="skill"><div class="lab"><span>🎨 视觉审美</span><span>Lv.4</span></div><div class="bar lv-gold"><i style="width:80%"></i></div></div>
+          <div class="skill"><div class="lab"><span>📋 资料整理</span><span>Lv.4</span></div><div class="bar lv-blue"><i style="width:85%"></i></div></div>
+          <div class="skill"><div class="lab"><span>🔄 复盘总结</span><span>Lv.4</span></div><div class="bar lv-gold"><i style="width:88%"></i></div></div>
+          <div class="quote">🌱 一句话定位：一个正在把「独立内容创作者」升级为「懂协作的内容运营者」的人。</div>
+        </div>
+      </div>
+      <div class="badges">
+        <div class="badge"><div class="ico">📕</div><div class="num">55 篇</div><div class="txt">小红书笔记连续产出</div></div>
+        <div class="badge"><div class="ico">🪙</div><div class="num">8284</div><div class="txt">累计赞藏（金币入账）</div></div>
+        <div class="badge"><div class="ico">👥</div><div class="num">402</div><div class="txt">粉丝加入村庄</div></div>
+        <div class="badge"><div class="ico">🏆</div><div class="num">3800+</div><div class="txt">单篇最高赞藏 · 爆款成就</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01b 成长故事 -->
+  <section>
+    <div class="panel">
+      <div class="panel-title"><span class="no">01</span>成就剧情 · 从个位数赞到 3800+</div>
+      <p style="font-size:14px;line-height:2">
+        🌱 开局：第一篇笔记只有个位数赞，像是第一天拿起锄头的农场主。<br>
+        📈 支线：用 <b>AI 复盘每篇数据</b>，生成可视化图表，找出哪类选题被喜欢。<br>
+        🔁 循环：<b>持续输出 → 看数据 → 找规律 → 再迭代</b>，一年后单篇赞藏 3800+。<br>
+        🏆 代表作：爆款笔记《我做了一款在小红书就能用的萌系贴贴生成器》。
+      </p>
+      <div class="story">⭐ <b>我验证过的方法论，也是我想带进团队的：</b>小步快跑、用数据说话、持续迭代。</div>
+    </div>
+  </section>
+
+  <!-- 02 任务系统 -->
+  <section id="s2">
+    <div class="panel">
+      <div class="panel-title"><span class="no">02</span>任务系统 · 什么任务适合交给我</div>
+      <ul class="quest">
+        <li><span class="tick">✓</span><span><b>✍️ 写作表达：</b>小红书 55 篇笔记，单篇最高赞藏 3800+</span></li>
+        <li><span class="tick">✓</span><span><b>🎯 内容策划：</b>独立运营「pre灵感集」近一年，擅长情绪疗愈向 + 学习工具向选题</span></li>
+        <li><span class="tick">✓</span><span><b>🎨 视觉审美：</b>长期制作课堂 Pre 与 20 页传播作品，掌握剪映、可画</span></li>
+        <li><span class="tick">✓</span><span><b>📋 资料整理：</b>习惯用 AI 辅助整理信息、归纳要点</span></li>
+        <li><span class="tick">✓</span><span><b>🔄 复盘总结：</b>用数据复盘驱动内容迭代，是我的日常</span></li>
+      </ul>
+      <div class="cols" style="margin-top:16px">
+        <div class="col on">
+          <h4>⚡ 点亮我的任务</h4>
+          <li>有真实需求 + 明确产出 + 能被展示</li>
+          <li>能看到真实用户反馈（数据、评论）</li>
+          <li>有创意空间，还能学到新方法</li>
+        </div>
+        <div class="col off">
+          <h4>🧱 容易卡住的任务</h4>
+          <li>需求模糊、没有参考案例（"你自己看着办"型）</li>
+          <li>交付标准和 DDL 不明确</li>
+          <li>优先级混乱、信息太散没有整理入口</li>
+        </div>
+      </div>
+      <div class="golden">📜 任务守则：目标、标准、时间清楚时，我跑得最快。</div>
+      <div class="story">🛠️ <b>隐藏副本 · 代表事件：</b>从想法到上线独立做出「萌系贴贴生成器」，并在小红书发布成爆款——想到、做到、发出去、被验证。</div>
+    </div>
+  </section>
+
+  <!-- 03 沟通系统 -->
+  <section id="s3">
+    <div class="panel">
+      <div class="panel-title"><span class="no">03</span>沟通系统 · 怎么和我对接最高效</div>
+      <div class="dialog">
+        <div class="npc">
+          <svg viewBox="0 0 8 8" shape-rendering="crispEdges">
+            <rect width="8" height="8" fill="#9ad1e8"/>
+            <rect x="1" y="0" width="6" height="1" fill="#5b3a1e"/>
+            <rect x="0" y="1" width="8" height="1" fill="#5b3a1e"/>
+            <rect x="1" y="2" width="6" height="4" fill="#f2c9a0"/>
+            <rect x="2" y="3" width="1" height="1" fill="#2b1d0e"/>
+            <rect x="5" y="3" width="1" height="1" fill="#2b1d0e"/>
+            <rect x="3" y="5" width="2" height="1" fill="#b3573f"/>
+            <rect x="1" y="6" width="6" height="2" fill="#e4573d"/>
+          </svg>
+        </div>
+        <div class="bubble">
+          <p>📌 <span class="k">给我任务时，请说清：</span>任务目标 + 交付形式 + 截止时间 + 优先级；哪些可以自由发挥、哪些不能偏离；有参考案例更好。</p>
+          <p>📤 <span class="k">我同步进度：</span>关键节点同步 + 初稿完成后同步；用文档/表格记录进度，遇到问题及时说。</p>
+          <p>🆘 <span class="k">我遇到问题：</span>先自己整理，带着 1-2 个方案来问；先确认方向，再继续细化。</p>
+          <p>🚫 <span class="k">我不适应：</span>只说"看着办" / 反馈只说"不够好" / 临时改需求不说原因 / 信息散落多处。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 反馈系统 -->
+  <section id="s4">
+    <div class="panel">
+      <div class="panel-title"><span class="no">04</span>反馈系统 · 这样给我反馈，好感度+1</div>
+      <div class="hearts">❤️❤️❤️❤️❤️</div>
+      <div class="tips">
+        <div class="tip"><h4>🌱 正向反馈，我希望</h4>直接指出一个具体亮点；告诉我哪部分比上次有进步、作品适合用在哪。</div>
+        <div class="tip"><h4>🔧 指出问题时，我希望</h4>具体说哪里不行 + 为什么 + 下一步怎么改；区分「必须修改」和「可以优化」。</div>
+      </div>
+      <div class="flow">📥 收到反馈后我的操作流：整理修改点 → 按优先级调整 → 先改关键问题 → 更新版本同步结果 → 沉淀成下一次的检查清单</div>
+    </div>
+  </section>
+
+  <!-- 05 状态与补给 -->
+  <section id="s5">
+    <div class="panel">
+      <div class="panel-title"><span class="no">05</span>状态栏与补给站 · 压力预警 & 支持系统</div>
+      <div class="energy">
+        <div class="lab"><span>🔋 当前精力（压力大时）</span><span>38% · 想太多状态</span></div>
+        <div class="bar"><i style="width:38%"></i></div>
+      </div>
+      <div class="warn">⚠️ <b>压力预警信号：</b>容易想太多——反复推演各种可能性，迟迟迈不出第一步。（不是不想做，是需要把任务拆小。）</div>
+      <div class="inv">
+        <div class="slot"><div class="ico">🧩</div><div><b>帮我拆成小任务</b></div><div class="tag">有效 · 使用后精力恢复</div></div>
+        <div class="slot"><div class="ico">🧭</div><div><b>给一个明确的下一步</b></div><div class="tag">有效 · 立刻停止内耗</div></div>
+        <div class="slot"><div class="ico">📝</div><div><b>提醒我先交初稿</b></div><div class="tag">有效 · 方向不对尽早说</div></div>
+        <div class="slot bad"><div class="ico">🌪️</div><div><b>一直催但不说标准</b></div><div class="tag">无效 · 会让我更卡</div></div>
+        <div class="slot bad"><div class="ico">📦</div><div><b>多个要求同时压过来</b></div><div class="tag">无效 · 优先级混乱</div></div>
+        <div class="slot bad"><div class="ico">🌫️</div><div><b>信息不完整就要最终版</b></div><div class="tag">无效 · 无法下手</div></div>
+      </div>
+      <div class="story" style="margin-top:16px">🧰 <b>我需要的补给：</b><br>
+        · 信息：任务目标 + 目标人群 + 判断标准 + 成果用途<br>
+        · 资源：AI 工具 + 过往案例模板 + 可请教的人<br>
+        · 节奏：拆小节点 → 中途检查一次 → 先交初稿再优化</div>
+    </div>
+  </section>
+
+  <!-- 07 布告板 -->
+  <section id="s6">
+    <div class="panel">
+      <div class="panel-title"><span class="no">06</span>村庄布告板 · 一页看懂怎么用我</div>
+      <ul class="board">
+        <li class="ok"><span class="m">💪</span><span><b>我能为团队提供：</b>小红书平台实战经验 + 数据复盘意识 + 稳定的执行力</span></li>
+        <li class="ok"><span class="m">✅</span><span><b>适合交给我：</b>小红书/社交平台文案与图文策划 ｜ 资料整理与信息归纳 ｜ PPT/视觉内容框架与初稿</span></li>
+        <li class="no"><span class="m">⏳</span><span><b>暂时别直接交给我：</b>需要很强数据建模的任务 ｜ 零参考案例又要快速交付的设计任务</span></li>
+        <li class="ok"><span class="m">🤝</span><span><b>协作须知：</b>给我明确标准、提前说优先级、方向不对尽早反馈；我适合先交初稿再优化——也想知道成果最终用在哪里。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 金牌宣言 -->
+  <section class="final">
+    <div class="big">
+      <span class="mark">✨</span><br>
+      「从个位数赞到单篇 3800+，我用行动验证了自己的执行力。<br>
+      这 4 周，请放心把任务交给我——<b>接得住，也回得了反馈。</b>」
+    </div>
+  </section>
+
+  <!-- AI 协作记录 -->
+  <section id="s7">
+    <div class="panel">
+      <div class="panel-title"><span class="no">07</span>AI 协作记录 · 加分彩蛋</div>
+      <div class="shots">
+        <div>
+          <div class="chat">
+            <div class="title">对白 · 第一幕：如何向 AI 提问</div>
+            <div class="msg user"><span class="who">JACK</span>我需要按照大纲完成一份《AI时代个人说明书》，请先阅读模板内容，再引导我逐项填写。</div>
+            <div class="msg ai"><span class="who">AI</span>已解析模板：7 大核心模块 + 加分项。我按你的经历<b>预填了一版草稿</b>，你只需确认和修改，不用从零写。</div>
+            <div class="msg user"><span class="who">JACK</span>好，那我们逐项过，我边看边改。</div>
+          </div>
+          <div class="shot-cap">👉 展示：把大任务拆小，先让 AI 给框架，自己掌握节奏</div>
+        </div>
+        <div>
+          <div class="chat">
+            <div class="title">对白 · 第二幕：如何判断与修改</div>
+            <div class="msg user"><span class="who">JACK</span>单篇最高赞藏 300+ 改为 <b>3800+</b>；"中英双语内容创作"删掉；风格改成星露谷。</div>
+            <div class="msg ai"><span class="who">AI</span>已更新，且两处数据同步修改保持一致；全文已无双语表述，内容统一。</div>
+            <div class="msg user"><span class="who">JACK</span>✅ 数据核对无误，方向也对了。</div>
+          </div>
+          <div class="shot-cap">👉 展示：AI 给初稿，我做核对、纠错和最终决策</div>
+        </div>
+      </div>
+      <div class="ai-view">🤖 <b>我的 AI 使用观：</b>AI 负责给框架和初稿，<b>我负责判断、取舍和最终表达</b>——AI 是加速器，方向盘在我手里。<span style="font-size:11.5px;color:var(--ink-soft)">（以上为真实对话摘录，像素风重绘）</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>🌾 第10组-JACK-AI时代个人说明书 ｜ 用 AI 种田，靠判断收获 ｜ Crafted with ❤ by JACK × AI</footer>
+
+<script>
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.panel,.final').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

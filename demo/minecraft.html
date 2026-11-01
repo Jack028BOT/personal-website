@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冯建燊 · 我的世界 | 个人作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grass:#7CBD52; --grass-dark:#5B8731; --dirt:#79553D; --dirt-dark:#5C3F2C;
+  --stone:#7F7F7F; --stone-dark:#5A5A5A; --sky:#78A7FF; --night:#1B1B24;
+  --gold:#FFAA00; --diamond:#4AEDD9; --redstone:#FF5555; --xp:#7EFC20;
+  --panel:#C6C6C6; --panel-dark:#555555; --panel-light:#FFFFFF; --ink:#2B2620;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Noto Sans SC',sans-serif;color:var(--ink);
+  background:var(--sky);
+  image-rendering:pixelated; overflow-x:hidden;
+}
+img{image-rendering:pixelated;}
+.en{font-family:'Press Start 2P',monospace;}
+.mc-title{font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif;}
+
+/* ============ 像素云 & 天空 ============ */
+.sky-bg{position:relative;overflow:hidden;background:linear-gradient(#78A7FF 0%,#8FBAFF 60%,#A8CBFF 100%);}
+.cloud{
+  position:absolute;background:#fff;opacity:.9;
+  box-shadow:24px -12px 0 #fff,48px 0 0 #fff;
+  width:48px;height:18px;
+  animation:drift 60s linear infinite;
+}
+@keyframes drift{from{transform:translateX(-200px);}to{transform:translateX(110vw);}}
+
+/* ============ 像素边框组件（Minecraft GUI 风格） ============ */
+.mc-panel{
+  background:var(--panel);
+  border:4px solid #1a1a1a;
+  box-shadow:inset 4px 4px 0 #FFFFFF,inset -4px -4px 0 var(--panel-dark), 0 6px 0 rgba(0,0,0,.35);
+  padding:22px;
+}
+.mc-btn{
+  display:inline-block;font-family:'ZCOOL KuaiLe',sans-serif;font-size:17px;cursor:pointer;user-select:none;
+  background:var(--stone);color:#fff;text-shadow:2px 2px 0 #2b2b2b;
+  border:4px solid #1a1a1a;box-shadow:inset 3px 3px 0 #9C9C9C,inset -3px -3px 0 var(--panel-dark);
+  padding:12px 26px;text-decoration:none;transition:transform .08s;
+}
+.mc-btn:hover{transform:translateY(-3px);filter:brightness(1.15);}
+.mc-btn:active{transform:translateY(2px);}
+.mc-btn.green{background:#5B8731;box-shadow:inset 3px 3px 0 #8CC963,inset -3px -3px 0 #3C5B20;}
+.mc-btn.gold{background:#C48A1A;box-shadow:inset 3px 3px 0 #FFC64D,inset -3px -3px 0 #7A560F;}
+
+.section-label{font-family:'Press Start 2P',monospace;font-size:13px;color:#fff;text-shadow:3px 3px 0 #1a1a1a;letter-spacing:2px;}
+.section-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:clamp(26px,4.5vw,38px);margin:10px 0 6px;color:#fff;text-shadow:3px 3px 0 #1a1a1a;}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px;}
+
+/* ============ 顶部 HUD ============ */
+#hud{
+  position:sticky;top:0;z-index:90;
+  background:rgba(27,27,36,.92);border-bottom:4px solid #000;
+  display:flex;align-items:center;gap:12px;padding:8px 16px;flex-wrap:wrap;
+}
+.hud-avatar{
+  width:38px;height:38px;flex:none;border:3px solid #000;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+#hud .name{color:#fff;font-weight:900;font-size:14px;text-shadow:2px 2px 0 #000;}
+#hud .tagline{color:#9BE27A;font-size:11px;text-shadow:2px 2px 0 #000;}
+.hud-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.hearts{font-size:13px;letter-spacing:2px;filter:drop-shadow(2px 2px 0 #000);}
+.hud-nav{display:flex;gap:4px;flex-wrap:wrap;}
+.hud-nav a{
+  color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:5px 9px;
+  background:#4a4a55;border:2px solid #000;text-shadow:1px 1px 0 #000;
+}
+.hud-nav a:hover{background:var(--gold);color:#1a1a1a;text-shadow:none;}
+
+/* ============ HERO ============ */
+#hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:70px 18px 0;position:relative;}
+.hero-name{font-family:'ZCOOL KuaiLe',sans-serif;font-size:clamp(44px,9vw,84px);color:#fff;text-shadow:5px 5px 0 #1a1a1a;line-height:1.1;}
+.hero-sub-en{font-family:'Press Start 2P',monospace;font-size:clamp(9px,1.6vw,13px);color:var(--gold);text-shadow:3px 3px 0 #1a1a1a;margin:16px 0 10px;}
+.hero-slogan{font-size:clamp(15px,2.4vw,20px);font-weight:700;color:#fff;text-shadow:2px 2px 0 rgba(26,26,26,.8);}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:22px;}
+.hero-tag{
+  background:#1a1a1a;color:#fff;font-size:12px;font-weight:700;padding:6px 12px;border:2px solid #fff;
+  box-shadow:3px 3px 0 rgba(0,0,0,.4);
+}
+.hero-tag b{color:var(--gold);}
+/* 像素方块头像 */
+.pixel-face{
+  width:132px;height:132px;margin:0 auto 22px;border:5px solid #1a1a1a;
+  box-shadow:0 8px 0 rgba(0,0,0,.35);
+  display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr);
+  background:#E8B48C; animation:bob 3s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.pixel-face div{border:none;}
+/* 草方块地面 */
+.ground{
+  margin-top:56px;width:100%;
+}
+.grass-strip{height:26px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#6EA944 16px 32px);border-top:5px solid #8FD364;}
+.dirt-strip{
+  height:120px;background:
+    radial-gradient(circle,#5C3F2C 3px,transparent 3.5px),
+    radial-gradient(circle,#8B6247 3px,transparent 3.5px),
+    linear-gradient(var(--dirt),var(--dirt-dark));
+  background-size:34px 34px,46px 46px,100% 100%;
+  background-position:0 0,17px 17px,0 0;
+  display:flex;align-items:center;justify-content:center;gap:16px;padding:0 12px;flex-wrap:wrap;
+}
+.scroll-hint{color:#fff;font-size:12px;font-weight:700;text-shadow:2px 2px 0 #000;animation:bob 2s infinite;}
+
+/* ============ 通用 section ============ */
+section{padding:70px 0;}
+.sec-brightgray{
+  background:
+    radial-gradient(circle,#ffffff 2.5px,transparent 3px),
+    radial-gradient(circle,#e2e5e9 3px,transparent 3.5px),
+    linear-gradient(#dfe3e8,#c9ced5);
+  background-size:38px 38px,52px 52px,100% 100%;background-position:0 0,19px 19px,0 0;
+}
+.sec-stone{
+  background:
+    radial-gradient(circle,#6d6d6d 3px,transparent 3.5px),
+    radial-gradient(circle,#949494 3px,transparent 3.5px),
+    linear-gradient(#8a8a8a,#6f6f6f);
+  background-size:38px 38px,52px 52px,100% 100%;background-position:0 0,19px 19px,0 0;
+}
+.sec-dirt{
+  background:
+    radial-gradient(circle,#5C3F2C 3px,transparent 3.5px),
+    radial-gradient(circle,#8B6247 3px,transparent 3.5px),
+    linear-gradient(var(--dirt),var(--dirt-dark));
+  background-size:34px 34px,46px 46px,100% 100%;background-position:0 0,17px 17px,0 0;
+}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:26px;}
+.about-card h3{font-family:'ZCOOL KuaiLe',sans-serif;font-size:19px;margin-bottom:10px;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.about-card p{font-size:14px;line-height:1.9;}
+.chip-wrap{display:grid;grid-template-columns:1fr;gap:9px;}
+.chip-mc{
+  font-size:12.5px;font-weight:700;padding:8px 12px;background:#fff;border:3px solid #1a1a1a;
+  box-shadow:2px 2px 0 #1a1a1a;text-align:center;display:block;width:100%;
+}
+.chip-mc.hot{background:#FFE9B8;}
+.chip-mc.ready{background:#D9F2C8;}
+.chip-mc.learn{background:#D6F0FA;}
+.about-3col{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+
+/* ============ 作品 ============ */
+.work-list{display:flex;flex-direction:column;gap:26px;margin-top:30px;}
+.work-card{
+  background:var(--panel);border:4px solid #1a1a1a;
+  box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 var(--panel-dark),0 8px 0 rgba(0,0,0,.4);
+  display:grid;grid-template-columns:150px 1fr;overflow:hidden;
+}
+.work-side{
+  background:
+    radial-gradient(circle,#6d6d6d 2.5px,transparent 3px),
+    linear-gradient(#8a8a8a,#6f6f6f);
+  background-size:30px 30px,100% 100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  padding:18px 10px;border-right:4px solid #1a1a1a;
+}
+.work-icon{font-size:44px;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.35));}
+.work-no{font-family:'Press Start 2P',monospace;font-size:10px;color:var(--gold);text-shadow:2px 2px 0 #000;}
+.work-body{padding:20px 22px;}
+.work-title{font-family:'ZCOOL KuaiLe',sans-serif;font-size:21px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.difficulty{font-size:11px;letter-spacing:1px;color:var(--gold);text-shadow:1px 1px 0 #000;}
+.work-sub{font-size:12.5px;color:#6b5f55;margin:4px 0 12px;font-weight:500;}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;margin-bottom:14px;}
+.stat-block{
+  border:3px solid #1a1a1a;background:#1a1a1a;color:#fff;padding:9px 8px;text-align:center;
+  box-shadow:3px 3px 0 rgba(0,0,0,.3);
+}
+.stat-block b{font-family:'Press Start 2P',monospace;font-size:12px;color:var(--xp);display:block;margin-bottom:4px;}
+.stat-block span{font-size:10.5px;color:#bbb;}
+.work-story{font-size:13.5px;line-height:1.85;}
+.work-story b{color:var(--dirt-dark);}
+.story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px;}
+.story-cell{background:#fff;border:3px solid #1a1a1a;padding:10px 12px;font-size:12.5px;line-height:1.75;box-shadow:2px 2px 0 rgba(0,0,0,.2);}
+.story-cell h4{font-size:12px;color:#fff;background:var(--dirt);display:block;width:fit-content;padding:2px 8px;margin:0 0 7px;border:2px solid #1a1a1a;}
+.story-cell.ai h4{background:#3D7EA6;}
+.story-cell.gain h4{background:#4E7A2E;}
+.work-link{margin-top:14px;font-size:12px;font-weight:700;color:#3D7EA6;}
+
+/* ============ 技能物品栏 ============ */
+.hotbar{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:10px;
+  margin-top:30px;max-width:820px;margin-left:auto;margin-right:auto;
+}
+.slot{
+  background:var(--panel);border:4px solid #1a1a1a;
+  box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 var(--panel-dark),0 5px 0 rgba(0,0,0,.4);
+  padding:12px 8px;text-align:center;cursor:default;transition:transform .1s;
+}
+.slot:hover{transform:translateY(-6px) scale(1.04);}
+.slot .s-ico{font-size:28px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.3));}
+.slot .s-name{font-size:12px;font-weight:900;margin:7px 0 6px;}
+.slot .s-lv{font-size:10px;color:#6b5f55;}
+.xp-track{height:8px;background:#2b2b2b;border:2px solid #1a1a1a;margin-top:5px;}
+.xp-fill{height:100%;background:var(--xp);}
+
+/* ============ 成长时间线 ============ */
+.timeline{position:relative;margin-top:30px;padding-left:34px;}
+.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:8px;background:repeating-linear-gradient(#5A5A5A 0 14px,#4a4a4a 14px 28px);border:2px solid #1a1a1a;}
+.tl-item{position:relative;margin-bottom:22px;}
+.tl-item::before{
+  content:'';position:absolute;left:-33px;top:8px;width:16px;height:16px;background:var(--diamond);
+  border:3px solid #1a1a1a;box-shadow:0 0 0 3px #1a1a1a33;
+}
+.tl-card{background:#fff;border:4px solid #1a1a1a;padding:14px 16px;box-shadow:0 5px 0 rgba(0,0,0,.35);}
+.tl-tag{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--gold);text-shadow:1px 1px 0 #000;}
+.tl-card h4{font-family:'ZCOOL KuaiLe',sans-serif;font-size:17px;margin:6px 0 4px;}
+.tl-card p{font-size:12.5px;line-height:1.75;color:#4a4238;}
+
+/* ============ 联系 ============ */
+.contact-cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px;}
+.contact-card{
+  background:var(--panel);border:4px solid #1a1a1a;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 var(--panel-dark),0 6px 0 rgba(0,0,0,.4);
+  padding:16px 22px;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);
+  transition:transform .1s;
+}
+.contact-card:hover{transform:translateY(-4px);}
+.contact-card .c-ico{font-size:26px;}
+.contact-card .c-t{font-size:11px;color:#6b5f55;font-weight:700;}
+.contact-card .c-v{font-size:14px;font-weight:900;}
+
+footer{background:#0d0d12;color:#888;text-align:center;padding:26px 14px;font-size:11px;border-top:4px solid #000;}
+footer .en{font-size:8px;color:#555;margin-top:8px;}
+
+/* ============ 成就 Toast ============ */
+#adv{
+  position:fixed;top:14px;right:-360px;z-index:200;background:#212126;border:4px solid #1a1a1a;
+  outline:3px solid #555;box-shadow:0 6px 14px rgba(0,0,0,.5);
+  padding:12px 18px 12px 14px;display:flex;gap:12px;align-items:center;
+  transition:right .5s cubic-bezier(.2,.9,.3,1.2);max-width:320px;
+}
+#adv.show{right:14px;}
+#adv .a-ico{width:38px;height:38px;background:var(--gold);border:3px solid #000;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none;}
+#adv .a-t{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--gold);}
+#adv .a-m{font-size:12.5px;color:#fff;font-weight:700;margin-top:5px;}
+
+/* 手机端 */
+@media(max-width:640px){
+  .work-card{grid-template-columns:1fr;}
+  .work-side{flex-direction:row;border-right:none;border-bottom:4px solid #1a1a1a;padding:10px;}
+  .hearts{display:none;}
+  .pixel-face{width:104px;height:104px;}
+  #hud .tagline{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- 成就弹窗 -->
+<div id="adv">
+  <div class="a-ico" id="adv-ico">🏆</div>
+  <div><div class="a-t">Advancement Made!</div><div class="a-m" id="adv-msg">进度已保存！</div></div>
+</div>
+
+<!-- ============ HUD ============ -->
+<div id="hud">
+  <div class="hud-avatar">⛏️</div>
+  <div>
+    <div class="name">冯建燊 <span style="color:#FFAA00;">Lv.20</span></div>
+    <div class="tagline">E-COMMERCE · CONTENT CREATOR</div>
+  </div>
+  <div class="hud-right">
+    <div class="hearts">❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
+    <nav class="hud-nav">
+      <a href="#about">关于我</a>
+      <a href="#works">作品</a>
+      <a href="#skills">技能栏</a>
+      <a href="#timeline">成长线</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="sky-bg" id="hero">
+  <div class="cloud" style="top:12%;animation-delay:0s;"></div>
+  <div class="cloud" style="top:26%;animation-delay:-22s;transform:scale(1.4);"></div>
+  <div class="cloud" style="top:8%;animation-delay:-40s;transform:scale(.8);"></div>
+
+  <div class="pixel-face" aria-label="像素头像">
+    <div style="grid-area:1/1/2/7;background:#4a2f1d;"></div><!-- 头发顶 -->
+    <div style="grid-area:2/1/3/7;background:#4a2f1d;"></div>
+    <div style="grid-area:3/1/4/2;background:#4a2f1d;"></div>
+    <div style="grid-area:3/2/4/3;background:#fff;"></div><!-- 眼白 -->
+    <div style="grid-area:3/3/4/4;background:#E8B48C;"></div>
+    <div style="grid-area:3/4/4/5;background:#fff;"></div>
+    <div style="grid-area:3/5/4/6;background:#4a2f1d;"></div>
+    <div style="grid-area:3/6/4/7;background:#4a2f1d;"></div>
+    <div style="grid-area:4/1/5/3;background:#E8B48C;"></div>
+    <div style="grid-area:4/3/5/5;background:#C98A6B;"></div><!-- 腮红区 -->
+    <div style="grid-area:4/5/5/7;background:#E8B48C;"></div>
+    <div style="grid-area:5/1/6/2;background:#4a2f1d;"></div>
+    <div style="grid-area:5/2/6/6;background:#FF5DA2;"></div><!-- 嘴/衣服 -->
+    <div style="grid-area:5/6/6/7;background:#4a2f1d;"></div>
+    <div style="grid-area:6/1/7/7;background:#22D3EE;"></div><!-- 衣服 -->
+  </div>
+
+  <div class="hero-name">冯建燊</div>
+  <div class="hero-sub-en">FENG JIANSHEN · PORTFOLIO</div>
+  <div class="hero-slogan">把内容做成工具，把数据变成决策 ⛏️</div>
+  <div class="hero-tags">
+    <div class="hero-tag">电子商务 · 大三</div>
+    <div class="hero-tag">小红书独立运营 <b>1W+ 赞藏</b></div>
+    <div class="hero-tag">AI 协作创作者</div>
+    <div class="hero-tag">目标：内容 / 新媒体运营实习</div>
+  </div>
+
+  <div class="ground">
+    <div class="grass-strip"></div>
+    <div class="dirt-strip">
+      <div class="scroll-hint">▼ 向下挖矿，查看我的作品 ▼</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec-brightgray" id="about">
+  <div class="wrap">
+    <div class="section-label">ABOUT ME</div>
+    <div class="section-title">Player Profile · 玩家档案</div>
+
+    <div class="about-grid">
+      <div class="mc-panel about-card">
+        <h3>🧑‍🌾 玩家介绍</h3>
+        <p>我是<b>冯建燊</b>，广东工业大学电子商务专业大三学生。过去一年，我独立运营小红书账号「pre灵感集」——从选题、内容制作、发布到数据复盘，全链路一人完成。我不只发内容，还用 AI 造出了两个真实可用的<b>小工具</b>，让用户"收藏备用"变成产品的口碑。我相信运营的核心循环很简单：<b>观察用户 → 快速响应 → 持续交付</b>，我用自己的账号验证过它。</p>
+      </div>
+      <div class="about-3col">
+        <div class="mc-panel about-card">
+          <h3>✅ 已解锁技能</h3>
+          <div class="chip-wrap">
+            <span class="chip-mc ready">小红书全链路运营</span>
+            <span class="chip-mc ready">数据复盘分析</span>
+            <span class="chip-mc ready">AI 内容生产与把关</span>
+            <span class="chip-mc ready">中英双语内容</span>
+          </div>
+        </div>
+        <div class="mc-panel about-card">
+          <h3>⏳ 正在合成</h3>
+          <div class="chip-wrap">
+            <span class="chip-mc learn">视频剪辑 · 剪映</span>
+            <span class="chip-mc learn">视觉设计 · 可画</span>
+            <span class="chip-mc learn">公众号 / 视频号</span>
+            <span class="chip-mc learn">用户增长机制</span>
+          </div>
+        </div>
+        <div class="mc-panel about-card">
+          <h3>🤝 协作模式</h3>
+          <p style="font-size:13px;">像打联机生存一样工作：<b>数据说话</b>，不做拍脑袋决策；AI 负责提效，<b>判断权在我</b>；每次复盘的教训，都变成下一次的检查项。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKS ============ -->
+<section class="sec-stone" id="works">
+  <div class="wrap">
+    <div class="section-label">PORTFOLIO</div>
+    <div class="section-title">战利品箱子 · 我的作品</div>
+
+    <div class="work-list">
+
+      <!-- 作品 1 -->
+      <div class="work-card">
+        <div class="work-side">
+          <div class="work-no">NO.01</div>
+          <div class="work-icon">📕</div>
+          <div class="work-no" style="color:#7EFC20;">★★★★</div>
+        </div>
+        <div class="work-body">
+          <div class="work-title">小红书账号「pre灵感集」独立运营</div>
+          <div class="work-sub">近 1 年 · 51+ 篇笔记 · 全链路一人完成（选题 → 制作 → 发布 → 复盘）</div>
+          <div class="stat-row">
+            <div class="stat-block"><b>12000+</b><span>累计赞藏</span></div>
+            <div class="stat-block"><b>566</b><span>粉丝</span></div>
+            <div class="stat-block"><b>2.5W+</b><span>单篇最高浏览</span></div>
+            <div class="stat-block"><b>0.75+</b><span>爆款收藏/赞比</span></div>
+          </div>
+          <div class="work-story">
+            <div class="story-grid">
+              <div class="story-cell"><h4>起点</h4>定位"英专生 Pre 灵感库"，帮大学生搞定英语课堂展示。起步 20+ 篇数据平平。</div>
+              <div class="story-cell"><h4>关键决策</h4>数据复盘发现高赞集中在英语 Pre 类 → <b>砍掉杂线、聚焦垂类</b> → 数据起飞。</div>
+              <div class="story-cell ai"><h4>AI 如何参与</h4>用 AI 批量复盘笔记数据 → 生成可视化图表 → 反推下一批选题。</div>
+              <div class="story-cell gain"><h4>沉淀</h4>"数据驱动选题"的固定习惯：每篇笔记都是下一次迭代的输入。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 作品 2 -->
+      <div class="work-card">
+        <div class="work-side">
+          <div class="work-no">NO.02</div>
+          <div class="work-icon">🎀</div>
+          <div class="work-no" style="color:#FF5555;">★★★★★</div>
+        </div>
+        <div class="work-body">
+          <div class="work-title">爆款 · 萌系贴贴生成器（小红书小工具）</div>
+          <div class="work-sub">观察韩系拼贴风热潮 → 自主判断选题 → AI 协作开发 → 上线爆款</div>
+          <div class="stat-row">
+            <div class="stat-block"><b>30000+</b><span>笔记浏览</span></div>
+            <div class="stat-block"><b>10000+</b><span>点赞收藏</span></div>
+            <div class="stat-block"><b>50000+</b><span>工具使用人次</span></div>
+            <div class="stat-block"><b>~46%</b><span>占全账号赞藏</span></div>
+          </div>
+          <div class="work-story">
+            <div class="story-grid">
+              <div class="story-cell"><h4>选题判断</h4>社交平台观察到韩系拼贴风受女生欢迎，结合账号受众，判断该风格在小红书会爆——<b>拍板做</b>。</div>
+              <div class="story-cell"><h4>我做了什么</h4>UI 设计、功能定义、发布运营、后续维护更新全部由我完成；AI 是我的开发工具。</div>
+              <div class="story-cell ai"><h4>迭代机制</h4>评论区收集用户点子 → 评估实现可能性 → 上线二编、三编（自由上传/大小调节/表情变色）持续续命热度。</div>
+              <div class="story-cell gain"><h4>验证了什么</h4>"用户反馈驱动迭代"的运营闭环真实有效——这正是我理解的内容产品运营。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 作品 3 -->
+      <div class="work-card">
+        <div class="work-side">
+          <div class="work-no">NO.03</div>
+          <div class="work-icon">🎁</div>
+          <div class="work-no" style="color:#4AEDD9;">★★★</div>
+        </div>
+        <div class="work-body">
+          <div class="work-title">铁盒贴贴小工具 · 热门场景复刻</div>
+          <div class="work-sub">复刻小红书热门内容场景 "What's in my tincase"</div>
+          <div class="stat-row">
+            <div class="stat-block"><b>125</b><span>点赞</span></div>
+            <div class="stat-block"><b>119</b><span>收藏</span></div>
+            <div class="stat-block"><b>0.95</b><span>收藏/赞比</span></div>
+          </div>
+          <div class="work-story">
+            <div class="story-grid">
+              <div class="story-cell"><h4>方法复用</h4>把爆款 1 的方法论复制到新场景：3 种盒型 + 拍立得/连拍条 + 10 种打底纹样。</div>
+              <div class="story-cell gain"><h4>亮点</h4>收藏/赞比 0.95——用户几乎人手收藏，验证"工具型内容有长尾收藏价值"。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 作品 4 -->
+      <div class="work-card">
+        <div class="work-side">
+          <div class="work-no">NO.04</div>
+          <div class="work-icon">🤖</div>
+          <div class="work-no" style="color:#FFAA00;">★★★★</div>
+        </div>
+        <div class="work-body">
+          <div class="work-title">AI 求职智能体系统 ·「鹅厂求职陪跑团」</div>
+          <div class="work-sub">把一次性的求职准备，封装成可复用的 AI 工作流</div>
+          <div class="stat-row">
+            <div class="stat-block"><b>4</b><span>AI 专家角色</span></div>
+            <div class="stat-block"><b>30</b><span>题面试题库</span></div>
+            <div class="stat-block"><b>2</b><span>轮双向模拟面试</span></div>
+          </div>
+          <div class="work-story">
+            <div class="story-grid">
+              <div class="story-cell"><h4>建了什么</h4>面试官小腾 + 简历医生 + 作品集经纪人 + 复盘分析师：出题、点评、复盘四线并进的专家团队。</div>
+              <div class="story-cell ai"><h4>怎么做的</h4>拆解目标岗位 JD → 提炼关键词 → 把个人真实经历映射成证据库 → 训练 AI 按面试官逻辑输出。</div>
+              <div class="story-cell gain"><h4>沉淀</h4>证据思维：流畅表达 ≠ 能力证据，每个结论都要能引用具体事实。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 作品 5 -->
+      <div class="work-card">
+        <div class="work-side">
+          <div class="work-no">NO.05</div>
+          <div class="work-icon">🎮</div>
+          <div class="work-no" style="color:#C29CFF;">★★★</div>
+        </div>
+        <div class="work-body">
+          <div class="work-title">「智能体农场」· 养成式教学网页游戏</div>
+          <div class="work-sub">把"如何搭建求职智能体"的方法论，做成星露谷式种田游戏</div>
+          <div class="stat-row">
+            <div class="stat-block"><b>5</b><span>游戏化关卡</span></div>
+            <div class="stat-block"><b>13</b><span>任务节点</span></div>
+            <div class="stat-block"><b>0</b><span>使用门槛（无需代码）</span></div>
+          </div>
+          <div class="work-story">
+            <div class="story-grid">
+              <div class="story-cell"><h4>创意</h4>开垦农田=定位，森林采集=备弹药，工坊组装=创建，温室浇灌=调教——玩完游戏就攒齐了建 AI 伙伴的全部材料。</div>
+              <div class="story-cell gain"><h4>能力证明</h4>内容产品化：把知识封装成有人机交互、有进度激励的完整体验。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 作品 6 -->
+      <div class="work-card">
+        <div class="work-side">
+          <div class="work-no">NO.06</div>
+          <div class="work-icon">🖼️</div>
+          <div class="work-no" style="color:#4AEDD9;">★★★</div>
+        </div>
+        <div class="work-body">
+          <div class="work-title">个人大学仪表盘 · 像素艺术风网页</div>
+          <div class="work-sub">为大学生活打造的随身个人主页 · 移动端优先设计</div>
+          <div class="stat-row">
+            <div class="stat-block"><b>1 人</b><span>从 0 到 1 全栈</span></div>
+            <div class="stat-block"><b>Mobile</b><span>移动端优先适配</span></div>
+            <div class="stat-block"><b>Pixel</b><span>像素美术风格</span></div>
+          </div>
+          <div class="work-story">
+            <div class="story-grid">
+              <div class="story-cell"><h4>创意</h4>把大学生活的日常装进一个像素风页面——明亮配色、掌上操作，像随身携带的一台游戏机。</div>
+              <div class="story-cell ai"><h4>AI 如何参与</h4>通过对话驱动 AI 完成构思、风格方案与代码实现，我负责提出需求、决策风格、逐项验收。</div>
+              <div class="story-cell gain"><h4>能力证明</h4>审美落地能力：能把"我想要的感觉"转化成真实可用的界面，并且坚持自己的风格判断。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="sec-brightgray" id="skills">
+  <div class="wrap">
+    <div class="section-label">SKILL BAR</div>
+    <div class="section-title">物品栏 · 技能槽</div>
+
+    <div class="hotbar">
+      <div class="slot"><div class="s-ico">📝</div><div class="s-name">内容策划</div><div class="s-lv">精通</div><div class="xp-track"><div class="xp-fill" style="width:90%"></div></div></div>
+      <div class="slot"><div class="s-ico">📊</div><div class="s-name">数据复盘</div><div class="s-lv">精通</div><div class="xp-track"><div class="xp-fill" style="width:85%"></div></div></div>
+      <div class="slot"><div class="s-ico">📱</div><div class="s-name">小红书运营</div><div class="s-lv">精通</div><div class="xp-track"><div class="xp-fill" style="width:92%"></div></div></div>
+      <div class="slot"><div class="s-ico">🤖</div><div class="s-name">AI 协作</div><div class="s-lv">熟练</div><div class="xp-track"><div class="xp-fill" style="width:85%"></div></div></div>
+      <div class="slot"><div class="s-ico">🌐</div><div class="s-name">双语内容</div><div class="s-lv">熟练</div><div class="xp-track"><div class="xp-fill" style="width:75%"></div></div></div>
+      <div class="slot"><div class="s-ico">🎨</div><div class="s-name">可画设计</div><div class="s-lv">掌握</div><div class="xp-track"><div class="xp-fill" style="width:55%"></div></div></div>
+      <div class="slot"><div class="s-ico">🎬</div><div class="s-name">剪映剪辑</div><div class="s-lv">学习中</div><div class="xp-track"><div class="xp-fill" style="width:40%"></div></div></div>
+      <div class="slot"><div class="s-ico">🕹️</div><div class="s-name">网页制作</div><div class="s-lv">掌握</div><div class="xp-track"><div class="xp-fill" style="width:60%"></div></div></div>
+      <div class="slot"><div class="s-ico">💬</div><div class="s-name">用户洞察</div><div class="s-lv">熟练</div><div class="xp-track"><div class="xp-fill" style="width:80%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="sec-dirt" id="timeline">
+  <div class="wrap">
+    <div class="section-label">GROWTH TRACK</div>
+    <div class="section-title">进度存档 · 成长轨迹</div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-card"><span class="tl-tag">RESPAWN · 起点</span>
+          <h4>🌱 开荒期：什么都想种</h4>
+          <p>注册「pre灵感集」，PPT 分享、生活记录什么都发，20+ 篇数据平平——第一次意识到"定位"不是玄学。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card"><span class="tl-tag">LEVEL UP · 第一次进化</span>
+          <h4>📊 学会用数据做决策</h4>
+          <p>复盘发现高赞集中在英语 Pre 类，果断砍杂线聚焦垂类，数据起飞。养成了"AI 复盘 → 可视化 → 指导选题"的固定习惯。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card"><span class="tl-tag">CRAFT · 合成工具</span>
+          <h4>🎀 从发内容到造工具</h4>
+          <p>判断韩系拼贴风会火 → 用 AI 造出萌系贴贴生成器 → 用户共创迭代 → 爆款：5W+ 使用人次，占全账号近半赞藏。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card"><span class="tl-tag">MULTIPLAYER · 联机模式</span>
+          <h4>🤖 把经验封装成系统</h4>
+          <p>搭建 4 人 AI 专家团 + 30 题面试题库 + 双向模拟面试复盘，把求职准备变成可复用工作流；再做成养成游戏教别人搭建。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-card"><span class="tl-tag">NEW QUEST · 下一关</span>
+          <h4>🏰 目标：把这套循环带进真实业务</h4>
+          <p>在平台级产品上实践"观察用户 → 快速响应 → 持续交付"。寻找新媒体 / 内容运营实习中……</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec-stone" id="contact">
+  <div class="wrap" style="text-align:center;">
+    <div class="section-label">CONTACT</div>
+    <div class="section-title">联机大厅 · 找到我</div>
+    <div class="contact-cards">
+      <a class="contact-card" href="https://www.xiaohongshu.com/user/profile/你的ID" target="_blank">
+        <span class="c-ico">📕</span>
+        <span><span class="c-t">小红书 · pre灵感集</span><br><span class="c-v">@pre灵感集</span></span>
+      </a>
+      <a class="contact-card" href="https://github.com/Jack028BOT" target="_blank">
+        <span class="c-ico">🧱</span>
+        <span><span class="c-t">GitHub · 代码仓库</span><br><span class="c-v">Jack028BOT</span></span>
+      </a>
+    </div>
+    <div style="margin-top:30px;">
+      <a class="mc-btn green" href="#hero">↑ 回到出生点</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 冯建燊 · 本网页由 AI 协作搭建，人工验收每一块方块
+  <div class="en">CRAFTED WITH AI · CHECKED BY HUMAN</div>
+</footer>
+
+<script>
+/* 成就弹窗：滚动到各区域时触发 */
+const ACHIEVEMENTS = [
+  {sel:'#about',   ico:'📜', msg:'成就解锁：认识这位玩家'},
+  {sel:'#works',   ico:'📦', msg:'成就解锁：打开战利品箱子'},
+  {sel:'#skills',  ico:'⚔️', msg:'成就解锁：查看技能槽'},
+  {sel:'#timeline',ico:'⏳', msg:'成就解锁：读取存档进度'},
+  {sel:'#contact', ico:'🤝', msg:'成就解锁：进入联机大厅'},
+];
+const adv=$('#adv'),advIco=$('#adv-ico'),advMsg=$('#adv-msg');
+let advTimer=null;
+function popAdv(ico,msg){
+  advIco.textContent=ico; advMsg.textContent=msg;
+  adv.classList.add('show');
+  clearTimeout(advTimer);
+  advTimer=setTimeout(()=>adv.classList.remove('show'),3000);
+}
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const a=ACHIEVEMENTS.find(x=>x.sel===e.target.id && !x.done);
+      if(a){a.done=true; popAdv(a.ico,a.msg);}
+    }
+  });
+},{threshold:.3});
+ACHIEVEMENTS.forEach(a=>{const el=document.querySelector(a.sel); if(el) io.observe(el);});
+/* 进站欢迎成就 */
+setTimeout(()=>popAdv('⛏️','欢迎来到冯建燊的世界'),900);
+</script>
+</body>
+</html>

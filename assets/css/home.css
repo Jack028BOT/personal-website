@@ -1,0 +1,432 @@
+/* ============================================================
+   简历页
+   ============================================================ */
+
+/* =====================================================================
+   Minimal 模式：头像 + 简介段落
+   ===================================================================== */
+.article { display: flex; flex-direction: column; gap: 32px; }
+.article > header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.profile-avatar {
+  width: 124px;
+  height: 124px;
+  border-radius: 12px;
+  border: 4px solid var(--photo-frame);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 7px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(135deg, var(--accent), #8a5bff);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  /* 用真实头像时：把上面的占位渐变换成 background-image，路径写到
+     assets/img/ 下，例如 background-image: url("../img/avatar.jpg")；
+     同时删掉上面的占位渐变。 */
+}
+.profile-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.profile-info h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: -0.03em;
+  color: var(--grey1);
+  line-height: 1.1;
+}
+.profile-role { color: var(--grey3); font-size: 16px; line-height: 1; }
+
+.article p, .article li {
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: -0.0056rem;
+  color: var(--grey2);
+  text-wrap: pretty;
+  max-width: 40em;
+}
+.article p strong { font-weight: 600; color: var(--grey1); }
+
+/* —— 关键词 hover 小彩蛋 —— */
+.kw {
+  position: relative;
+  color: var(--grey1);
+  font-weight: 500;
+  cursor: default;
+  isolation: isolate;
+}
+.kw:hover { z-index: 70; }
+.kw-figma, .kw-gsap, .kw-react, .kw-seo, .kw-ds, .kw-music {
+  border-bottom: 1px dashed var(--grey3);
+}
+
+/* Figma：hover 画出画板选中框 + 四角手柄 */
+.kw-figma::before, .kw-figma::after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+.kw-figma::before { inset: -1px -4px; border: 1.2px solid #0d99ff; }
+.kw-figma::after {
+  inset: -4px -7px;
+  background:
+    linear-gradient(#fff, #fff) left 1px top 1px / 4px 4px,
+    linear-gradient(#fff, #fff) right 1px top 1px / 4px 4px,
+    linear-gradient(#fff, #fff) left 1px bottom 1px / 4px 4px,
+    linear-gradient(#fff, #fff) right 1px bottom 1px / 4px 4px,
+    linear-gradient(#0d99ff, #0d99ff) left top / 6px 6px,
+    linear-gradient(#0d99ff, #0d99ff) right top / 6px 6px,
+    linear-gradient(#0d99ff, #0d99ff) left bottom / 6px 6px,
+    linear-gradient(#0d99ff, #0d99ff) right bottom / 6px 6px;
+  background-repeat: no-repeat;
+}
+.kw-figma:hover { border-bottom-color: transparent; }
+.kw-figma:hover::before, .kw-figma:hover::after { opacity: 1; }
+
+/* 关键词弹出小卡片（如 “#1 on Google”） */
+.kw-pop {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px) scale(0.96);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: var(--chat-surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  white-space: normal;
+  max-width: 240px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.2s var(--ease-pop);
+  z-index: 80;
+}
+.kw:hover .kw-pop { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+.kw-pop-line { display: block; font-weight: 600; font-size: 12px; color: var(--grey1); line-height: 1.2; }
+.kw-pop-sub  { display: block; font-family: var(--font-mono); font-size: 9.5px; color: var(--grey3); margin-top: 2px; }
+
+/* 音乐均衡器小动画 */
+.kw-eq { display: inline-flex; align-items: flex-end; gap: 1.5px; height: 10px; margin-left: 3px; vertical-align: -1px; }
+.kw-eq span {
+  width: 2.5px;
+  background: var(--accent);
+  border-radius: 1px;
+  animation: eqBounce 0.9s ease-in-out infinite;
+}
+.kw-eq span:nth-child(1) { height: 60%; animation-delay: 0s; }
+.kw-eq span:nth-child(2) { height: 100%; animation-delay: 0.15s; }
+.kw-eq span:nth-child(3) { height: 40%; animation-delay: 0.3s; }
+@keyframes eqBounce {
+  0%, 100% { transform: scaleY(0.5); }
+  50%      { transform: scaleY(1); }
+}
+
+/* =====================================================================
+   区块标题（等宽小写字距）+ 项目列表
+   ===================================================================== */
+.post-list { display: flex; flex-direction: column; }
+.post-list-title {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--grey3);
+}
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 48px;
+  margin-top: 20px;
+}
+
+/* =====================================================================
+   区块吉祥物（复刻原站）：小狗蹲在 Client works 标题上方，
+   平时头周期性甩动、尾巴一直摇；hover 时跳一下 + 歪头 + 尾巴加速，
+   并飘出一颗像素爱心。离屏时由 site.js 加 .anim-paused 暂停动画。
+   ===================================================================== */
+.has-mascot { position: relative; }
+.section-mascot {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% - 3px);
+  width: 32px;
+  z-index: 5;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+.section-mascot svg { width: 100%; height: auto; display: block; shape-rendering: crispEdges; }
+/* 头：每隔几秒甩一甩；尾巴：一直摇 */
+.dog-head { transform-box: fill-box; transform-origin: 50% 92%; animation: dogShake 5s ease-in-out infinite; }
+.dog-tail { transform-box: fill-box; transform-origin: 12% 88%; animation: dogWag 0.45s ease-in-out infinite alternate; }
+@keyframes dogShake {
+  0%, 68%, 100% { transform: rotate(0deg); }
+  74% { transform: rotate(-10deg); }
+  80% { transform: rotate(10deg); }
+  86% { transform: rotate(-7deg); }
+  92% { transform: rotate(4deg); }
+}
+@keyframes dogWag { from { transform: rotate(-12deg); } to { transform: rotate(16deg); } }
+/* hover 互动层：小狗可悬停 */
+.mascot-dog { pointer-events: auto; }
+/* hover 飘出的像素爱心（mask 出心形，floatUp 上浮消散） */
+.mascot-dog::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: -10px;
+  width: 9px;
+  height: 8px;
+  background: #ef5f7a;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 6' shape-rendering='crispEdges'%3E%3Cpath d='M1 0h2v1H1zM4 0h2v1H4zM0 1h7v2H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 0;
+  pointer-events: none;
+}
+.mascot-dog:hover::after { animation: floatUp 1.3s ease-out both; }
+.mascot-dog:hover .dog-head { animation: dogTilt 1.4s ease-in-out infinite; }
+.mascot-dog:hover .dog-tail { animation-duration: 0.14s; }
+.mascot-dog:hover svg { animation: mascotHop 0.45s cubic-bezier(0.3, 1.5, 0.5, 1); }
+@keyframes floatUp {
+  0%   { opacity: 0; transform: translateY(4px) scale(0.6); }
+  20%  { opacity: 1; transform: translateY(0) scale(1); }
+  75%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-14px) scale(1); }
+}
+@keyframes dogTilt {
+  0%, 100% { transform: rotate(-13deg); }
+  50%      { transform: rotate(-9deg) translateY(-0.5px); }
+}
+@keyframes mascotHop {
+  0%, 100% { transform: translateY(0); }
+  40%      { transform: translateY(-4px); }
+}
+/* 离屏 / 滚动时冻结（site.js 切 .anim-paused） */
+.anim-paused, .anim-paused * { animation-play-state: paused; }
+
+/* =====================================================================
+   Selected work：图文交替卡片流 —— 奇数行图左文右，偶数行文左图右
+   ===================================================================== */
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+.work-list .project-item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  /* 解除 .article li 的 40em 行长上限，让整行铺满版心 */
+  max-width: none;
+}
+.work-list .project-item:nth-child(even) { flex-direction: row-reverse; }
+.project-media {
+  flex: 0 0 300px;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+  background: var(--chat-surface);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s var(--ease-out);
+}
+.project-media:hover img { transform: scale(1.04); }
+.project-media--empty {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--grey3);
+  background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 8%, var(--chat-surface)), var(--chat-surface));
+}
+/* 指标：标题上方的小行（钴蓝数字 + 灰色口径） */
+.work-list .project-year {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.work-list .project-year::before { content: none; }
+.work-list .project-year > span:first-child {
+  position: static;
+  font-size: 48px;   /* 数据大字（钴蓝） */
+  line-height: 1;
+}
+.work-list .metric-label { position: static; font-size: 14px; }
+/* 文字列弹性撑满到右边缘（解除正文的 40em 行长上限，仅限作品列表） */
+.work-list .project-body { flex: 1; min-width: 0; }
+.work-list .project-description { max-width: none; }
+.project-item {
+  display: flex;
+  flex-direction: row;
+  column-gap: 32px;
+  position: relative;
+}
+.project-year {
+  color: var(--grey3);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  position: relative;
+}
+/* 左列宽度按 "0000  0000" 撑住，指标文字叠在上面，换项目时列宽稳定 */
+.project-year::before { content: "0000  0000"; visibility: hidden; }
+.project-year > span:first-child {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.metric-label {
+  position: absolute;
+  left: 0;
+  top: 16px;
+  color: var(--grey3);
+  font-family: var(--font-primary);
+  font-size: 10px;
+  letter-spacing: 0;
+  white-space: normal;
+}
+.project-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.project-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--grey1);
+  white-space: nowrap;
+}
+/* Selected work 的作品标题大一号（用户要求 16px） */
+.work-list .project-title { font-size: 16px; }
+.project-title-link { color: inherit; text-decoration: none; }
+.project-title-link::after { content: ""; position: absolute; inset: 0; }
+.project-title-text {
+  color: var(--grey1);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.12s ease;
+}
+.project-title-link:hover .project-title-text { border-bottom-color: var(--accent); }
+.project-title-arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 2px;
+  position: relative;
+  top: -1px;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.project-title-link:hover .project-title-arrow { transform: translate(2px, -2px); }
+.project-description { font-size: 14px; color: var(--grey2); line-height: 1.5; }
+.case-study-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  width: fit-content;
+  color: var(--accent);
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.12s ease;
+}
+.case-study-link:hover { border-bottom-color: var(--accent); }
+
+/* 彩色小徽章（获奖 / 上架平台） */
+.badge {
+  --c: #888888;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 7px 1px 8px;
+  border-radius: 100px;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: normal;
+  vertical-align: 1px;
+  color: color-mix(in srgb, var(--c) 55%, #111);
+  border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
+  background: color-mix(in srgb, var(--c) 8%, var(--body-bg));
+  text-decoration: none;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+.badge:hover {
+  background: color-mix(in srgb, var(--c) 14%, var(--body-bg));
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--c) 25%, transparent);
+}
+.badge--pink   { --c: #ec4899; }
+.badge--blue   { --c: #3b82f6; }
+.badge--orange { --c: #f97316; }
+.badge--green  { --c: #10b981; }
+.badge--red    { --c: #f43f5e; }
+
+/* View all 折叠 */
+.show-more-btn {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--grey3);
+  width: fit-content;
+  transition: color 0.12s ease, transform 0.16s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.show-more-btn:hover { color: var(--accent); }
+.show-more-btn:active { transform: scale(0.97); }
+.project-item.is-extra-hidden { display: none; }
+
+/* ---------- 中文排版适配 ---------- */
+/* 负字距是给拉丁字母设计的，中文方块字会被挤在一起，这里归零 */
+.article p, .article li, .kw, .kv, .project-desc { letter-spacing: 0; }
+/* 标签类的小字正字距在中文下会散开，收敛一点 */
+.project-year, .project-tag, .badge, .label { letter-spacing: 0.02em; }
+/* 中文长词/长标题允许断行 */
+.project-title, .article p { overflow-wrap: anywhere; }
+
+/* ============================================================
+   中文版新增样式（冯建燊 · 个人作品集）
+   ============================================================ */
+
+/* 学校 · 专业 · 届别 */
+.profile-meta {
+  color: var(--grey3);
+  font-size: 12.5px;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+/* 正文里的重点数据 */
+.article strong {
+  font-weight: 600;
+  color: var(--grey1);
+}

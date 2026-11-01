@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>冯建燊 JACK · 个人作品集</title>
+<meta name="description" content="冯建燊（JACK）个人作品集 —— 新媒体运营 / 内容运营 / 网页开发。63 篇小红书笔记、1.4W 赞藏、独立开发的贴纸工具与网页项目。">
+<meta name="author" content="冯建燊 JACK">
+
+<!-- 字体：已自托管在 assets/fonts/（latin 子集 woff2），断网也能正常显示。
+     CSS 里保留了 Google Fonts 远程地址作为兜底源，本地加载失败时自动回退。 -->
+<link rel="stylesheet" href="assets/css/tokens.css?v=20261101-51">
+<link rel="stylesheet" href="assets/css/base.css?v=20261101-51">
+<link rel="stylesheet" href="assets/css/home.css?v=20261101-51">
+<link rel="stylesheet" href="assets/css/deco.css?v=20261101-51"></head>
+
+<body>
+<a class="skip-link" href="#content">跳到主要内容</a>
+
+<!-- 右上角小箭头（复用符号） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 8 8">
+    <path d="M1.5 6.5 6.5 1.5M6.5 1.5H2.6M6.5 1.5v3.9" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- 像素云（原站 PNG 贴图 + 滚动视差，见 deco.css / site.js） -->
+<div class="deco cloud-1" aria-hidden="true"></div>
+<div class="deco cloud-2" aria-hidden="true"></div>
+
+<!-- 主题切换：手绘太阳 / 月亮（取自原站 SVG） -->
+<button class="theme-toggle" id="theme-toggle" aria-label="切换深色模式" title="切换主题" type="button">
+      <svg class="icon-sun" viewBox="0 0 128 128" aria-hidden="true"><path d="M37.41 41.95c-9.71 12.48-9.54 34.65 2.87 45.64c14.09 12.47 33.92 12.34 46.39.87c14.95-13.76 14.09-36.66.87-49.63c-13.29-13.04-37.04-13.72-50.13 3.12z" fill="#fcc11a"/><path d="M53 37.67c-3.84-1.7-8.04 2.93-9.87 6.09c-1.83 3.17-3.53 9.38.37 10.97c3.9 1.58 6.7-1.1 9.51-5.73c2.79-4.63 4.38-9.38-.01-11.33z" fill="#fee269"/><path d="M63 20.27c-.93 1.74-.62 3.08 1.23 3.52c1.85.44 13.36 2.31 14.33 2.37c1.41.09 1.93-.97 1.76-2.2c-.18-1.23-2.99-18.46-3.25-20.04S75.14.76 73.55 2.87S63.7 18.96 63 20.27z" fill="#ffa722"/><path d="M92.8 32.23c-1.81.56-1.76 1.67-.79 3.08c.97 1.41 7.65 11.6 8.26 12.31c.62.7 1.67.88 2.55-.18c.88-1.05 11.86-16.45 12.66-17.41c1.32-1.58.53-3.25-1.49-2.73c-1.54.41-20.05 4.58-21.19 4.93z" fill="#ffa722"/><path d="M106.6 61.86c-1.3-.74-2.99-.53-3.43 1.14c-.44 1.67-2.37 13.8-2.55 14.86s.62 2.11 1.93 1.85s19.45-2.95 20.66-3.25c2.11-.53 2.81-2.64.62-4.22c-1.42-1.03-16-9.68-17.23-10.38z" fill="#ffa722"/><path d="M92.09 90.6c1.4-.75 2.64-.18 2.99 1.41c.35 1.58 4.22 17.76 4.84 20.75c.31 1.5-1.41 2.73-2.81 1.85c-1.41-.88-16.69-11.53-17.67-12.4c-1.41-1.23-.43-2.51.26-3.16c1.4-1.33 11.07-7.74 12.39-8.45z" fill="#ffa722"/><path d="M49.54 99.48c-1.77-.17-2.29 1.41-2.02 2.81c.26 1.41 2.9 19.24 3.08 20.57c.26 1.93 2.29 2.73 3.6.79s10.35-16.4 11.08-17.76c1.32-2.46.35-2.99-.97-3.6c-1.31-.61-12.92-2.63-14.77-2.81z" fill="#ffa722"/><path d="M24.23 79c1.23-2.02 2.81-1.49 3.96.44c.78 1.32 7.38 10.2 8 11.16c.62.97.88 2.81-1.05 3.25c-1.95.45-17.68 4.58-20.14 5.02c-2.46.44-3.87-1.49-2.29-3.6c.92-1.24 10.82-15.12 11.52-16.27z" fill="#ffa722"/><path d="M20.89 63.7c2.25 1 3.31.64 3.78-.97c.62-2.11 2.46-11.78 2.55-13.98c.06-1.43-.53-2.81-2.73-2.46S6.47 48.85 4.45 49.55c-2.35.82-2.18 3.4-.62 4.22c1.85.97 15.47 9.23 17.06 9.93z" fill="#ffa722"/><path d="M48.23 26.78c1.27-1.01.88-2.46-.26-3.25c-1.14-.79-15.26-11-17.05-12.4c-1.58-1.23-3.52-.79-2.99 2.02c.38 2.02 4.88 19.7 5.19 20.92c.35 1.41 1.41 2.11 2.64 1.23c1.21-.87 11.15-7.46 12.47-8.52z" fill="#ffa722"/></svg>
+      <svg class="icon-moon" viewBox="0 0 200 200" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true"><circle cx="100" cy="100" r="94.147" fill="#e4e2dc"/><clipPath id="tm-moon-clip"><circle cx="100" cy="100" r="94.147"/></clipPath><g clip-path="url(#tm-moon-clip)"><path d="M173.111-46.282l59.723 39.66 25.005 67.189-19.264 69.056-56.174 44.544-71.628 3.018-59.723-39.66-25.005-67.189L45.308 1.28l56.174-44.544 71.629-3.018z" fill="#f6f4ef"/></g><path d="M158.551 135.006l-4.072 2.503 6.822 5.83 1.8-4.404-4.55-3.929zM116.907 69.037l-6.653 4.089 11.145 9.525 2.941-7.195-7.433-6.419zM67.138 119.523l-4.542 2.791 7.61 6.503 2.007-4.912-5.075-4.382zM80.286 37.068l4.825-3.028-8.193-6.873-2.097 5.268 5.465 4.633zM143.466 148.273l5.198-3.261-8.826-7.403-2.259 5.674 5.887 4.99z" fill="#e4e2dc" fill-rule="nonzero"/><path d="M163.108 73.155l2.628 13.525-12.051 6.679-10.076-9.398 5.824-12.486 13.675 1.68zM83.672 53.684l-7.194 20.408-21.332-.919-5.99-20.976 17.63-12.045 16.886 13.532zM91.359 125.589l-5.626-25.934 22.927-13.364 19.794 17.674-10.692 24.288-26.403-2.664zM35.02 112.946l-3.955-14.875 12.902-8.012 11.929 9.923-5.53 14.145-15.346-1.181zM104.602 180.886l-15.004-13.214 8.155-17.962 20.044 2.111 4.233 19.268-17.428 9.797z" fill="#e4e2dc"/></svg>
+    </button>
+
+  <div class="page-shell">
+  <main id="content" class="homepage">
+
+    <!-- ============================================================
+         MINIMAL 模式
+         ============================================================ -->
+    <article class="article">
+
+      <!-- 头像 + 名字 -->
+      <header class="page-header">
+        <div class="profile-avatar" aria-hidden="true">FS</div>
+        <div class="profile-info">
+          <h1>冯建燊</h1>
+          <p class="profile-role">新媒体运营 · 内容运营 · 网页开发</p>
+          <p class="profile-meta">广东工业大学 · 电子商务专业 · 2028 届</p>
+        </div>
+      </header>
+
+      <!-- 简介：kw span 是带 hover 彩蛋的关键词 -->
+      <p>我是一个正在把「独立内容创作者」升级为「懂协作的内容运营者」的人。</p>
+
+      <p>
+        运营小红书账号「pre灵感集」快一年了，<strong>63 篇笔记、累计 1.4W 赞藏、597 粉丝</strong>，单篇最高
+        7500+。每一篇我都拉数据做复盘——<span class="kw kw-react">小红书运营</span> 和
+        <span class="kw kw-gsap">AI 复盘</span> 是我真正吃饭的两样工具。
+      </p>
+
+      <p>
+        起步期我什么都发，二十多篇数据平平。后来把每篇的封面点击率、互动率拉成图表，才发现高赞全集中在
+        英语 Pre 这一条垂类上。砍掉杂线、只做一条线，数据才起飞。现在我在投新媒体运营岗，也在准备鹅创营。
+        跑出来的爆款是 <span class="kw kw-seo">铁盒贴
+          <span class="kw-pop" aria-hidden="true">
+            <span><span class="kw-pop-line">352 赞 · 340 藏</span><span class="kw-pop-sub">封面点击率 17.6% →</span></span>
+          </span>
+        </span>——全账号点击率第一。
+      </p>
+
+      <p>
+        除了内容，我还做 <span class="kw kw-figma">内容策划</span> 这块：写传播作品、盯视觉审美、剪视频用剪映和可画。
+        英语 <span class="kw kw-music">四级 512 · 六级 460<span class="kw-eq" aria-hidden="true"><span></span><span></span><span></span></span></span>
+        ，也接中英双语翻译的活儿。
+      </p>
+
+      <!-- Selected work -->
+      <section class="post-list">
+        <h2 class="post-list-title">Selected work</h2>
+        <ul class="project-list work-list">
+          <!-- 左列：钴蓝指标；标题链接整体可点 -->
+          <li class="project-item">
+            <a class="project-media" href="https://www.xiaohongshu.com/discovery/item/6aa69c63000000002b01042a?source=webshare&xhsshare=pc_web&xsec_token=ABTfiUyEBZd9p5fzI90cLhxL6QNF-WyWnU4Yxme8t2wgo=&xsec_source=pc_share" target="_blank" rel="noopener noreferrer"><img src="assets/img/shots/cute-face-grid-cover.jpg" alt="萌系贴贴生成器 小红书封面：萌系贴贴" loading="lazy" decoding="async"></a>
+            <div class="project-body">
+              <div class="project-year"><span>7,500+</span><span class="metric-label">单篇赞藏</span></div>
+              <h3 class="project-title">
+                <a class="project-title-link" href="https://www.xiaohongshu.com/discovery/item/6aa69c63000000002b01042a?source=webshare&xhsshare=pc_web&xsec_token=ABTfiUyEBZd9p5fzI90cLhxL6QNF-WyWnU4Yxme8t2wgo=&xsec_source=pc_share" target="_blank" rel="noopener noreferrer">
+                  <span class="project-title-text">萌系贴贴生成器</span>
+                  <svg class="project-title-arrow" width="10" height="10"><use href="#i-arrow"/></svg>
+                </a>
+              </h3>
+              <p class="project-description">不用 Ps、不用抠图、不用会画画，在小红书里就能贴贴的小工具。这条笔记是账号的最高赞藏，被反复提了 5 周还在涨。
+                <a class="badge badge--pink" href="https://www.xiaohongshu.com/discovery/item/6aa69c63000000002b01042a?source=webshare&xhsshare=pc_web&xsec_token=ABTfiUyEBZd9p5fzI90cLhxL6QNF-WyWnU4Yxme8t2wgo=&xsec_source=pc_share" target="_blank" rel="noopener noreferrer">爆款工具</a>
+              </p>
+              <a class="case-study-link" href="https://www.xiaohongshu.com/discovery/item/6aa69c63000000002b01042a?source=webshare&xhsshare=pc_web&xsec_token=ABTfiUyEBZd9p5fzI90cLhxL6QNF-WyWnU4Yxme8t2wgo=&xsec_source=pc_share" target="_blank" rel="noopener noreferrer">案例 <svg width="9" height="9"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="project-item">
+            <a class="project-media" href="https://www.xiaohongshu.com/discovery/item/6ab645bc0000000018014cdb?source=webshare&xhsshare=pc_web&xsec_token=AB1KsJfxmLrztoQLXADCVJXShiLgW3GZiMDrG5RU-3_D8=&xsec_source=pc_share" target="_blank" rel="noopener noreferrer"><img src="assets/img/shots/tincase-cover.jpg" alt="铁盒贴 小红书封面：电子铁盒贴贴" loading="lazy" decoding="async"></a>
+            <div class="project-body">
+              <div class="project-year"><span>17.6%</span><span class="metric-label">封面点击率</span></div>
+              <h3 class="project-title">
+                <a class="project-title-link" href="https://www.xiaohongshu.com/discovery/item/6ab645bc0000000018014cdb?source=webshare&xhsshare=pc_web&xsec_token=AB1KsJfxmLrztoQLXADCVJXShiLgW3GZiMDrG5RU-3_D8=&xsec_source=pc_share" target="_blank" rel="noopener noreferrer">
+                  <span class="project-title-text">铁盒贴</span>
+                  <svg class="project-title-arrow" width="10" height="10"><use href="#i-arrow"/></svg>
+                </a>
+              </h3>
+              <p class="project-description">352 赞、340 藏，封面点击率全账号第一。爆款之后十二天发衍生品，依然稳定吃到流量。
+                <a class="badge badge--green" href="https://www.xiaohongshu.com/discovery/item/6ab645bc0000000018014cdb?source=webshare&xhsshare=pc_web&xsec_token=AB1KsJfxmLrztoQLXADCVJXShiLgW3GZiMDrG5RU-3_D8=&xsec_source=pc_share" target="_blank" rel="noopener noreferrer">CTR 第一</a>
+              </p>
+            </div>
+          </li>
+          <li class="project-item">
+            <a class="project-media" href="https://xhslink.cn/o/8sBwI0HFjC2" target="_blank" rel="noopener noreferrer"><img src="assets/img/shots/pre-card.jpg" alt="pre灵感集 小红书账号卡片" loading="lazy" decoding="async"></a>
+            <div class="project-body">
+              <div class="project-year"><span>1.4W</span><span class="metric-label">累计赞藏</span></div>
+              <h3 class="project-title">
+                <a class="project-title-link" href="https://xhslink.cn/o/8sBwI0HFjC2" target="_blank" rel="noopener noreferrer">
+                  <span class="project-title-text">pre灵感集</span>
+                  <svg class="project-title-arrow" width="10" height="10"><use href="#i-arrow"/></svg>
+                </a>
+              </h3>
+              <p class="project-description">自营小红书账号，63 篇笔记、597 粉丝。英语 Pre 主题的内容库，也是我练数据分析和视觉审美的地方。
+                <a class="badge badge--blue" href="https://xhslink.cn/o/8sBwI0HFjC2" target="_blank" rel="noopener noreferrer">自营账号</a>
+              </p>
+            </div>
+          </li>
+          
+          <li class="project-item">
+            <a class="project-media" href="works/pre-grid.html"><img src="assets/img/shots/pre-ppt.jpg" alt="Pre 课素材库 pre PPT 展示" loading="lazy" decoding="async"></a>
+            <div class="project-body">
+              <div class="project-year"><span>48 份</span><span class="metric-label">PPT 素材</span></div>
+              <h3 class="project-title">
+                <a class="project-title-link" href="works/pre-grid.html">
+                  <span class="project-title-text">Pre 课素材库</span>
+                  <svg class="project-title-arrow" width="10" height="10"><use href="#i-arrow"/></svg>
+                </a>
+              </h3>
+              <p class="project-description">英专 Pre 课的一套可复用素材库：48 个主题 · 48 份 PPT · 48 份讲稿。影视、国家文化、生活方式三类。
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Client works（超过 5 条自动出现 View all） -->
+      <section class="post-list has-mascot">
+        <span class="section-mascot mascot-dog" aria-hidden="true"><svg viewBox="0 0 31 32"><g class="dog-tail"><rect x="22" y="20" width="4" height="3" fill="#cf9b5d"/><rect x="24" y="18" width="3" height="3" fill="#cf9b5d"/><rect x="25" y="15" width="3" height="4" fill="#cf9b5d"/><rect x="24" y="13" width="3" height="2" fill="#a06d34"/></g><rect x="9" y="17" width="14" height="9" fill="#cf9b5d"/><rect x="12" y="19" width="8" height="7" fill="#f2e4c8"/><rect x="9" y="24" width="4" height="7" fill="#cf9b5d"/><rect x="19" y="24" width="4" height="7" fill="#cf9b5d"/><rect x="9" y="29" width="4" height="2" fill="#f2e4c8"/><rect x="19" y="29" width="4" height="2" fill="#f2e4c8"/><g class="dog-head"><rect x="3" y="4" width="6" height="9" fill="#a06d34"/><rect x="4" y="3" width="4" height="1" fill="#a06d34"/><rect x="23" y="4" width="6" height="9" fill="#a06d34"/><rect x="24" y="3" width="4" height="1" fill="#a06d34"/><rect x="5" y="5" width="3" height="5" fill="#b97f44"/><rect x="24" y="5" width="3" height="5" fill="#b97f44"/><rect x="8" y="3" width="16" height="2" fill="#cf9b5d"/><rect x="7" y="5" width="18" height="10" fill="#cf9b5d"/><rect x="8" y="15" width="16" height="2" fill="#cf9b5d"/><rect x="6" y="11" width="3" height="4" fill="#f2e4c8"/><rect x="23" y="11" width="3" height="4" fill="#f2e4c8"/><rect x="11" y="11" width="10" height="6" fill="#f2e4c8"/><rect x="10" y="8" width="3" height="3" fill="#2a2018"/><rect x="19" y="8" width="3" height="3" fill="#2a2018"/><rect x="10" y="8" width="1" height="1" fill="#ffffff"/><rect x="19" y="8" width="1" height="1" fill="#ffffff"/><rect x="14" y="12" width="4" height="3" fill="#2a2018"/><rect x="13" y="15" width="2" height="1" fill="#2a2018"/><rect x="17" y="15" width="2" height="1" fill="#2a2018"/></g></svg></span>
+        <h2 class="post-list-title">Client works</h2>
+        <ul class="project-list">
+          <li class="project-item">
+            <div class="project-year"><span>3 门课</span><span class="metric-label">青科实训营</span></div>
+            <div class="project-body">
+              <h3 class="project-title"><span class="project-title-text">腾讯青科实训营</span></h3>
+              <p class="project-description">产品经理创造营方法论与进阶实战、IEG 游戏运营「开局一课」。做完了三门，也攒下了产品与游戏运营的基础认知。</p>
+            </div>
+          </li>
+          <li class="project-item">
+            <div class="project-year"><span>申请中</span><span class="metric-label">鹅创营</span></div>
+            <div class="project-body">
+              <h3 class="project-title"><span class="project-title-text">鹅创营 M&amp;PR</span></h3>
+              <p class="project-description">腾讯 M&amp;PR 线上传播实习培养专项，第四期。申请材料以自营账号、独立作品和实操数据为主。</p>
+            </div>
+          </li>
+          <li class="project-item">
+            <div class="project-year"><span>一份</span><span class="metric-label">AI 时代说明书</span></div>
+            <div class="project-body">
+              <h3 class="project-title"><a class="project-title-link" href="demo/ai-manual.html"><span class="project-title-text">AI 时代个人说明书</span><svg class="project-title-arrow" width="10" height="10"><use href="#i-arrow"/></svg></a></h3>
+              <p class="project-description">把自己当成产品来写的一份说明书：身份定位、技能分级、成长故事线，还有能扛住追问的硬数据。</p>
+            </div>
+          </li>
+          <li class="project-item">
+            <div class="project-year"><span>弹药库</span><span class="metric-label">AI 求职系统</span></div>
+            <div class="project-body">
+              <h3 class="project-title"><span class="project-title-text">AI 求职系统</span></h3>
+              <p class="project-description">岗位 JD 关键词映射、踩坑复盘、简历口径备查表。每投一个岗位都回填一次，越投越准。</p>
+            </div>
+          </li>
+          <li class="project-item is-extra-hidden">
+            <div class="project-year"><span>30 天</span><span class="metric-label">内容日历</span></div>
+            <div class="project-body">
+              <h3 class="project-title"><span class="project-title-text">30 天内容日历</span></h3>
+              <p class="project-description">把复盘结论变成可执行的排期：哪条内容线继续加码、哪条该停、下一篇做什么，写成了具体的表格。</p>
+            </div>
+          </li>
+        </ul>
+        <button class="show-more-btn" data-more><span class="show-more-label">查看全部</span></button>
+      </section>
+    </article>
+  </main>
+  </div>
+
+
+<!-- 页底两棵树（点击摇晃）+ 蝴蝶 -->
+<div class="garden" aria-hidden="true">
+  <div class="tree tree-1" role="button" tabindex="0" aria-label="摇一摇大树"></div>
+<div class="tree tree-2" role="button" tabindex="0" aria-label="摇一摇小树"></div>
+        <span class="butterfly"><span class="bf-inner"><span class="bf-layer bf-wl"><svg viewBox="0 0 17 14"><rect x="5" y="1" width="3" height="1" fill="#ef8f2e"/><rect x="3" y="2" width="5" height="1" fill="#ef8f2e"/><rect x="2" y="3" width="6" height="1" fill="#ef8f2e"/><rect x="1" y="4" width="7" height="1" fill="#ef8f2e"/><rect x="1" y="5" width="7" height="1" fill="#ef8f2e"/><rect x="2" y="6" width="6" height="1" fill="#ef8f2e"/><rect x="3" y="7" width="4" height="1" fill="#ef8f2e"/><rect x="3" y="8" width="5" height="1" fill="#ef8f2e"/><rect x="2" y="9" width="5" height="1" fill="#ef8f2e"/><rect x="3" y="10" width="4" height="1" fill="#ef8f2e"/><rect x="4" y="11" width="3" height="1" fill="#ef8f2e"/><rect x="1" y="4" width="1" height="1" fill="#d2701d"/><rect x="1" y="5" width="1" height="1" fill="#d2701d"/><rect x="2" y="3" width="1" height="1" fill="#d2701d"/><rect x="2" y="6" width="1" height="1" fill="#d2701d"/><rect x="2" y="9" width="1" height="1" fill="#d2701d"/><rect x="3" y="8" width="1" height="1" fill="#d2701d"/><rect x="3" y="10" width="1" height="1" fill="#d2701d"/><rect x="6" y="3" width="1" height="1" fill="#9c4f15"/><rect x="6" y="9" width="1" height="1" fill="#9c4f15"/><rect x="5" y="6" width="1" height="1" fill="#9c4f15"/><rect x="3" y="4" width="1" height="1" fill="#fff"/><rect x="3" y="9" width="1" height="1" fill="#fff"/></svg></span><span class="bf-layer bf-wr"><svg viewBox="0 0 17 14"><rect x="9" y="1" width="3" height="1" fill="#ef8f2e"/><rect x="9" y="2" width="5" height="1" fill="#ef8f2e"/><rect x="9" y="3" width="6" height="1" fill="#ef8f2e"/><rect x="9" y="4" width="7" height="1" fill="#ef8f2e"/><rect x="9" y="5" width="7" height="1" fill="#ef8f2e"/><rect x="9" y="6" width="6" height="1" fill="#ef8f2e"/><rect x="10" y="7" width="4" height="1" fill="#ef8f2e"/><rect x="9" y="8" width="5" height="1" fill="#ef8f2e"/><rect x="10" y="9" width="5" height="1" fill="#ef8f2e"/><rect x="10" y="10" width="4" height="1" fill="#ef8f2e"/><rect x="10" y="11" width="3" height="1" fill="#ef8f2e"/><rect x="15" y="4" width="1" height="1" fill="#d2701d"/><rect x="15" y="5" width="1" height="1" fill="#d2701d"/><rect x="14" y="3" width="1" height="1" fill="#d2701d"/><rect x="14" y="6" width="1" height="1" fill="#d2701d"/><rect x="14" y="9" width="1" height="1" fill="#d2701d"/><rect x="13" y="8" width="1" height="1" fill="#d2701d"/><rect x="13" y="10" width="1" height="1" fill="#d2701d"/><rect x="10" y="3" width="1" height="1" fill="#9c4f15"/><rect x="10" y="9" width="1" height="1" fill="#9c4f15"/><rect x="11" y="6" width="1" height="1" fill="#9c4f15"/><rect x="13" y="4" width="1" height="1" fill="#fff"/><rect x="13" y="9" width="1" height="1" fill="#fff"/></svg></span><span class="bf-layer bf-body"><svg viewBox="0 0 17 14"><rect x="8" y="2" width="1" height="10" fill="#2e2418"/><rect x="8" y="1" width="1" height="1" fill="#2e2418"/><rect x="7" y="0" width="1" height="1" fill="#2e2418"/><rect x="9" y="0" width="1" height="1" fill="#2e2418"/><rect x="6" y="0" width="1" height="1" fill="#9c4f15"/><rect x="10" y="0" width="1" height="1" fill="#9c4f15"/></svg></span></span></span>
+    </div>
+</div>
+
+<script>
+/* 临时诊断：收集脚本加载期错误 */
+window.__loadErrs = [];
+window.addEventListener("error", function (e) {
+  window.__loadErrs.push((e.message || "?") + " @ " + (e.filename || "").split("/").pop() + ":" + e.lineno);
+});
+</script>
+<script src="assets/js/site.js?v=20261101-51"></script>
+<script src="assets/js/home.js?v=20261101-51"></script>
+</body>
+</html>
