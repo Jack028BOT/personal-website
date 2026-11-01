@@ -193,11 +193,12 @@ html[data-theme="dark"] .theme-toggle .icon-moon { opacity: 1; transform: none; 
 }
 
 /* ≤1100px：版心随视口收窄后，探头构图（50%+540 处收尾）会开始出血，
-   切到原站的窄屏排布——云朵靠右缘缩小锚定，日月挪到云下方 */
+   切到原站的窄屏排布——日月挪到右上角，两朵云顺次排在它下方，
+   保持「日月从云后探头」的构图，同时避开左上角的头像与身份文字 */
 @media (max-width: 1100px) {
-  .cloud-1 { left: auto; right: 8px; top: 14px; width: 72px; height: 40px; }
-  .cloud-2 { left: auto; right: 64px; top: 48px; width: 46px; height: 26px; }
-  .theme-toggle { left: auto; right: 30px; top: 70px; }
+  .theme-toggle { left: auto; right: 10px; top: 4px; }
+  .cloud-1 { left: auto; right: 6px; top: 40px; width: 72px; height: 40px; }
+  .cloud-2 { left: auto; right: 58px; top: 76px; width: 46px; height: 26px; }
 }
 
 /* 像素鸟（复刻原站机制）：一直从左向右缓慢滑翔；滚动时原地落下（出现小星星），
