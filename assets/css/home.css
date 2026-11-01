@@ -259,6 +259,42 @@
   color: var(--grey3);
   background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 8%, var(--chat-surface)), var(--chat-surface));
 }
+
+/* 堆叠卡组（仿小红书卡片堆）：主卡在上，底下两张从右缘斜着探出；
+   squish/rotate 走 transform，不与视差冲突 */
+.project-media--stack {
+  overflow: visible;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+/* 卡片的位置由 JS 按轮播状态设置（transform 过渡滑入滑出） */
+.project-media--stack .stack-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 1px solid var(--surface-border);
+  background: var(--chat-surface) center / cover no-repeat;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+/* 角标：标注待补/作品名，不随卡片轮播 */
+.deck-label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 20;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--surface-border);
+  background: color-mix(in srgb, var(--chat-surface) 88%, transparent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--grey3);
+  pointer-events: none;
+}
 /* 指标：标题上方的小行（钴蓝数字 + 灰色口径） */
 .work-list .project-year {
   display: flex;

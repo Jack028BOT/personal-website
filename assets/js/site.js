@@ -501,3 +501,46 @@
     });
   });
 })();
+
+
+/* =====================================================================
+   图片轮播卡组（多图展示）：鼠标悬停在卡组上滚动滚轮（或聚焦后按
+   方向键）切换图片——前面的卡滑向一侧，下一张从后面滑到前面。
+   卡片位置由 JS 按轮播状态设置（transform 过渡）。
+   ===================================================================== */
+(function () {
+  "use strict";
+  document.querySelectorAll("[data-deck]").forEach(function (deck) {
+    const cards = [...deck.querySelectorAll(".stack-card")];
+    if (cards.length < 2) return;
+    let active = 0, acc = 0, lock = false;
+
+    function layout() {
+      cards.forEach(function (c, i) {
+        const pos = (i - active + cards.length) % cards.length;   // 0 = 最前
+        c.style.zIndex = 10 - pos;
+        c.style.transform = "rotate(" + (pos * 1.8) + "deg) translate(" +
+          (pos * 11) + "px," + (pos * 4) + "px)";
+        c.style.opacity = pos > 0 ? 0.85 : 1;
+      });
+    }
+    function step(dir) {
+      if (lock) return;
+      lock = true;
+      active = (active + dir + cards.length) % cards.length;
+      layout();
+      setTimeout(function () { lock = false; }, 300);
+    }
+
+    layout();
+    deck.addEventListener("wheel", function (e) {
+      e.preventDefault();               /* 该区域内滚轮只切换图片 */
+      acc += e.deltaY;
+      if (Math.abs(acc) > 40) { step(acc > 0 ? 1 : -1); acc = 0; }
+    }, { passive: false });
+    deck.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+    });
+  });
+})();
