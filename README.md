@@ -18,7 +18,7 @@ NODE_PATH="C:/Users/86198/.workbuddy/binaries/node/workspace/node_modules" node 
 python _static_check.py
 ```
 
-- `_e2e.js` —— 42 项端到端测试（模式切换、文件夹开合、主题记忆、上下站闭环、移动端无横滚、console error = 0）
+- `_e2e.js` —— 42 项端到端测试（首页结构、View all 开合、主题切换与记忆、云热区转发、轮播卡组、详情页加载、上下站闭环、移动端无横滚、console error = 0）
 - `_static_check.py` —— 静态校验（占位符残留、旧数据口径污染、链接与图片可达性、数据口径上下文、编码完整性）
 
 **重新生成详情页**：`python .workbuddy/tools/_gen_works.py`（6 页内容集中在脚本顶部的 `PAGES` 字典里，改内容改那里）
@@ -30,7 +30,7 @@ python _static_check.py
 ## 二、目录结构
 
 ```
-index.html                 首页（简历模式 + 作品模式双视图）
+index.html                 首页（单页简历版：简介 + Selected work + Client works）
 works/                     作品详情页 × 6
 ├─ cute-face-grid.html      萌系贴贴生成器
 ├─ tincase.html             铁盒贴
@@ -51,8 +51,8 @@ assets/
 │  ├─ work.css              详情页 11 模块
 │  └─ deco.css              像素装饰 + 响应式断点
 ├─ js/
-│  ├─ site.js               像素画生成 / 像素鸟 / 主题切换 / 实时时钟（共享）
-│  └─ home.js               模式切换 / 文件夹开合 / View all / 成就墙
+│  ├─ site.js               像素画生成 / 云视差 / 戳云彩 / 像素鸟 / 主题切换 / 摇树 / 轮播卡组（共享）
+│  └─ home.js               View all 折叠
 ├─ fonts/                   6 个 latin 子集 woff2（252 KB）
 └─ img/shots/               9 张真实截图（1.9 MB）
 ```
@@ -105,12 +105,11 @@ assets/
 | `.project-title` | `nowrap` | `normal` + `overflow-wrap` | 中文标题长，nowrap 会横向溢出 |
 | `.badge` | `nowrap` | `normal` | 中文徽章会撑破胶囊 |
 | `.kw-pop` | `nowrap` | `normal` + `max-width: 240px` | hover 弹卡内容变长 |
-| `.contact-list` | `repeat(6, max-content)` | `repeat(3, 1fr)` | 6 列在中文下容易横溢 |
 | 字体栈 | 仅拉丁 | 追加 PingFang SC / 微软雅黑 / Noto Sans SC | 三款 Google 字体都没有中文字形 |
 
 **字体**：Bricolage Grotesque（标题）/ Hanken Grotesk（正文）/ JetBrains Mono（标签），均为 SIL Open Font License 1.1。自托管 latin 子集 woff2（252 KB），断网可用；CSS 里保留 Google Fonts 远程地址作为兜底源。
 
-**响应式**：≤900px 收窄栏位、≤640px 详情页数据卡改两列、≤560px 头像缩小。已在 1440 / 390 / 375 三档验证无横向滚动。
+**响应式**：≤900px 收窄栏位、≤640px 详情页数据卡改两列、≤560px 头像缩小。已在 1440 / 768 / 390 / 375 四档验证无横向滚动（E2E 自动校验）；轮播卡组探出偏移在窄屏自适应收缩，`overflow-x: clip` 兜底。
 
 **可访问性**：`prefers-reduced-motion` 全局压制动效；语义化标签 + `aria-*`；skip-link 已中文化。
 
@@ -132,7 +131,7 @@ assets/
 
 | # | 项 | 类型 | 位置 | 说明 |
 |---|---|---|---|---|
-| 1 | **真实邮箱** | 待补 | `index.html` Contact 第 6 项 | 页面上显示「邮箱待补」，不可点击。补上后一处替换即可 |
+| 1 | **真实邮箱** | 待补 | 首页暂无 Contact 区块，补邮箱时建议连同页脚联系方式一并加 | 页面上目前没有任何联系方式入口（详情页页脚有小红书主页链接） |
 | 2 | 五个区块标题中文化 | 待定 | `Selected work` / `Client works` / `Creative coding` / `Visuals` / `Contact` | 目前保持英文原样（用户决定「先不加」） |
 | 3 | 详情页「诚实短板」段 | 待定 | 6 个详情页第 ⑧ 模块 | 目前只写归因 / 经验 / 下一步。数据复盘页的 KPI 判定表照实保留（是客观结果，不是自我批评） |
 | 4 | **Pre 内容体系** | 待定 | `works/pre-grid.html` + 首页 Pre 文件夹 | 当前是占位页。48 个主题的封面图导出脚本已备好（pptx 内 `docProps/thumbnail.jpeg`），补内容时一并跑 |

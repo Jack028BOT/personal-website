@@ -310,7 +310,21 @@
     c.hit.setAttribute("aria-label", c.big ? "戳戳乌云" : "戳戳小云");
     cloud.appendChild(c.hit);
     var doPoke = function () { poke(c); };
-    c.hit.addEventListener("click", doPoke);
+    c.hit.addEventListener("click", function (e) {
+      /* 云的层级（11）高于日月按钮（10）——这是刻意保留的「探头」构图，
+         但云的热区会盖住按钮被云压住的那部分。点落在按钮矩形内时，
+         把点击原样转交给主题按钮，两个交互互不耽误。 */
+      var t = document.getElementById("theme-toggle");
+      if (t && typeof e.clientX === "number") {
+        var r = t.getBoundingClientRect();
+        if (e.clientX >= r.left && e.clientX <= r.right &&
+            e.clientY >= r.top && e.clientY <= r.bottom) {
+          t.click();
+          return;
+        }
+      }
+      doPoke();
+    });
     c.hit.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); doPoke(); }
     });
@@ -516,11 +530,18 @@
     let active = 0, acc = 0, lock = false;
 
     function layout() {
+      /* 探出偏移自适应：窄屏下卡片几乎占满一行，右缘放不下固定的 11px
+         步进（5 张卡会探出 44px → 横向滚动），按剩余空间收缩，下限 2px。
+         再预留 ~14px 给 1.8° 旋转让卡角外扩的宽度。 */
+      const rect = deck.getBoundingClientRect();
+      const slack = window.innerWidth - 8 - rect.right;   // 右缘留 8px 安全边
+      const stepOff = Math.max(2, Math.min(11,
+        (slack - 14) / Math.max(1, cards.length - 1)));
       cards.forEach(function (c, i) {
         const pos = (i - active + cards.length) % cards.length;   // 0 = 最前
         c.style.zIndex = 10 - pos;
         c.style.transform = "rotate(" + (pos * 1.8) + "deg) translate(" +
-          (pos * 11) + "px," + (pos * 4) + "px)";
+          (pos * stepOff) + "px," + (pos * 4) + "px)";
         c.style.opacity = pos > 0 ? 0.85 : 1;
       });
     }
@@ -541,6 +562,12 @@
     deck.addEventListener("keydown", function (e) {
       if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
       if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+    });
+    /* 视口变化（旋转屏幕 / 拖窗口）后按新宽度重排探出偏移 */
+    let rzT = 0;
+    window.addEventListener("resize", function () {
+      clearTimeout(rzT);
+      rzT = setTimeout(layout, 120);
     });
   });
 })();

@@ -168,3 +168,13 @@ body.creative-mode .creative-only {
   animation: fvIn 0.4s var(--ease-out) both;
 }
 
+
+/* =====================================================================
+   横向溢出兜底：轮播卡组的堆叠卡片设计上就探出卡片右缘，
+   窄屏下宁可把探出部分裁在视口边，也绝不出现横向滚动条。
+   clip 只裁不建滚动容器（比 hidden 干净）；旧浏览器回退 hidden。
+   ===================================================================== */
+html, body { overflow-x: clip; }
+@supports not (overflow: clip) {
+  html, body { overflow-x: hidden; }
+}
