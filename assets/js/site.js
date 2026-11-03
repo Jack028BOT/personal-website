@@ -587,3 +587,118 @@
     });
   });
 })();
+
+
+/* =====================================================================
+   数字滚动（count-up）：页面里的数据从 0 滚到目标值。
+   JS 先把数字文本拆成 <span class="cu">，进视口时用 rAF + easeOutCubic
+   计数。拆分时按终值预留宽度（tabular-nums + min-width），滚动过程中
+   段落不会被顶来顶去。reduced-motion 直接给终值。
+   ===================================================================== */
+(function () {
+  "use strict";
+
+  /* 要滚的容器：指标大字、作品卡描述、首页自述段、作品页正文段 */
+  var BOXES = ".stat-num, .project-year > span:first-child, .article > p, .project-description, .work-body p";
+  var DUR = 1100;   /* 单个数字滚完所需毫秒 */
+  var STEP = 70;    /* 同一段里相邻数字的启动间隔 */
+  var RE = /(\+?\d[\d,]*(?:\.\d+)?)/g;
+
+  function fmt(v, dec, sep) {
+    var s = v.toFixed(dec);
+    if (!sep) return s;
+    var p = s.split(".");
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return p.join(".");
+  }
+
+  /* 把容器里的数字文本拆成 .cu 片段，其余文字原样保留 */
+  function wrap(box) {
+    var walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT, null);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) {
+      if (/\d/.test(n.nodeValue)) nodes.push(n);
+    }
+    nodes.forEach(function (node) {
+      var text = node.nodeValue;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      RE.lastIndex = 0;
+      while ((m = RE.exec(text))) {
+        var raw = m[1];
+        var sign = raw.charAt(0) === "+" ? "+" : "";
+        var body = sign ? raw.slice(1) : raw;
+        var value = parseFloat(body.replace(/,/g, ""));
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        if (!isFinite(value)) {
+          frag.appendChild(document.createTextNode(raw));
+        } else {
+          var dot = body.indexOf(".");
+          var dec = dot < 0 ? 0 : body.length - dot - 1;
+          var span = document.createElement("span");
+          span.className = "cu";
+          span.textContent = sign + fmt(value, dec, body.indexOf(",") >= 0);
+          span.cu = { v: value, dec: dec, sep: body.indexOf(",") >= 0, sign: sign };
+          frag.appendChild(span);
+        }
+        last = m.index + raw.length;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function roll(span, delay) {
+    var d = span.cu, t0 = null;
+    setTimeout(function () {
+      function frame(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / DUR);
+        var e = 1 - Math.pow(1 - p, 3);
+        span.textContent = d.sign + fmt(d.v * e, d.dec, d.sep);
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }, delay);
+  }
+
+  /* 容器可能有嵌套（外层已处理就不再进内层），避免同一数字被拆两次 */
+  var boxes = [];
+  document.querySelectorAll(BOXES).forEach(function (el) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].contains(el)) return;
+    }
+    boxes.push(el);
+  });
+  boxes.forEach(wrap);
+
+  var spans = [];
+  document.querySelectorAll(".cu").forEach(function (s) { spans.push(s); });
+  if (!spans.length) return;
+
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  /* 先量终值宽度再归零：宽度锁住，滚动时文字不跳 */
+  spans.forEach(function (s) {
+    var w = s.offsetWidth;
+    if (w > 0) s.style.minWidth = w + "px";
+    s.textContent = s.cu.sign + fmt(0, s.cu.dec, s.cu.sep);
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    spans.forEach(function (s, i) { roll(s, i * STEP); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      en.target.querySelectorAll(".cu").forEach(function (s, i) { roll(s, i * STEP); });
+      io.unobserve(en.target);
+    });
+  }, { threshold: 0.05, rootMargin: "0px 0px 12% 0px" });
+
+  boxes.forEach(function (box) {
+    if (box.querySelector(".cu")) io.observe(box);
+  });
+})();

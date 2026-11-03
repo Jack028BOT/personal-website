@@ -178,3 +178,15 @@ html, body { overflow-x: clip; }
 @supports not (overflow: clip) {
   html, body { overflow-x: hidden; }
 }
+
+/* =====================================================================
+   数字滚动：.cu 是 JS 从文本里拆出来的数字片段。
+   inline-block + tabular-nums 让数字滚动时宽度稳定（终值宽度由 JS
+   以 min-width 预留），整段文字不会在滚动过程中被顶来顶去。
+   ===================================================================== */
+.cu {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  vertical-align: baseline;
+  line-height: inherit;
+}

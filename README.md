@@ -18,7 +18,7 @@ NODE_PATH="C:/Users/86198/.workbuddy/binaries/node/workspace/node_modules" node 
 python _static_check.py
 ```
 
-- `_e2e.js` —— 41 项端到端测试（首页结构、作品卡无装饰件、主题切换与记忆、云热区转发、轮播卡组、详情页加载、上下站闭环、移动端无横滚、console error = 0）
+- `_e2e.js` —— 51 项端到端测试（首页结构、作品卡无装饰件、主题切换与记忆、云热区转发、轮播卡组、详情页加载、上下站闭环、移动端无横滚、数字滚动、console error = 0）
 - `_static_check.py` —— 静态校验（占位符残留、旧数据口径污染、链接与图片可达性、数据口径上下文、编码完整性）
 
 **重新生成详情页**：`python .workbuddy/tools/_gen_works.py`（6 页内容集中在脚本顶部的 `PAGES` 字典里，改内容改那里）
@@ -51,7 +51,7 @@ assets/
 │  ├─ work.css              详情页 11 模块
 │  └─ deco.css              像素装饰 + 响应式断点
 ├─ js/
-│  └─ site.js               像素画生成 / 云视差 / 戳云彩 / 像素鸟 / 主题切换 / 摇树 / 轮播卡组（共享）
+│  └─ site.js               像素画生成 / 云视差 / 戳云彩 / 像素鸟 / 主题切换 / 摇树 / 轮播卡组 / 数字滚动（共享）
 ├─ fonts/                   6 个 latin 子集 woff2（252 KB）
 └─ img/shots/               21 张素材截图（3.3 MB）
 ```
@@ -108,6 +108,8 @@ assets/
 **字体**：Bricolage Grotesque（标题）/ Hanken Grotesk（正文）/ JetBrains Mono（标签），均为 SIL Open Font License 1.1。自托管 latin 子集 woff2（252 KB），断网可用；CSS 里保留 Google Fonts 远程地址作为兜底源。
 
 **响应式**：≤900px 收窄栏位、≤640px 详情页数据卡改两列、≤560px 头像缩小。已在 1440 / 768 / 390 / 375 四档验证无横向滚动（E2E 自动校验）；轮播卡组探出偏移在窄屏自适应收缩，`overflow-x: clip` 兜底。
+
+**数字滚动**：页面里的数据（指标大字、作品页 stat 卡、简介与描述里的数字）由 JS 拆成 `<span class="cu">`，进视口时从 0 滚到终值（rAF + easeOutCubic，1.1s，同段内相邻数字错开 70ms）。拆分时按终值预留宽度（`tabular-nums` + `min-width`），滚动过程中段落不跳动；`prefers-reduced-motion` 下直接给终值。
 
 **可访问性**：`prefers-reduced-motion` 全局压制动效；语义化标签 + `aria-*`；skip-link 已中文化。
 
