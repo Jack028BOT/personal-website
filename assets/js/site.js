@@ -604,8 +604,9 @@
   "use strict";
 
   /* 要滚的容器：指标大字、作品卡描述、首页自述段、作品页正文段 */
-  var BOXES = ".stat-num, .project-year > span:first-child, .article > p, .project-description, .work-body p";
-  var DUR = 1100;   /* 单个数字滚完所需毫秒 */
+  /* 简介段落（.article > p）的数字不滚动，直接显示终值（用户要求） */
+  var BOXES = ".stat-num, .project-year > span:first-child, .project-description, .work-body p";
+  var DUR = 1900;   /* 单个数字滚完所需毫秒（放慢，用户要求） */
   var STEP = 70;    /* 同一段里相邻数字的启动间隔 */
   var RE = /(\+?\d[\d,]*(?:\.\d+)?)/g;
 
