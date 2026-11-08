@@ -571,9 +571,14 @@
 
     layout();
     deck.addEventListener("wheel", function (e) {
-      e.preventDefault();               /* 该区域内滚轮只切换图片 */
+      const down = e.deltaY > 0;
+      /* 方向闸门：该方向还有没看过的图才接管滚轮；到头了放行页面滚动，
+         避免卡组区域把页面滚动卡死 */
+      const canStep = down ? (active < cards.length - 1) : (active > 0);
+      if (!canStep) return;
+      e.preventDefault();
       acc += e.deltaY;
-      if (Math.abs(acc) > 40) { step(acc > 0 ? 1 : -1); acc = 0; }
+      if (Math.abs(acc) > 40) { step(down ? 1 : -1); acc = 0; }
     }, { passive: false });
     deck.addEventListener("keydown", function (e) {
       if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
