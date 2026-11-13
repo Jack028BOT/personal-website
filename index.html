@@ -7,6 +7,10 @@
 <meta name="description" content="冯建燊（JACK）个人作品集 —— 新媒体运营 / 内容运营 / 网页开发。63 篇小红书笔记、1.4W 赞藏、独立开发的贴纸工具与网页项目。">
 <meta name="author" content="冯建燊 JACK">
 
+<!-- 像素太阳 favicon（SVG 优先，PNG 兜底） -->
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+
 <!-- 字体：已自托管在 assets/fonts/（latin 子集 woff2），断网也能正常显示。
      CSS 里保留了 Google Fonts 远程地址作为兜底源，本地加载失败时自动回退。 -->
 <link rel="stylesheet" href="assets/css/tokens.css?v=20261103-71">
@@ -213,13 +217,6 @@
     </div>
 </div>
 
-<script>
-/* 临时诊断：收集脚本加载期错误 */
-window.__loadErrs = [];
-window.addEventListener("error", function (e) {
-  window.__loadErrs.push((e.message || "?") + " @ " + (e.filename || "").split("/").pop() + ":" + e.lineno);
-});
-</script>
 <script src="assets/js/site.js?v=20261103-71"></script>
 </body>
 </html>
