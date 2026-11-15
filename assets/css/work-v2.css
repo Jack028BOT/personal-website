@@ -683,14 +683,17 @@
 }
 
 /* ---------- 截图对比版：宽高比不同的两张图并排 ----------
-   原来把两张图都塞进 480px 高的框里 contain，1:2.1 的界面竖图被压到
-   228px 宽、左右全是留白，等于看不见。现在改成：两列宽度按图的宽高比
-   分配（页面上用 --pair-cols 指定），两张图各自铺满列宽、顶边对齐，
-   高度自动接近 —— 没有留白框，也没有一列悬在半空的空洞。
-   整组收在 780px 内，不铺满版心。 */
+   两个问题分两步解决：
+
+   ① 图片高度要一样。两列宽度按图的宽高比分配（页面上用 --pair-cols
+      指定，比值取 r左 / r右），同一行高度就相等 —— 既没有留白框，也
+      不会一列悬在半空。整组收在 780px 内，不铺满版心。
+   ② 卡片高度要一样。说明文字的长短是由内容决定的（左卡 4 行、右卡
+      2 行），底边就会差出一行。所以卡片按行拉伸（grid 默认 stretch），
+      图片不参与伸缩、多出来的高度全部交给图注条，图注文字在其中垂直
+      居中。这样两卡的顶边、底边、图文分割线都落在同一条线上。 */
 .work-shots--pair {
   grid-template-columns: var(--pair-cols, repeat(2, minmax(0, 1fr)));
-  align-items: start;
   gap: 18px;
   max-width: 780px;
 }
@@ -698,11 +701,15 @@
 .work-shots--pair .work-shot img {
   width: 100%;
   height: auto;
+  flex: 0 0 auto;
   padding: 0;
   object-fit: initial;
   background: none;
 }
-.work-shots--pair .work-shot figcaption { margin-top: 0; }
+.work-shots--pair .work-shot figcaption {
+  flex: 1 1 auto;
+  margin-top: 0;
+}
 
 /* 单图收窄的规则在 work.css（旧模版页也要用），这里只管窄屏 */
 @media (max-width: 640px) {
