@@ -635,8 +635,13 @@
         var sign = raw.charAt(0) === "+" ? "+" : "";
         var body = sign ? raw.slice(1) : raw;
         var value = parseFloat(body.replace(/,/g, ""));
+        /* 型号/版本里的数字不参与滚动：Y2K、Win98 这类词被拆成
+           inline-block 片段后会在词中间断行，滚动时还会显示成 Y0K */
+        var chBefore = m.index > 0 ? text.charAt(m.index - 1) : "";
+        var chAfter = text.charAt(m.index + raw.length);
+        var inWord = /[A-Za-z]/.test(chBefore) || /[A-Za-z]/.test(chAfter);
         if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
-        if (!isFinite(value)) {
+        if (!isFinite(value) || inWord) {
           frag.appendChild(document.createTextNode(raw));
         } else {
           var dot = body.indexOf(".");

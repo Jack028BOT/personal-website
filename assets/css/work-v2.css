@@ -776,6 +776,37 @@
 .work-lede { font-size: 16px; line-height: 1.7; max-width: 40em; }
 .work-body { font-size: 15px; line-height: 1.72; max-width: 40em; }
 
+/* 正文两端对齐：中文由浏览器在字与字之间分配余量，末行照常左对齐、不拉伸。
+   只给成段正文用——图注、表格、卡片短标签保持左对齐，单行被拉开会显得松 */
+.work-tagline,
+.work-lede,
+.work-body p,
+.work-decision__body,
+.insight__p,
+.chart-sub {
+  text-align: justify;
+}
+
+/* 元信息条：改两端对齐——首项贴左、末项贴右，中间均分剩余空间 */
+.work-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.work-meta > .meta-item { flex: 0 0 auto; }
+/* 窄屏换成 2×2：flex 会让四个字段挤成「三个一行、剩一个掉行」，
+   且最后一项贴着边被裁掉；两列两行、每行两端贴齐更稳 */
+@media (max-width: 560px) {
+  .work-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 18px;
+  }
+  .work-meta > .meta-item:nth-child(even) { text-align: right; }
+}
+
 /* 卡片语言：12px 圆角 + surface-border + 柔和投影（与首页作品卡一致） */
 .work-tldr,
 .dash-kpis,
