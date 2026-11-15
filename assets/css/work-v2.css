@@ -751,23 +751,26 @@
   font-size: clamp(24px, 2.9vw, 31px);
 }
 
-/* 区块标题：等宽 14px、无下划线、编号用主色，对齐首页的 Selected work */
+/* 区块标题：28px 正文黑体、编号用等宽主色，字号对齐一级标题的层级感 */
 .work-section { margin-bottom: 62px; }
 .work-section-title {
   display: flex;
   align-items: baseline;
-  gap: 10px;
-  margin: 0 0 22px;
+  gap: 12px;
+  margin: 0 0 20px;
   padding-bottom: 0;
   border-bottom: 0;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--grey3);
+  font-family: var(--font-primary);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--body-color);
 }
 .work-section-title .idx {
-  font-size: 10.5px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--accent);
 }
@@ -976,7 +979,8 @@
   .work-title { font-size: 28px; }
   .work-tagline { font-size: 15.5px; }
   .work-section { margin-bottom: 46px; }
-  .work-section-title { font-size: 12px; margin-bottom: 18px; }
+  .work-section-title { font-size: 22px; margin-bottom: 16px; }
+  .work-section-title .idx { font-size: 13px; }
   .work-lede { font-size: 15px; }
   .work-quote { padding: 15px 16px; font-size: 14px; line-height: 1.75; }
   .work-qa__q { font-size: 14px; }
