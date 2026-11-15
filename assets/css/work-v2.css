@@ -900,11 +900,42 @@
   color: var(--grey3);
 }
 
+/* ---------- 排行榜条（横长截图，给足宽度保证里面那行字可读） ---------- */
+.nb { white-space: nowrap; }
+.rank-card { max-width: 720px; margin: 2px 0 22px; }
+.rank-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  background: #fff;
+}
+[data-theme="dark"] .rank-card img { border-color: var(--border); }
+.rank-card figcaption {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--grey3);
+  text-wrap: balance;
+}
+.rank-card__tag {
+  display: inline-block;
+  margin-right: 7px;
+  padding: 1px 6px 2px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
 /* ---------- 官方流量激励通知（截图原样陈列） ---------- */
 .boost-list {
   display: grid;
   gap: 16px;
-  max-width: 620px;
+  max-width: 720px;
   margin: 2px 0 26px;
 }
 .boost-item { margin: 0; }
@@ -940,6 +971,8 @@
 @media (max-width: 640px) {
   .boost-list { gap: 14px; margin-bottom: 22px; }
   .boost-item figcaption { font-size: 11.5px; }
+  .rank-card { margin-bottom: 20px; }
+  .rank-card figcaption { font-size: 11.5px; }
   .work-title { font-size: 28px; }
   .work-tagline { font-size: 15.5px; }
   .work-section { margin-bottom: 46px; }

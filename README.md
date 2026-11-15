@@ -56,7 +56,7 @@ assets/
 ├─ js/
 │  └─ site.js               像素画生成 / 云视差 / 戳云彩 / 像素鸟 / 主题切换 / 摇树 / 轮播卡组 / 数字滚动（共享）
 ├─ fonts/                   6 个 latin 子集 woff2（252 KB）
-└─ img/shots/               26 张素材截图（4.0 MB）
+└─ img/shots/               27 张素材截图（4.0 MB）
 ```
 
 ---
