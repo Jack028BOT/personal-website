@@ -791,24 +791,26 @@
   text-wrap: pretty;
 }
 
-/* 元信息条：改两端对齐——首项贴左、末项贴右，中间均分剩余空间 */
+/* 元信息条：三个字段各占等宽一列、标签与内容一起居中。
+   之前是 space-between（首项贴左、末项贴右），三项时会空出一大段，
+   读起来像一张缺了列宽的表。这里刻意不设 column-gap，让三列宽度
+   等于摘要卡的 1/3 —— 三组文字的中心正好落在上面那三格的中间。 */
 .work-meta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  column-gap: 0;
+  align-items: start;
+  text-align: center;
 }
-.work-meta > .meta-item { flex: 0 0 auto; }
-/* 窄屏换成 2×2：flex 会让四个字段挤成「三个一行、剩一个掉行」，
-   且最后一项贴着边被裁掉；两列两行、每行两端贴齐更稳 */
+.work-meta > .meta-item { min-width: 0; }
+/* 窄屏两列：三项时最后一项跨满整行再居中，避免右下角空一格 */
 @media (max-width: 560px) {
   .work-meta {
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 20px;
     row-gap: 18px;
   }
-  .work-meta > .meta-item:nth-child(even) { text-align: right; }
+  .work-meta > .meta-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 
 /* 卡片语言：12px 圆角 + surface-border + 柔和投影（与首页作品卡一致） */
