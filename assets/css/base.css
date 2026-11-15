@@ -186,6 +186,10 @@ html, body { overflow-x: clip; }
    ===================================================================== */
 .cu {
   display: inline-block;
+  /* 右对齐：reserved 宽度按终值算，滚到中途数字比终值窄，
+     若左对齐，单位符号（%、+、s）与数字之间会露出一道缝；
+     右对齐后数字自己往右长，单位始终贴着数字。 */
+  text-align: right;
   font-variant-numeric: tabular-nums;
   vertical-align: baseline;
   line-height: inherit;

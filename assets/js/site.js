@@ -603,9 +603,11 @@
 (function () {
   "use strict";
 
-  /* 要滚的容器：指标大字、作品卡描述、首页自述段、作品页正文段 */
-  /* 简介段落（.article > p）的数字不滚动，直接显示终值（用户要求） */
-  var BOXES = ".stat-num, .project-year > span:first-child, .project-description, .work-body p";
+  /* 要滚的容器：只滚「指标大字」——首屏 KPI、看板指标条、首页作品卡的大数字。
+     成句文字一律不滚：滚动途中句子会变成假话（「0 次曝光对 0 次，差着将近
+     八倍」「0 藏，收藏是点赞的 0%。封面点击率比第一条还高」），要等 1.9s
+     才滚到真值。文字是拿来读的，不是拿来扫的。 */
+  var BOXES = ".stat-num, .work-kpi b, .dash-kpi b, .project-year > span:first-child";
   var DUR = 1900;   /* 单个数字滚完所需毫秒（放慢，用户要求） */
   var STEP = 70;    /* 同一段里相邻数字的启动间隔 */
   var RE = /(\+?\d[\d,]*(?:\.\d+)?)/g;
@@ -636,10 +638,12 @@
         var body = sign ? raw.slice(1) : raw;
         var value = parseFloat(body.replace(/,/g, ""));
         /* 型号/版本里的数字不参与滚动：Y2K、Win98 这类词被拆成
-           inline-block 片段后会在词中间断行，滚动时还会显示成 Y0K */
+           inline-block 片段后会在词中间断行，滚动时还会显示成 Y0K。
+           判据是「数字前面紧挨着字母」——Y2K 的 2 前面是 Y、Win98 的 98
+           前面是 n；而 8.6s、1.4W 这种是「数字 + 单位后缀」，后缀留在
+           数字外面，拆开也不会破词，所以照常滚动。 */
         var chBefore = m.index > 0 ? text.charAt(m.index - 1) : "";
-        var chAfter = text.charAt(m.index + raw.length);
-        var inWord = /[A-Za-z]/.test(chBefore) || /[A-Za-z]/.test(chAfter);
+        var inWord = /[A-Za-z]/.test(chBefore);
         if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
         if (!isFinite(value) || inWord) {
           frag.appendChild(document.createTextNode(raw));

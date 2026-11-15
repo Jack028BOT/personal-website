@@ -125,7 +125,9 @@
   color: var(--grey1);
 }
 .work-kpi--hero b { color: var(--accent); }
-.work-kpi span {
+/* 只锁直接子级的图注：数字滚动会在 <b> 里插一个 <span class="cu">，
+   若用后代选择器，那个 span 会被当成图注、变成 12px 并独占一行 */
+.work-kpi > span {
   display: block;
   margin-top: 5px;
   font-size: 12px;
@@ -273,7 +275,7 @@
   }
   .work-kpi + .work-kpi { padding-left: 14px; }
   .work-kpi b { font-size: 21px; }
-  .work-kpi span { font-size: 11.5px; }
+  .work-kpi > span { font-size: 11.5px; }
 
   .work-tldr { grid-template-columns: minmax(0, 1fr); }
   .work-tldr__cell { border-left: 0; border-top: 1px solid var(--border); }
@@ -339,7 +341,8 @@
   color: var(--grey1);
 }
 .dash-kpi--lead b { color: var(--accent); }
-.dash-kpi span {
+/* 同上：只选直接子级，别把 <b> 里的 .cu 数字片段吃成图注 */
+.dash-kpi > span {
   display: block;
   margin-top: 7px;
   font-size: 12px;
