@@ -904,9 +904,13 @@
   color: var(--grey3);
 }
 
-/* ---------- 排行榜条（横长截图，给足宽度保证里面那行字可读） ---------- */
+/* ---------- 排行榜条（横长截图，给足宽度保证里面那行字可读） ----------
+   三张官方截图都是横条（榜单 4:1、两条通知 3.3:1）。铺满 904px 版心时
+   一张就 220–280px 高，三张竖向排下来整屏都是图，正文被挤到看不见。
+   现在统一收进 780px 的图区（和 03 的对比图同宽）：榜单 193px 高，两张
+   通知并排各 381px 宽、117px 高，三张连图注一共 400px 上下，是原来的一半。 */
 .nb { white-space: nowrap; }
-.rank-card { margin: 2px 0 22px; }
+.rank-card { margin: 2px 0 22px; max-width: 780px; }
 .rank-card img {
   display: block;
   width: 100%;
@@ -935,17 +939,26 @@
   background: color-mix(in srgb, var(--accent) 9%, transparent);
 }
 
-/* ---------- 官方流量激励通知（截图原样陈列） ---------- */
+/* ---------- 官方流量激励通知（截图原样陈列） ----------
+   两条通知并排而不是竖排：一张 277px 高，两张叠起来比榜单还占地方；
+   并排后每张 117px，宽 381px 里标题仍看得清，正文略小但图注复述了
+   要点。并排也顺带把「第一次 → 第二次」的先后读成左右顺序。 */
 .boost-list {
   display: grid;
-  gap: 16px;
+  /* 每列不低于 320px，放不下两列时自己退回一列 —— 900px 视口下版心只有
+     528px，硬分两列会把截图压到 255px，里头的正文就糊了 */
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  align-items: stretch;
+  gap: 18px;
   margin: 2px 0 26px;
+  max-width: 780px;
 }
-.boost-item { margin: 0; }
+.boost-item { margin: 0; display: flex; flex-direction: column; }
 .boost-item img {
   display: block;
   width: 100%;
   height: auto;
+  flex: 0 0 auto;
   border-radius: 12px;
   filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.08));
 }
@@ -954,6 +967,7 @@
 }
 .boost-item figcaption {
   margin-top: 10px;
+  flex: 1 1 auto;
   font-size: 12px;
   line-height: 1.6;
   color: var(--grey3);
@@ -972,6 +986,7 @@
 
 /* ---------- 窄屏 ---------- */
 @media (max-width: 640px) {
+  /* 一列还是两列交给 auto-fit 判断，这里只管间距 */
   .boost-list { gap: 14px; margin-bottom: 22px; }
   .boost-item figcaption { font-size: 11.5px; }
   .rank-card { margin-bottom: 20px; }
