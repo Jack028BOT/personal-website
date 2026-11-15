@@ -23,7 +23,7 @@ python _static_check.py
 
 **重新生成详情页**：`python .workbuddy/tools/_gen_works.py`（其余 5 页内容集中在脚本顶部的 `PAGES` 字典里，改内容改那里）
 
-> ⚠️ `works/cute-face-grid.html` 是**手写页**（作品集案例结构 + 真实数据看板），生成脚本默认跳过它；要覆盖得加 `--force`。
+> ⚠️ `works/cute-face-grid.html` 与 `works/tincase.html` 是**手写页**（作品集案例结构 + 真实数据看板），生成脚本默认跳过它们；要覆盖得加 `--force`。
 
 **部署**：把整个目录传到 GitHub Pages / Vercel / Netlify / 任意静态空间即可，无构建步骤。
 
@@ -35,7 +35,7 @@ python _static_check.py
 index.html                 首页（单页简历版：简介 + Selected work + Client works）
 works/                     作品详情页 × 6
 ├─ cute-face-grid.html      萌系贴贴生成器
-├─ tincase.html             铁盒贴
+├─ tincase.html             铁盒贴（同系列第二个 · 真实数据看板）
 ├─ pre-grid.html            Pre 素材库（内容整理中 · 占位页）
 ├─ caotai.html              什么是草台班子
 ├─ data-review.html         数据复盘
@@ -56,7 +56,7 @@ assets/
 ├─ js/
 │  └─ site.js               像素画生成 / 云视差 / 戳云彩 / 像素鸟 / 主题切换 / 摇树 / 轮播卡组 / 数字滚动（共享）
 ├─ fonts/                   6 个 latin 子集 woff2（252 KB）
-└─ img/shots/               27 张素材截图（4.0 MB）
+└─ img/shots/               29 张素材截图（4.2 MB）
 ```
 
 ---

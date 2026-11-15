@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>铁盒贴 · 冯建燊 JACK</title>
-<meta name="description" content="352 赞、340 藏，封面点击率 17.6%——全账号第一。这是爆款之后第十二天发出来的衍生品。">
+<title>铁盒贴 · 作品集案例 · 冯建燊 JACK</title>
+<meta name="description" content="作品集案例：萌系贴之后的第二个工具，第 12 天发出。曝光 24,490、赞藏 723、封面点击率 15.6%，收藏是点赞的 95%，六万一千人在用——它要回答的是「这套做法能不能再做一次」。">
 <meta name="author" content="冯建燊 JACK">
 
 <!-- 像素太阳 favicon -->
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../assets/css/base.css?v=20261103-71">
 <link rel="stylesheet" href="../assets/css/deco.css?v=20261103-71">
 <link rel="stylesheet" href="../assets/css/work.css?v=20261103-71">
+<link rel="stylesheet" href="../assets/css/work-v2.css?v=20261115-12">
 </head>
 <body>
 <a class="skip-link" href="#content">跳到主要内容</a>
@@ -23,96 +24,325 @@
       <svg class="icon-moon" viewBox="0 0 200 200" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true"><circle cx="100" cy="100" r="94.147" fill="#e4e2dc"/><clipPath id="tm-moon-clip"><circle cx="100" cy="100" r="94.147"/></clipPath><g clip-path="url(#tm-moon-clip)"><path d="M173.111-46.282l59.723 39.66 25.005 67.189-19.264 69.056-56.174 44.544-71.628 3.018-59.723-39.66-25.005-67.189L45.308 1.28l56.174-44.544 71.629-3.018z" fill="#f6f4ef"/></g><path d="M158.551 135.006l-4.072 2.503 6.822 5.83 1.8-4.404-4.55-3.929zM116.907 69.037l-6.653 4.089 11.145 9.525 2.941-7.195-7.433-6.419zM67.138 119.523l-4.542 2.791 7.61 6.503 2.007-4.912-5.075-4.382zM80.286 37.068l4.825-3.028-8.193-6.873-2.097 5.268 5.465 4.633zM143.466 148.273l5.198-3.261-8.826-7.403-2.259 5.674 5.887 4.99z" fill="#e4e2dc" fill-rule="nonzero"/><path d="M163.108 73.155l2.628 13.525-12.051 6.679-10.076-9.398 5.824-12.486 13.675 1.68zM83.672 53.684l-7.194 20.408-21.332-.919-5.99-20.976 17.63-12.045 16.886 13.532zM91.359 125.589l-5.626-25.934 22.927-13.364 19.794 17.674-10.692 24.288-26.403-2.664zM35.02 112.946l-3.955-14.875 12.902-8.012 11.929 9.923-5.53 14.145-15.346-1.181zM104.602 180.886l-15.004-13.214 8.155-17.962 20.044 2.111 4.233 19.268-17.428 9.797z" fill="#e4e2dc"/></svg>
     </button>
 
+<!-- 像素云（原站 PNG 贴图 + 滚动视差，见 deco.css / site.js） -->
+<div class="deco cloud-1" aria-hidden="true"></div>
+<div class="deco cloud-2" aria-hidden="true"></div>
 
+<!-- 左下角像素小鸟（滑翔 + 落地星星，见 deco.css / site.js） -->
+<div class="bird" id="bird" aria-hidden="true">
+  <div class="bird-lift">
+    <span class="bird-stars"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span></span>
+    <svg data-art="bird"></svg>
+  </div>
+</div>
 <div class="page-shell">
   <main id="content" class="work-page">
 
-    <!-- ① 返回 + 面包屑 -->
+    <!-- ① 顶部条：返回 + 面包屑 + 原文入口 -->
     <div class="work-top">
       <a class="back-link" href="../index.html"><span class="back-link__arrow">&larr;</span> 返回全部作品</a>
-      <p class="breadcrumb">作品 / 工具产品 / <span>铁盒贴</span></p>
+      <div class="work-top__actions">
+        <p class="breadcrumb">作品 / 工具产品 / <span>铁盒贴</span></p>
+        <a class="btn-origin" href="https://www.xiaohongshu.com/discovery/item/6ab645bc0000000018014cdb?source=webshare&amp;xhsshare=pc_web&amp;xsec_token=AB1KsJfxmLrztoQLXADCVJXShiLgW3GZiMDrG5RU-3_D8=&amp;xsec_source=pc_share" target="_blank" rel="noopener noreferrer">
+          小红书原文
+          <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M8 2H3.6M8 2v4.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
 
-    <!-- ② 标题 -->
-    <header class="work-hero">
-      <span class="work-kicker">工具产品</span>
-      <h1 class="work-title">铁盒贴</h1>
-      <p class="work-tagline">352 赞、340 藏，封面点击率 17.6%——全账号第一。这是爆款之后第十二天发出来的衍生品。</p>
-    </header>
+    <!-- ② 首屏：标题 + 关键数字 + 封面 -->
+    <div class="work-hero--split">
+      <header class="work-hero">
+        <span class="work-kicker">作品集案例 · 同系列第二个</span>
+        <h1 class="work-title">铁盒贴</h1>
+        <p class="work-tagline">这是萌系贴那条之后第十二天发的第二条。它的任务不是再讲一个好故事，是回答我在上一页自己写下的那句话：<strong>只有一个案例，不能证明可复制。</strong>曝光 24,490、赞藏 723，封面点击率 15.6% 反超第一条；六万一千人在用这个盒子。</p>
 
-    <!-- ③ 元信息条 -->
+        <div class="work-kpis">
+          <div class="work-kpi work-kpi--hero"><b>6.1 万</b><span>工具使用量</span></div>
+          <div class="work-kpi"><b>24,490</b><span>曝光</span></div>
+          <div class="work-kpi"><b>15.6%</b><span>封面点击率</span></div>
+        </div>
+      </header>
+
+      <figure class="work-cover">
+        <span class="work-cover__frame">
+          <img src="../assets/img/shots/tincase-cover.jpg" alt="这条笔记的封面：左侧是「小红书工具」「电子铁盒贴贴」大字，右侧摆着两只打开的铁皮盒、一台小相机和一颗蓝星星，下面还有「Let yourself bloom」星星和「I love you!」对话气泡" loading="eager" decoding="async">
+        </span>
+      </figure>
+    </div>
+
+    <!-- ③ 30 秒摘要 -->
+    <div class="work-tldr">
+      <div class="work-tldr__cell">
+        <span class="work-tldr__label">这道题</span>
+        <p class="work-tldr__text">第一条（萌系贴）是单点爆发，我自己在那页写了「不能证明可复制」。<strong>要证明这套做法成立，就得再做一次</strong>——而且不能是同一套的换皮。</p>
+      </div>
+      <div class="work-tldr__cell">
+        <span class="work-tldr__label">我的解法</span>
+        <p class="work-tldr__text">换个动作再打一次：从「往平面上贴贴纸」换成「往铁盒里收藏」。<strong>铁盒天生两个格子</strong>，用户只要决定「这个盒子里放什么」。</p>
+      </div>
+      <div class="work-tldr__cell">
+        <span class="work-tldr__label">它证明了什么</span>
+        <p class="work-tldr__text">十二天做出第二条，封面点击率反超第一条，收藏是点赞的 95%。<strong>这套「找成本 → 做成工具 → 用内容推出去」的流程可以再走一遍。</strong></p>
+      </div>
+    </div>
+
+    <!-- ④ 元信息条 -->
     <div class="work-meta">
       <div class="meta-item"><span class="meta-label">时间</span><span class="meta-value">2026 年 9 月</span></div>
-      <div class="meta-item"><span class="meta-label">角色</span><span class="meta-value">设计与开发</span></div>
-      <div class="meta-item"><span class="meta-label">类型</span><span class="meta-value">H5 贴纸小程序</span></div>
-      <div class="meta-item"><span class="meta-label">技术</span><span class="meta-value">Canvas + Pointer Events</span></div>
+      <div class="meta-item"><span class="meta-label">角色</span><span class="meta-value">设计、开发、运营</span></div>
+      <div class="meta-item"><span class="meta-label">技术</span><span class="meta-value">原生 JS + Canvas</span></div>
       <div class="meta-item"><span class="meta-label">开源</span><span class="meta-value"><a href="https://github.com/Jack028BOT/tincase" target="_blank" rel="noopener noreferrer">GitHub</a></span></div>
     </div>
 
-    <!-- ④ 概览 -->
+    <!-- ⑤ 01 这道题是什么 -->
     <section class="work-section">
-      <h2 class="work-section-title">概览</h2>
-      <p class="work-lede">「萌系贴贴」那条笔记爆了之后，我意识到一件事：用户喜欢的不只是贴纸，而是「打开一个盒子、把东西贴上去」这个动作本身。于是十二天后，我把这个动作单独做成了一个网页。</p>
-      <div class="work-body"><p>这一条是整个账号里<strong>封面点击率最高</strong>的一条——17.6%，而账号平均是 13.3%。同一批人、同一个账号，差别只在封面和第一句话。</p></div>
-      <div class="work-body"><p>发布五周内，这条的赞藏从 192 涨到 <strong>692</strong>（点赞 352 + 收藏 340）。工具类内容的长尾，比我预想的要长得多。</p></div>
-    </section>
-
-
-    <!-- ⑤ 截图 -->
-    <section class="work-section">
-      <h2 class="work-section-title">界面与效果</h2>
-      <div class="work-shots">
-        <figure class="work-shot"><img src="../assets/img/shots/tincase.png" alt="铁盒贴主界面：贴纸从盒子里被抽出来贴到画面上。" loading="lazy"><figcaption>铁盒贴主界面：贴纸从盒子里被抽出来贴到画面上。</figcaption></figure>
-        <figure class="work-shot"><img src="../assets/img/shots/cute-face-grid-save.png" alt="保存与导出流程。" loading="lazy"><figcaption>保存与导出流程。</figcaption></figure>
+      <h2 class="work-section-title"><span class="idx">01</span>这道题是什么</h2>
+      <p class="work-lede">萌系贴那条跑起来之后，我在它的详情页里写了一句自我批评：只有一个案例，不能证明可复制。这一页就是补那道题。</p>
+      <div class="work-body">
+        <p>所以这次要回答的不是「我能不能做出一个好工具」，而是「同一套做法，换一个题材，还能不能跑起来」。这两件事在作品集里的分量完全不同：前者可能是运气，后者才是能力。</p>
+        <p>题材我没有沿用贴纸。贴纸的动作是「往平面上贴」，第二个工具如果还是贴，用户会觉得这是同一个东西的换皮。我换成了「往盒子里放」：一个打开的铁皮盒，上下两格，用户把自己的照片、字母贴、贴纸放进去，做成一张「我把喜欢的东西都收进来了」的图。</p>
+        <p>这个形式在小红书上本来就有人做，但都是实拍实物盒——想把自己的照片塞进去，只能靠摆拍加 P 图。工具把这件事拆成了四排素材：<strong>铁盒形状、背景、照片、字母</strong>，用户不用想构图，只要决定这个盒子里放什么。</p>
       </div>
     </section>
 
-    <!-- ⑥ 我具体做了什么 -->
+    <!-- ⑥ 02 三个判断 -->
     <section class="work-section">
-      <h2 class="work-section-title">我具体做了什么</h2>
-      <ul class="work-tasks">
-        <li><b>复刻核心交互</b>：铁盒贴纸的「抽出」动作，用 Pointer Events 做拖拽，手机和桌面一套代码。</li>
-        <li><b>自己画素材</b>：不搬原站的图，全部按自己的调子重画，保持账号视觉统一。</li>
-        <li><b>单独做封面</b>：把「抽出」那一帧做成封面图——点击率 17.6% 就是封面改出来的。</li>
-        <li><b>接住长尾</b>：爆款后持续更新素材包，让老笔记一直有新东西可看。</li>
-      </ul>
-    </section>
+      <h2 class="work-section-title"><span class="idx">02</span>我怎么解的：三个判断</h2>
+      <div class="work-decisions">
+        <article class="work-decision">
+          <span class="work-decision__idx">01</span>
+          <div>
+            <h3 class="work-decision__title">封面用实物，不用界面截图</h3>
+            <p class="work-decision__body">第一条的封面，右半边是工具界面实拍。这一次我把整个封面交给实物：两只真的铁皮盒、一台真相机、一颗真的星星，没有一个像素来自界面。理由是这类内容的吸引力不在「怎么用」，在「我也想有一个这样的盒子」——<b>实物让人想拥有，截图只让人知道有这么个东西</b>。</p>
+          </div>
+          <p class="work-decision__result"><b>结果</b><em>15.6%</em>封面点击率，比第一条高 2.1 个点</p>
+        </article>
 
-    <!-- ⑦ 成果数据 -->
-    <section class="work-section">
-      <h2 class="work-section-title">成果数据</h2>
-      <div class="work-stats">
-        <div class="stat-card"><span class="gm-num stat-num">352 · 340</span><span class="stat-cap">点赞 · 收藏</span></div>
-        <div class="stat-card"><span class="gm-num stat-num stat-num--muted">17.6%</span><span class="stat-cap">封面点击率 · 全账号第一</span></div>
-        <div class="stat-card"><span class="gm-num stat-num stat-num--muted">+260%</span><span class="stat-cap">发布 5 周赞藏增幅 192→692</span></div>
-      </div>
-      <p class="stat-note">赞藏为 2026-10-31 后台口径；17.6% 为该笔记在 2026 年 9 月复盘报告中的封面点击率。</p>
-    </section>
+        <article class="work-decision">
+          <span class="work-decision__idx">02</span>
+          <div>
+            <h3 class="work-decision__title">换的是容器，不是皮肤</h3>
+            <p class="work-decision__body">做第二个工具最省力的办法，是沿用第一个的交互、只换一套素材包。我反过来了：交互结构重写，最先定的东西是那个盒子。因为铁盒天生是两个格子（盖和身），构图不是「居中摆一个主体」，而是<b>上下两块各放什么</b>——用户换的不是滤镜，是这个盒子属不属于自己。</p>
+          </div>
+          <p class="work-decision__result"><b>结果</b><em>4 类</em>素材，上下两层任意组合</p>
+        </article>
 
-    <!-- ⑧ 复盘 -->
-    <section class="work-section">
-      <h2 class="work-section-title">复盘</h2>
-      <div class="work-review">
-        <h4>为什么能跑起来</h4>
-        <p>衍生品策略。爆款之后十二天内发同系列内容，能直接吃到前一条的搜索和推荐流量。</p>
-        <h4>学到最狠的一条</h4>
-        <p>封面比内容更影响点击率。同一个工具，封面换一帧，点击率差 4 个百分点。</p>
-        <h4>还在做的事</h4>
-        <p>把「万物皆可贴」做成模板系列，让这个形式能持续复用，而不是一次性的。</p>
+        <article class="work-decision">
+          <span class="work-decision__idx">03</span>
+          <div>
+            <h3 class="work-decision__title">字母贴：把「自己的名字」放进去</h3>
+            <p class="work-decision__body">字母那一排看起来最不起眼，但它是唯一能让成品变成「我的」的素材。效果图里那个 ZZM★ 就是拼出来的名字。这条也是它能被收藏的原因——不是「好看，存着看」，是<b>「好看，我也想做一张」</b>。</p>
+          </div>
+          <p class="work-decision__result"><b>结果</b><em>353</em>收藏，是点赞的 95%</p>
+        </article>
       </div>
     </section>
 
-    <!-- ⑨ 相关作品 -->
+    <!-- ⑦ 03 界面与效果 -->
     <section class="work-section">
-      <h2 class="work-section-title">相关作品</h2>
+      <h2 class="work-section-title"><span class="idx">03</span>界面与效果</h2>
+      <div class="work-shots work-shots--pair">
+        <figure class="work-shot"><img src="../assets/img/shots/tincase-ui.jpg" alt="工具主界面：上方是粉色画布和大小滑杆，中间一排「铁盒形状 / 清空 / 存档 / 撤销 / 重做 / 缩放」，下面是背景、照片、字母三排素材" loading="lazy"><figcaption>主界面：上面是画布和大小滑杆，中间一排是动作（铁盒形状、清空、存档、撤销、重做、缩放），下面是背景 / 照片 / 字母三排素材。</figcaption></figure>
+        <figure class="work-shot"><img src="../assets/img/shots/tincase-export.jpg" alt="导出成品：青绿星星底上放着一个打开的铁盒，盒盖里有眼镜、磁带、耳机和便签，盒身里有字母贴和一台相机" loading="lazy"><figcaption>导出成品：盒盖放「收藏」，盒身放「自己」。青绿星星底是背景素材，铁盒之外的东西全是用户拖进去的。</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ⑧ 04 数据佐证（数据看板） -->
+    <section class="work-section">
+      <h2 class="work-section-title"><span class="idx">04</span>数据佐证</h2>
+      <p class="work-lede">这份看板和萌系贴那页一样，是小红书创作中心导出的两份明细合起来做的：一份流量表（曝光、观看、点击率、时长、涨粉），一份互动表（点赞、评论、收藏、分享）。两边字段不重叠，拼起来才是一条完整的笔记。</p>
+
+      <div class="dash">
+        <div class="dash-kpis">
+          <div class="dash-kpi dash-kpi--lead"><b>24,490</b><span>曝光 · 全周期累计</span></div>
+          <div class="dash-kpi"><b>3,941</b><span>观看 · 点进来的</span></div>
+          <div class="dash-kpi"><b>15.6%</b><span>封面点击率</span></div>
+          <div class="dash-kpi"><b>723</b><span>赞藏（370 赞 + 353 藏）</span></div>
+          <div class="dash-kpi"><b>38</b><span>涨粉</span></div>
+          <div class="dash-kpi"><b>8.6s</b><span>人均观看时长</span></div>
+        </div>
+
+        <!-- 图 1：15 天曝光 × 观看 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">发布后 15 天：两个峰</h3>
+              <p class="chart-sub">第 2 天到顶（1,831），第 6 天掉到 314。国庆假期（第 7 天）起了第二波。<b>这条不是一路上涨，是「先被推一次，掉下来，再被找一次」</b>。</p>
+            </div>
+            <div class="seg" role="group" aria-label="纵轴刻度">
+              <button type="button" id="seg-linear" aria-pressed="true">线性</button>
+              <button type="button" id="seg-log" aria-pressed="false">对数</button>
+            </div>
+          </div>
+          <div class="chart" id="chart-trend" role="img" aria-label="15 天曝光与观看趋势图"></div>
+          <div class="legend" style="padding: 2px 0 8px;">
+            <span><i style="background: var(--bar);"></i>曝光（左轴）</span>
+            <span><i style="background: var(--accent);"></i>观看（右轴）</span>
+            <span>底纹分段＝四个阶段</span>
+          </div>
+        </div>
+
+        <!-- 图 2：封面点击率 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">封面点击率：两波流量的质量不一样</h3>
+              <p class="chart-sub">第一波高峰时点击率反而最低（11–12%），第二波最高（18–19%）。<b>被系统推出去的人，和主动找来的人，点击意愿差一截</b>。</p>
+            </div>
+          </div>
+          <div class="chart" id="chart-ctr" role="img" aria-label="每日封面点击率折线图"></div>
+          <div class="legend" style="padding: 2px 0 8px;">
+            <span><i style="background: var(--accent);"></i>当日点击率</span>
+            <span><i style="background: var(--s3);"></i>全周期均值 15.6%</span>
+          </div>
+        </div>
+
+        <!-- 图 3：每日互动结构 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">每日互动：后三天收藏反超点赞</h3>
+              <p class="chart-sub">两根柱子几乎等高，十月六日到八日收藏甚至比点赞多。这是「我要自己做一张」的形状，不是「这个好看」的形状。</p>
+            </div>
+          </div>
+          <div class="chart" id="chart-engage" role="img" aria-label="每日点赞收藏评论分享堆叠柱状图"></div>
+          <div class="legend" style="padding: 2px 0 8px;">
+            <span><i style="background: var(--accent);"></i>点赞</span>
+            <span><i style="background: var(--s2);"></i>收藏</span>
+            <span><i style="background: var(--s3);"></i>评论</span>
+            <span><i style="background: var(--s4);"></i>分享</span>
+          </div>
+        </div>
+
+        <!-- 漏斗 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">从曝光到涨粉，每一层漏掉多少</h3>
+              <p class="chart-sub">15.6% 的人点进来；进来的人里 <b>21.7% 会点赞或收藏</b>；每 1,000 次观看换来 9.6 个粉丝，是第一条的两倍。</p>
+            </div>
+          </div>
+          <div class="funnel">
+            <div class="funnel-row">
+              <span class="funnel-name">曝光<em>被推荐出去</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 100%;"></span></span>
+              <span class="funnel-val">24,490</span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-name">观看<em>点进来了</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 82%;"></span></span>
+              <span class="funnel-val">3,941<em>曝光的 15.6%</em></span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-name">互动<em>赞藏评享</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 67%;"></span></span>
+              <span class="funnel-val">854<em>观看的 21.7%</em></span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-name">涨粉<em>留下来</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 36%;"></span></span>
+              <span class="funnel-val">38<em>观看的 0.96%</em></span>
+            </div>
+          </div>
+          <p class="chart-sub" style="padding-bottom: 8px;">条形长度按对数缩放，只为让末端看得见；右侧百分比是真实转化率。</p>
+        </div>
+
+        <!-- 四阶段 -->
+        <h3 class="dash-block-title">15 天里的四个阶段 · 占比按这 15 天合计</h3>
+        <div class="phase-grid">
+          <div class="phase">
+            <span class="phase__t">D1–D3</span>
+            <p class="phase__n">发布即峰 <span>· 3 天</span></p>
+            <p class="phase__v">4,624<i>37.6%</i></p>
+            <p class="phase__d">曝光集中在头三天，第二天单日最高 1,831。</p>
+          </div>
+          <div class="phase">
+            <span class="phase__t">D4–D6</span>
+            <p class="phase__n">回落 <span>· 3 天</span></p>
+            <p class="phase__v">1,360<i>11.1%</i></p>
+            <p class="phase__d">第 6 天掉到 314。这个阶段最容易误判成「不行了」。</p>
+          </div>
+          <div class="phase">
+            <span class="phase__t">D7–D10</span>
+            <p class="phase__n">第二波 <span>· 4 天</span></p>
+            <p class="phase__v">3,472<i>28.2%</i></p>
+            <p class="phase__d">国庆假期，点击率同时冲到 18–19%，两条线一起出现第二个峰。</p>
+          </div>
+          <div class="phase">
+            <span class="phase__t">D11–D15</span>
+            <p class="phase__n">长尾 <span>· 5 天</span></p>
+            <p class="phase__v">2,849<i>23.1%</i></p>
+            <p class="phase__d">五天从 895 一路回落到 309，但没归零。</p>
+          </div>
+        </div>
+
+        <h3 class="dash-block-title">从数据里读出来的四件事</h3>
+        <div class="insight-grid">
+          <div class="insight">
+            <span class="insight__idx">01</span>
+            <h3 class="insight__h">收藏是点赞的 <b>95%</b></h3>
+            <p class="insight__p">353 收藏对 370 点赞，比第一条的 74% 还高一截；十月六日到八日，收藏甚至连续三天超过点赞。人点赞是「好看」，收藏是「我也想做一张」——这条的工具属性更纯。</p>
+          </div>
+          <div class="insight">
+            <span class="insight__idx">02</span>
+            <h3 class="insight__h"><b>97.7%</b> 的曝光来自非粉丝</h3>
+            <p class="insight__p">粉丝只占 2.3% 曝光，却贡献 4.6% 观看，倒推粉丝点击率约 32%，是路人（15.7%）的两倍。可惜量太小撑不起数据——这条还是公域跑出来的。</p>
+          </div>
+          <div class="insight">
+            <span class="insight__idx">03</span>
+            <h3 class="insight__h">前 15 天只占 <b>50%</b> 曝光</h3>
+            <p class="insight__p">15 天 12,305 次曝光，全周期 24,490 次。剩下一半发生在日粒度明细截止之后，靠搜索和收藏夹被二次打开。</p>
+          </div>
+          <div class="insight">
+            <span class="insight__idx">04</span>
+            <h3 class="insight__h">每千次观看涨 <b>9.6</b> 个粉</h3>
+            <p class="insight__p">第一条是 4.6 个，这条翻了一倍。收藏率高、涨粉率高，其实是同一个信号：看的人不是看个热闹，是想自己也做一张。</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ⑨ 05 平台侧 -->
+    <section class="work-section">
+      <h2 class="work-section-title"><span class="idx">05</span>平台侧的背书</h2>
+      <p class="work-lede">这条没拿到流量激励，但进了小红书「图像类创作小工具」排行榜。榜单截图原样贴在这里。</p>
+
+      <figure class="rank-card">
+        <img src="../assets/img/shots/tincase-rank-67.png" alt="小红书「图像类创作小工具」排行榜截图：第 67 名，铁皮盒贴贴 | 把喜欢的都收进盒子里，作者 pre灵感集，右侧显示「6.1 万人使用」" loading="lazy" decoding="async">
+        <figcaption><span class="rank-card__tag">排行榜</span>「图像类创作小工具」第 67 名 · <span class="nb">6.1 万人使用</span></figcaption>
+      </figure>
+
+      <div class="work-body">
+        <p>它和萌系贴那张榜单截图可以对着看：那边第 55 名、十万人在用，这边第 67 名、六万一千人在用。<strong>排名和使用量是同向的</strong>，看起来这个榜就是按使用量排的——如果按笔记的点赞收藏排，这两条的先后会反过来（萌系贴 7,701 赞藏，这条 723）。</p>
+        <p>「6.1 万」这个数字比这条笔记自身的量有意义得多。观看只有 3,941，使用量是它的 <strong>15.5 倍</strong>；萌系贴那条是 3.9 倍。倍数更高，说明这条的工具属性更纯：看笔记的人少，但<b>打开工具自己动手的人多</b>。</p>
+        <p>我也没把它算成自己的成绩。名次和使用量都是平台侧的结果，我能控制的只有工具本身——<strong>盒子得真能装东西、真能出图，才可能被收录、被留下来用</strong>。这一条和上一条的区别只在于：我知道它会发生，因为我按同一套方法又做了一次。</p>
+      </div>
+    </section>
+
+    <!-- ⑩ 06 边界 -->
+    <section class="work-section">
+      <h2 class="work-section-title"><span class="idx">06</span>这份案例的边界</h2>
+      <p class="work-lede">这一页是为「可复制」作证的，所以更要把不能证的部分说清楚。</p>
+      <div class="work-body">
+        <p><strong>绝对量小，只有第一条的 12.7%。</strong>24,490 次曝光对 192,294 次，差着将近八倍。它能证明「换一个题材也能做起来」，不能证明「每次都能做到那个量级」。</p>
+        <p><strong>归因不干净。</strong>封面从「界面实拍」换成「实物摆拍」的同时，题材也从贴纸换成了铁盒——两个变量一起动，点击率高出 2.1 个百分点到底是封面起作用还是题材起作用，我拆不出来，因为没做 A/B。</p>
+        <p><strong>数据本身有缺口。</strong>完播率、两秒退出率导出仍是 0，判为未采集；粉丝点击率（32%）是我用曝光占比和观看占比倒推的，不是原始指标；小时粒度明细只到九月二十八日，后面的判断只能用日粒度。</p>
+      </div>
+    </section>
+
+    <!-- ⑪ 相关作品 -->
+    <section class="work-section">
+      <h2 class="work-section-title"><span class="idx">07</span>相关作品</h2>
       <div class="work-related">
         <a class="related-card" href="cute-face-grid.html">
           <span class="related-icon">贴</span>
-          <span class="related-text"><span class="related-name">萌系贴贴生成器</span><span class="related-desc">账号最高赞藏，7,500+。</span></span>
+          <span class="related-text"><span class="related-name">萌系贴贴生成器</span><span class="related-desc">同系列第一条，19.2 万曝光，这一页的前传。</span></span>
         </a>
         <a class="related-card" href="data-review.html">
           <span class="related-icon">数</span>
-          <span class="related-text"><span class="related-name">数据复盘</span><span class="related-desc">这条笔记的 17.6% 是怎么算出来的。</span></span>
+          <span class="related-text"><span class="related-name">数据复盘</span><span class="related-desc">「账号最高」这个判断是怎么算出来的。</span></span>
         </a>
         <a class="related-card" href="workspace.html">
           <span class="related-icon">工</span>
@@ -121,7 +351,7 @@
       </div>
     </section>
 
-    <!-- ⑩ 上下站 -->
+    <!-- ⑫ 上下站 -->
     <nav class="work-pager">
       <a class="pager-link pager-link--prev" href="cute-face-grid.html">
         <span class="pager-dir">&larr; 上一篇</span>
@@ -133,7 +363,7 @@
       </a>
     </nav>
 
-    <!-- ⑪ 页脚 -->
+    <!-- ⑬ 页脚 -->
     <footer class="work-foot">
       <p>冯建燊 JACK · 广东工业大学 电子商务专业 · 2028 届</p>
       <p><a href="https://xhslink.cn/o/8sBwI0HFjC2" target="_blank" rel="noopener noreferrer">小红书主页</a> · <a href="../index.html">返回首页</a></p>
@@ -142,6 +372,402 @@
   </main>
 </div>
 
-<script src="../assets/js/site.js?v=20261115-72"></script>
+
+<!-- 页底两棵树（点击摇晃）+ 蝴蝶 -->
+<div class="garden" aria-hidden="true">
+  <div class="tree tree-1" role="button" tabindex="0" aria-label="摇一摇大树"></div>
+<div class="tree tree-2" role="button" tabindex="0" aria-label="摇一摇小树"></div>
+        <span class="butterfly"><span class="bf-inner"><span class="bf-layer bf-wl"><svg viewBox="0 0 17 14"><rect x="5" y="1" width="3" height="1" fill="#ef8f2e"/><rect x="3" y="2" width="5" height="1" fill="#ef8f2e"/><rect x="2" y="3" width="6" height="1" fill="#ef8f2e"/><rect x="1" y="4" width="7" height="1" fill="#ef8f2e"/><rect x="1" y="5" width="7" height="1" fill="#ef8f2e"/><rect x="2" y="6" width="6" height="1" fill="#ef8f2e"/><rect x="3" y="7" width="4" height="1" fill="#ef8f2e"/><rect x="3" y="8" width="5" height="1" fill="#ef8f2e"/><rect x="2" y="9" width="5" height="1" fill="#ef8f2e"/><rect x="3" y="10" width="4" height="1" fill="#ef8f2e"/><rect x="4" y="11" width="3" height="1" fill="#ef8f2e"/><rect x="1" y="4" width="1" height="1" fill="#d2701d"/><rect x="1" y="5" width="1" height="1" fill="#d2701d"/><rect x="2" y="3" width="1" height="1" fill="#d2701d"/><rect x="2" y="6" width="1" height="1" fill="#d2701d"/><rect x="2" y="9" width="1" height="1" fill="#d2701d"/><rect x="3" y="8" width="1" height="1" fill="#d2701d"/><rect x="3" y="10" width="1" height="1" fill="#d2701d"/><rect x="6" y="3" width="1" height="1" fill="#9c4f15"/><rect x="6" y="9" width="1" height="1" fill="#9c4f15"/><rect x="5" y="6" width="1" height="1" fill="#9c4f15"/><rect x="3" y="4" width="1" height="1" fill="#fff"/><rect x="3" y="9" width="1" height="1" fill="#fff"/></svg></span><span class="bf-layer bf-wr"><svg viewBox="0 0 17 14"><rect x="9" y="1" width="3" height="1" fill="#ef8f2e"/><rect x="9" y="2" width="5" height="1" fill="#ef8f2e"/><rect x="9" y="3" width="6" height="1" fill="#ef8f2e"/><rect x="9" y="4" width="7" height="1" fill="#ef8f2e"/><rect x="9" y="5" width="7" height="1" fill="#ef8f2e"/><rect x="9" y="6" width="6" height="1" fill="#ef8f2e"/><rect x="10" y="7" width="4" height="1" fill="#ef8f2e"/><rect x="9" y="8" width="5" height="1" fill="#ef8f2e"/><rect x="10" y="9" width="5" height="1" fill="#ef8f2e"/><rect x="10" y="10" width="4" height="1" fill="#ef8f2e"/><rect x="10" y="11" width="3" height="1" fill="#ef8f2e"/><rect x="15" y="4" width="1" height="1" fill="#d2701d"/><rect x="15" y="5" width="1" height="1" fill="#d2701d"/><rect x="14" y="3" width="1" height="1" fill="#d2701d"/><rect x="14" y="6" width="1" height="1" fill="#d2701d"/><rect x="14" y="9" width="1" height="1" fill="#d2701d"/><rect x="13" y="8" width="1" height="1" fill="#d2701d"/><rect x="13" y="10" width="1" height="1" fill="#d2701d"/><rect x="10" y="3" width="1" height="1" fill="#9c4f15"/><rect x="10" y="9" width="1" height="1" fill="#9c4f15"/><rect x="11" y="6" width="1" height="1" fill="#9c4f15"/><rect x="13" y="4" width="1" height="1" fill="#fff"/><rect x="13" y="9" width="1" height="1" fill="#fff"/></svg></span><span class="bf-layer bf-body"><svg viewBox="0 0 17 14"><rect x="8" y="2" width="1" height="10" fill="#2e2418"/><rect x="8" y="1" width="1" height="1" fill="#2e2418"/><rect x="7" y="0" width="1" height="1" fill="#2e2418"/><rect x="9" y="0" width="1" height="1" fill="#2e2418"/><rect x="6" y="0" width="1" height="1" fill="#9c4f15"/><rect x="10" y="0" width="1" height="1" fill="#9c4f15"/></svg></span></span></span>
+    </div><script src="../assets/js/site.js?v=20261115-72"></script>
+<script>
+/* =====================================================================
+   数据看板：用小红书导出的真实明细画图（原生 SVG，无第三方库）
+   ===================================================================== */
+(function () {
+  "use strict";
+
+  var D = {
+    label: ["09-25","09-26","09-27","09-28","09-29","09-30","10-01","10-02",
+            "10-03","10-04","10-05","10-06","10-07","10-08","10-09"],
+    exp:   [1519, 1831, 1274, 601, 445, 314, 708, 971, 902, 891, 895, 786, 575, 284, 309],
+    view:  [265, 323, 188, 78, 52, 44, 134, 199, 154, 144, 131, 107, 95, 38, 51],
+    ctr:   [17, 17, 14, 12, 11, 13, 18, 19, 16, 15, 14, 13, 16, 13, 15],
+    like:  [46, 48, 21, 9, 3, 2, 18, 24, 15, 17, 13, 7, 7, 5, 5],
+    col:   [33, 47, 26, 9, 4, 2, 14, 27, 8, 9, 6, 9, 10, 6, 3],
+    cmt:   [6, 4, 4, 0, 0, 0, 2, 0, 2, 2, 2, 0, 0, 0, 0],
+    shr:   [0, 9, 8, 1, 1, 0, 4, 1, 2, 1, 1, 4, 0, 1, 1]
+  };
+  var PHASE = [
+    { i: 0, n: 3, name: "发布即峰" },
+    { i: 3, n: 3, name: "回落" },
+    { i: 6, n: 4, name: "第二波" },
+    { i: 10, n: 5, name: "长尾" }
+  ];
+  var MEAN_CTR = 15.6;
+
+  var P = {};
+  var dashEl = document.querySelector(".dash");
+  if (!dashEl) return;
+
+  function cssVar(name) {
+    return getComputedStyle(dashEl).getPropertyValue(name).trim();
+  }
+  function readPalette() {
+    P = {
+      ink3: cssVar("--grey3"),
+      line: cssVar("--border"),
+      accent: cssVar("--accent"),
+      bar: cssVar("--bar"),
+      s2: cssVar("--s2"),
+      s3: cssVar("--s3"),
+      s4: cssVar("--s4"),
+      surface: cssVar("--chat-surface")
+    };
+  }
+  function nf(n) { return n.toLocaleString("en-US"); }
+  function shortNum(v) {
+    if (v >= 10000) {
+      var w = v / 10000;
+      return (w % 1 === 0 ? w : w.toFixed(1)) + "万";
+    }
+    return nf(v);
+  }
+  function tag(name, attrs, inner) {
+    var s = "<" + name;
+    for (var k in attrs) {
+      if (attrs[k] === undefined || attrs[k] === null) continue;
+      s += " " + k + '="' + attrs[k] + '"';
+    }
+    if (inner === undefined) return s + "/>";
+    return s + ">" + inner + "</" + name + ">";
+  }
+  function niceScale(max, steps) {
+    steps = steps || 4;
+    var raw = max / steps;
+    var p = Math.pow(10, Math.floor(Math.log10(raw)));
+    var f = raw / p;
+    var m = f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10;
+    var step = m * p;
+    var count = Math.ceil(max / step);
+    if (count > 6) { step *= 2; count = Math.ceil(max / step); }
+    var ticks = [];
+    for (var i = 0; i <= count; i++) ticks.push(step * i);
+    return { step: step, max: step * count, ticks: ticks };
+  }
+  function bindHits(host, render) {
+    var tip = host.querySelector(".chart-tip");
+    if (!tip) {
+      tip = document.createElement("div");
+      tip.className = "chart-tip";
+      host.appendChild(tip);
+    }
+    host.addEventListener("pointermove", function (e) {
+      var r = host.getBoundingClientRect();
+      tip.style.left = (e.clientX - r.left) + "px";
+      tip.style.top = (e.clientY - r.top - 10) + "px";
+    });
+    host.querySelectorAll("[data-hit]").forEach(function (node) {
+      node.addEventListener("pointerenter", function () {
+        tip.innerHTML = render(+node.getAttribute("data-hit"));
+        tip.classList.add("is-on");
+      });
+      node.addEventListener("pointerleave", function () {
+        tip.classList.remove("is-on");
+      });
+    });
+  }
+  function xAxis(parts, M, iw, n, all) {
+    var slot = iw / n;
+    var every = all ? 1 : 2;
+    for (var i = 0; i < n; i++) {
+      if (i % every !== 0 && i !== n - 1) continue;
+      parts.push(tag("text", {
+        x: M.l + slot * (i + 0.5), y: M.t + M.h + 16,
+        "text-anchor": "middle", "font-size": all ? 10 : 9.5, fill: P.ink3
+      }, D.label[i]));
+    }
+  }
+
+  /* ---------- 图 1：曝光 × 观看 ---------- */
+  var trendLog = false;
+  function renderTrend() {
+    var host = document.getElementById("chart-trend");
+    if (!host) return;
+    var W = host.clientWidth, H = host.clientHeight;
+    if (!W || !H) return;
+    var narrow = W < 620;
+    var M = { l: narrow ? 40 : 54, r: narrow ? 40 : 58, t: 30, b: 28 };
+    M.w = W - M.l - M.r;
+    M.h = H - M.t - M.b;
+    var iw = M.w, ih = M.h, n = D.exp.length, slot = iw / n;
+    var parts = [];
+
+    PHASE.forEach(function (ph, idx) {
+      var x = M.l + slot * ph.i;
+      var w = slot * ph.n;
+      parts.push(tag("rect", {
+        x: x, y: M.t - 8, width: w, height: ih + 8,
+        fill: P.accent, "fill-opacity": idx % 2 === 0 ? 0.035 : 0.012
+      }));
+      if (!narrow) {
+        parts.push(tag("text", {
+          x: x + w / 2, y: M.t - 13, "text-anchor": "middle",
+          "font-size": 9.5, fill: P.ink3, "letter-spacing": "0.06em"
+        }, ph.name));
+      }
+    });
+
+    var maxE = Math.max.apply(null, D.exp);
+    var maxV = Math.max.apply(null, D.view);
+    var scE = niceScale(maxE), scV = niceScale(maxV * 1.12);
+    var yE, yV, ticksL, ticksR;
+
+    if (trendLog) {
+      var all = D.exp.concat(D.view);
+      var lo = Math.floor(Math.log10(Math.min.apply(null, all)));
+      var hi = Math.ceil(Math.log10(Math.max.apply(null, all)));
+      if (hi - lo > 2.6) hi = lo + 2.6;
+      yE = function (v) {
+        return M.t + ih * (1 - (Math.log10(Math.max(v, 1)) - lo) / (hi - lo));
+      };
+      yV = yE;
+      ticksL = [];
+      for (var d = lo; d <= Math.floor(hi); d++) ticksL.push(Math.pow(10, d));
+      ticksR = [];
+    } else {
+      yE = function (v) { return M.t + ih * (1 - v / scE.max); };
+      yV = function (v) { return M.t + ih * (1 - v / scV.max); };
+      ticksL = scE.ticks;
+      ticksR = scV.ticks;
+    }
+
+    ticksL.forEach(function (t) {
+      var y = yE(t);
+      parts.push(tag("line", { x1: M.l, y1: y, x2: M.l + iw, y2: y, stroke: P.line, "stroke-width": 1 }));
+      parts.push(tag("text", {
+        x: M.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": 10, fill: P.ink3
+      }, shortNum(t)));
+    });
+    if (ticksR.length) {
+      ticksR.forEach(function (t) {
+        var y = yV(t);
+        parts.push(tag("text", {
+          x: M.l + iw + 9, y: y + 3.5, "text-anchor": "start", "font-size": 10, fill: P.accent
+        }, shortNum(t)));
+      });
+    }
+    parts.push(tag("text", { x: M.l - 8, y: M.t - 13, "text-anchor": "end", "font-size": 9.5, fill: P.ink3 }, "曝光"));
+    if (!trendLog) {
+      parts.push(tag("text", { x: M.l + iw + 9, y: M.t - 13, "text-anchor": "start", "font-size": 9.5, fill: P.accent }, "观看"));
+    }
+
+    for (var i = 0; i < n; i++) {
+      var bx = M.l + slot * i + slot * 0.2;
+      var bw = slot * 0.6;
+      var by = yE(D.exp[i]);
+      var h = M.t + ih - by;
+      if (h < 1) h = 1;
+      parts.push(tag("rect", { x: bx, y: by, width: bw, height: h, fill: P.bar }));
+    }
+
+    var pts = D.view.map(function (v, k) {
+      return (M.l + slot * (k + 0.5)) + "," + yV(v);
+    }).join(" ");
+    parts.push(tag("polyline", {
+      points: pts, fill: "none", stroke: P.accent, "stroke-width": 1.9,
+      "stroke-linejoin": "round", "stroke-linecap": "round"
+    }));
+    D.view.forEach(function (v, k) {
+      parts.push(tag("circle", {
+        cx: M.l + slot * (k + 0.5), cy: yV(v), r: 2.7,
+        fill: P.surface, stroke: P.accent, "stroke-width": 1.5
+      }));
+    });
+
+    xAxis(parts, M, iw, n, !narrow);
+
+    for (var j = 0; j < n; j++) {
+      parts.push(tag("rect", {
+        x: M.l + slot * j, y: M.t, width: slot, height: ih,
+        fill: "transparent", "data-hit": j, style: "cursor:crosshair"
+      }));
+    }
+
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" aria-hidden="true">' + parts.join("") + "</svg>";
+    bindHits(host, function (k) {
+      return "<b>2026-" + D.label[k] + "</b>" +
+        "<kbd>曝光</kbd> <u>" + nf(D.exp[k]) + "</u><br>" +
+        "<kbd>观看</kbd> <u>" + nf(D.view[k]) + "</u><br>" +
+        "<kbd>点击率</kbd> <u>" + D.ctr[k] + "%</u>";
+    });
+  }
+
+  /* ---------- 图 2：封面点击率 ---------- */
+  function renderCtr() {
+    var host = document.getElementById("chart-ctr");
+    if (!host) return;
+    var W = host.clientWidth, H = host.clientHeight;
+    if (!W || !H) return;
+    var narrow = W < 620;
+    var M = { l: narrow ? 36 : 44, r: 16, t: 20, b: 28 };
+    M.w = W - M.l - M.r;
+    M.h = H - M.t - M.b;
+    var iw = M.w, ih = M.h, n = D.ctr.length, slot = iw / n;
+    var sc = niceScale(24, 5);
+    var y = function (v) { return M.t + ih * (1 - v / sc.max); };
+    var parts = [];
+
+    sc.ticks.forEach(function (t) {
+      var yy = y(t);
+      parts.push(tag("line", { x1: M.l, y1: yy, x2: M.l + iw, y2: yy, stroke: P.line, "stroke-width": 1 }));
+      parts.push(tag("text", { x: M.l - 8, y: yy + 3.5, "text-anchor": "end", "font-size": 10, fill: P.ink3 }, t + "%"));
+    });
+
+    var x0 = M.l + slot * 0.5, xN = M.l + slot * (n - 0.5);
+    var area = "M" + x0 + "," + (M.t + ih) + " " +
+      D.ctr.map(function (v, k) { return "L" + (M.l + slot * (k + 0.5)) + "," + y(v); }).join(" ") +
+      " L" + xN + "," + (M.t + ih) + " Z";
+    parts.push(tag("path", { d: area, fill: P.accent, "fill-opacity": 0.09 }));
+
+    var line = D.ctr.map(function (v, k) { return (M.l + slot * (k + 0.5)) + "," + y(v); }).join(" ");
+    parts.push(tag("polyline", {
+      points: line, fill: "none", stroke: P.accent, "stroke-width": 1.9,
+      "stroke-linejoin": "round", "stroke-linecap": "round"
+    }));
+    D.ctr.forEach(function (v, k) {
+      parts.push(tag("circle", {
+        cx: M.l + slot * (k + 0.5), cy: y(v), r: 2.7,
+        fill: P.surface, stroke: P.accent, "stroke-width": 1.5
+      }));
+    });
+
+    var av = y(MEAN_CTR);
+    parts.push(tag("line", {
+      x1: M.l, y1: av, x2: M.l + iw, y2: av,
+      stroke: P.s3, "stroke-width": 1, "stroke-dasharray": "4 4"
+    }));
+    parts.push(tag("text", {
+      x: M.l + iw, y: M.t + 9, "text-anchor": "end", "font-size": 9.5, fill: P.ink3
+    }, "全周期均值 15.6%"));
+
+    xAxis(parts, M, iw, n, !narrow);
+
+    for (var j = 0; j < n; j++) {
+      parts.push(tag("rect", {
+        x: M.l + slot * j, y: M.t, width: slot, height: ih,
+        fill: "transparent", "data-hit": j, style: "cursor:crosshair"
+      }));
+    }
+
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" aria-hidden="true">' + parts.join("") + "</svg>";
+    bindHits(host, function (k) {
+      return "<b>2026-" + D.label[k] + "</b>" +
+        "<kbd>点击率</kbd> <u>" + D.ctr[k] + "%</u><br>" +
+        "<kbd>曝光</kbd> <u>" + nf(D.exp[k]) + "</u><br>" +
+        "<kbd>观看</kbd> <u>" + nf(D.view[k]) + "</u>";
+    });
+  }
+
+  /* ---------- 图 3：每日互动堆叠 ---------- */
+  function renderEngage() {
+    var host = document.getElementById("chart-engage");
+    if (!host) return;
+    var W = host.clientWidth, H = host.clientHeight;
+    if (!W || !H) return;
+    var narrow = W < 620;
+    var M = { l: narrow ? 38 : 48, r: 14, t: 20, b: 28 };
+    M.w = W - M.l - M.r;
+    M.h = H - M.t - M.b;
+    var iw = M.w, ih = M.h, n = D.like.length, slot = iw / n;
+    var totals = D.like.map(function (_, k) {
+      return D.like[k] + D.col[k] + D.cmt[k] + D.shr[k];
+    });
+    var sc = niceScale(Math.max.apply(null, totals), 5);
+    var y = function (v) { return M.t + ih * (1 - v / sc.max); };
+    var parts = [];
+
+    sc.ticks.forEach(function (t) {
+      var yy = y(t);
+      parts.push(tag("line", { x1: M.l, y1: yy, x2: M.l + iw, y2: yy, stroke: P.line, "stroke-width": 1 }));
+      parts.push(tag("text", { x: M.l - 8, y: yy + 3.5, "text-anchor": "end", "font-size": 10, fill: P.ink3 }, nf(t)));
+    });
+
+    var series = [
+      { key: "like", color: P.accent },
+      { key: "col", color: P.s2 },
+      { key: "cmt", color: P.s3 },
+      { key: "shr", color: P.s4 }
+    ];
+
+    for (var i = 0; i < n; i++) {
+      var bx = M.l + slot * i + slot * 0.22;
+      var bw = slot * 0.56;
+      var acc = 0;
+      for (var si = 0; si < series.length; si++) {
+        var v = D[series[si].key][i];
+        if (v <= 0) continue;
+        var yTop = y(acc + v);
+        var hh = y(acc) - yTop;
+        if (hh < 1.2) hh = 1.2;
+        parts.push(tag("rect", { x: bx, y: yTop, width: bw, height: hh, fill: series[si].color }));
+        acc += v;
+      }
+    }
+
+    xAxis(parts, M, iw, n, !narrow);
+
+    for (var j = 0; j < n; j++) {
+      parts.push(tag("rect", {
+        x: M.l + slot * j, y: M.t, width: slot, height: ih,
+        fill: "transparent", "data-hit": j, style: "cursor:crosshair"
+      }));
+    }
+
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" aria-hidden="true">' + parts.join("") + "</svg>";
+    bindHits(host, function (k) {
+      return "<b>2026-" + D.label[k] + "</b>" +
+        "<kbd>点赞</kbd> <u>" + nf(D.like[k]) + "</u><br>" +
+        "<kbd>收藏</kbd> <u>" + nf(D.col[k]) + "</u><br>" +
+        "<kbd>评论</kbd> <u>" + nf(D.cmt[k]) + "</u><br>" +
+        "<kbd>分享</kbd> <u>" + nf(D.shr[k]) + "</u>";
+    });
+  }
+
+  function renderAll() {
+    readPalette();
+    renderTrend();
+    renderCtr();
+    renderEngage();
+  }
+
+  var bLinear = document.getElementById("seg-linear");
+  var bLog = document.getElementById("seg-log");
+  function setMode(log) {
+    trendLog = log;
+    bLinear.setAttribute("aria-pressed", String(!log));
+    bLog.setAttribute("aria-pressed", String(log));
+    renderTrend();
+  }
+  if (bLinear && bLog) {
+    bLinear.addEventListener("click", function () { setMode(false); });
+    bLog.addEventListener("click", function () { setMode(true); });
+  }
+
+  new MutationObserver(function () {
+    requestAnimationFrame(renderAll);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  var rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(renderAll, 160);
+  });
+
+  renderAll();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { renderAll(); });
+  }
+})();
+</script>
 </body>
 </html>
