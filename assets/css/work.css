@@ -101,37 +101,66 @@
 
 /* ---------- ④ 通用区块 ---------- */
 .work-section { margin-bottom: 52px; }
+/* 区块标题：28px 正文黑体（中文大字不需要拉丁那种负字距），编号等宽主色同字号。
+   全站详情页共用这一套，新旧页面的章节节奏才一致。 */
 .work-section-title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--grey3);
-  margin: 0 0 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 22px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-family: var(--font-primary);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--body-color);
 }
+.work-section-title .idx {
+  font-family: var(--font-mono);
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+/* 正文：行宽收在 --measure（≈40 汉字），行高按中文放到 1.85；
+   数据、截图、表格这类横向内容不吃这条上限，仍铺满版心。 */
 .work-lede {
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
   color: var(--grey1);
-  max-width: 38em;
+  max-width: var(--measure);
   margin: 0 0 20px;
 }
 .work-body {
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--track-cjk);
   color: var(--grey2);
-  max-width: 38em;
+  max-width: var(--measure);
 }
-.work-body p { margin: 0 0 14px; }
+/* 两端对齐只给成段正文：末行照常左对齐，图注/表格/短标签保持左对齐。
+   text-wrap: pretty 让最后一行不至于只剩一两个字。 */
+.work-body p {
+  margin: 0 0 16px;
+  text-align: justify;
+  text-justify: inter-character;
+  hyphens: none;
+  text-wrap: pretty;
+}
+.work-body p:last-child { margin-bottom: 0; }
 .work-body strong { color: var(--grey1); font-weight: 600; }
 
 /* ---------- ⑤ 截图条 ---------- */
 .work-shots {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 16px;
+}
+/* 只有一张图时不铺满版心：低分辨率封面拉到 904px 只会更糊 */
+.work-shots:has(> .work-shot:only-child) {
+  grid-template-columns: minmax(0, 520px);
 }
 .work-shot {
   display: block;
@@ -151,10 +180,10 @@
 .work-shot figcaption,
 .work-shot__cap {
   display: block;
-  padding: 11px 14px;
-  font-size: 12.5px;
+  padding: 12px 15px;
+  font-size: var(--fs-cap);
   color: var(--grey3);
-  line-height: 1.5;
+  line-height: 1.65;
   border-top: 1px solid var(--surface-border);
 }
 
@@ -170,8 +199,8 @@
 .work-tasks li {
   position: relative;
   padding-left: 24px;
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: var(--fs-body);
+  line-height: 1.85;
   color: var(--grey2);
 }
 .work-tasks li::before {
@@ -236,8 +265,8 @@
   margin: 0 0 8px;
 }
 .work-review p {
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: var(--fs-body);
+  line-height: 1.85;
   color: var(--grey2);
   margin: 0 0 12px;
 }
@@ -245,8 +274,8 @@
 .work-review ul {
   margin: 0 0 12px;
   padding-left: 18px;
-  font-size: 15px;
-  line-height: 1.75;
+  font-size: var(--fs-body);
+  line-height: 1.85;
   color: var(--grey2);
 }
 .work-review li { margin-bottom: 6px; }
@@ -427,6 +456,9 @@
   .work-top { margin-bottom: 32px; padding-bottom: 20px; }
   .work-meta { gap: 16px 20px; padding: 18px 0; margin-bottom: 36px; }
   .work-section { margin-bottom: 40px; }
+  .work-section-title { font-size: 22px; margin-bottom: 16px; }
+  .work-lede { font-size: 15.5px; }
+  .work-shots:has(> .work-shot:only-child) { grid-template-columns: minmax(0, 1fr); }
   .stat-num { font-size: 26px; }
   /* 三列在手机上太挤，改两列；奇数个时最后一张跨满整行 */
   .work-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }

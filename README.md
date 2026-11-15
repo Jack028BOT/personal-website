@@ -100,13 +100,27 @@ assets/
 
 | 项目 | 原值 | 现值 | 原因 |
 |---|---|---|---|
-| `.article p` | `max-width: 74ch` | `40em` | `ch` 按"0"宽算，中文会挤成窄条 |
+| `.article p` / `.work-body` / `.work-lede` | `max-width: 74ch` / 满版心 904px | `var(--measure)` = 620px | `ch` 按"0"宽算，中文会挤成窄条；满版心一行 58 字，眼睛追不回行首 |
 | `.ch-blurb` | `62ch` | `38em` | 同上 |
 | `.fv-desc` | `58ch` | `36em` | 同上 |
 | `.gm-note` | `62ch` | `40em` | 口径说明段是长中文句 |
 | `.project-title` | `nowrap` | `normal` + `overflow-wrap` | 中文标题长，nowrap 会横向溢出 |
 | `.kw-pop` | `nowrap` | `normal` + `max-width: 240px` | hover 弹卡内容变长 |
 | 字体栈 | 仅拉丁 | 追加 PingFang SC / 微软雅黑 / Noto Sans SC | 三款 Google 字体都没有中文字形 |
+
+**排版尺度**（`tokens.css` 的 `--fs-* / --lh-* / --measure`，首页与详情页共用一套，改这一组就整站一起调）：
+
+| 角色 | 值 | 说明 |
+|---|---|---|
+| 详情页大标题 | `--fs-display` 40px / 700 / `-0.02em` | 中文大字不需要拉丁的 `-0.03em` |
+| 区块标题 | `--fs-h2` 28px / 700 | 编号 `.idx` 用等宽主色、同字号 |
+| 作品名 | `--fs-h3` 18px / 600 | 比说明文字高一档，指标数字 38px 不再压过标题 |
+| 正文 | `--fs-body` 15.5px / `--lh-body` 1.85 | 中文比拉丁常用的 1.6 松一档才不挤 |
+| 行宽 | `--measure` 620px | ≈40 汉字；数据卡、截图、表格不吃这条上限，仍铺满版心 |
+
+两端对齐只给成段正文（末行不拉伸）；首屏导语用 `text-wrap: balance` 拉匀各行，避免中文末行只剩两个字。
+
+**图片尺寸**：单图不铺满版心（`max-width` 520px，低分辨率封面拉宽只会更糊）；两张对比图按图片宽高比分配列宽（`--pair-cols`），各自铺满列宽、顶边对齐，高度自动接近，不再把竖图塞进固定高度的框里留白。
 
 **字体**：Bricolage Grotesque（标题）/ Hanken Grotesk（正文）/ JetBrains Mono（标签），均为 SIL Open Font License 1.1。自托管 latin 子集 woff2（252 KB），断网可用；CSS 里保留 Google Fonts 远程地址作为兜底源。
 

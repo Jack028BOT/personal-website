@@ -62,8 +62,8 @@
 /* ---------- ② 首屏：文字 + 封面 ---------- */
 .work-hero--split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 52px;
+  grid-template-columns: minmax(0, 1fr) 288px;
+  gap: 48px;
   align-items: start;
   margin-bottom: 40px;
 }
@@ -144,13 +144,13 @@
   margin-bottom: 46px;
 }
 .work-tldr__cell {
-  padding: 18px 20px 19px;
+  padding: 20px 22px 21px;
   border-left: 1px solid var(--border);
 }
 .work-tldr__cell:first-child { border-left: 0; }
 .work-tldr__label {
   display: block;
-  margin-bottom: 9px;
+  margin-bottom: 10px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
@@ -160,7 +160,7 @@
 .work-tldr__text {
   margin: 0;
   font-size: 13.5px;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--grey2);
 }
 .work-tldr__text strong { color: var(--grey1); font-weight: 600; }
@@ -341,9 +341,9 @@
 .dash-kpi--lead b { color: var(--accent); }
 .dash-kpi span {
   display: block;
-  margin-top: 6px;
-  font-size: 11.5px;
-  line-height: 1.45;
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.5;
   color: var(--grey3);
 }
 
@@ -352,7 +352,7 @@
   border: 1px solid var(--border);
   border-radius: 14px;
   background: var(--chat-surface);
-  padding: 16px 16px 8px;
+  padding: 18px 18px 10px;
   margin-bottom: 14px;
 }
 .chart-head {
@@ -361,21 +361,22 @@
   justify-content: space-between;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .chart-head__text { min-width: 0; }
 .chart-title {
   margin: 0;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--grey1);
 }
 .chart-sub {
-  margin: 4px 0 0;
-  font-size: 11.5px;
-  line-height: 1.5;
+  margin: 5px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
   color: var(--grey3);
+  max-width: 62em;
 }
 .legend {
   display: flex;
@@ -582,18 +583,18 @@
   color: var(--grey3);
 }
 .insight__h {
-  margin: 7px 0 7px;
-  font-size: 14.5px;
+  margin: 7px 0 8px;
+  font-size: 15px;
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--grey1);
   letter-spacing: -0.01em;
 }
 .insight__h b { color: var(--accent); font-weight: 700; }
 .insight__p {
   margin: 0;
-  font-size: 12.5px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.8;
   color: var(--grey2);
 }
 
@@ -641,9 +642,9 @@
 .dash-note li {
   position: relative;
   padding-left: 14px;
-  margin-bottom: 7px;
-  font-size: 12px;
-  line-height: 1.7;
+  margin-bottom: 8px;
+  font-size: 12.5px;
+  line-height: 1.8;
   color: var(--grey3);
 }
 .dash-note li::before {
@@ -681,24 +682,31 @@
   .dash-table th, .dash-table td { padding: 6px 6px; }
 }
 
-/* ---------- 截图对比版：宽高比不同的两张图并排 ---------- */
-.work-shots--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* ---------- 截图对比版：宽高比不同的两张图并排 ----------
+   原来把两张图都塞进 480px 高的框里 contain，1:2.1 的界面竖图被压到
+   228px 宽、左右全是留白，等于看不见。现在改成：两列宽度按图的宽高比
+   分配（页面上用 --pair-cols 指定），两张图各自铺满列宽、顶边对齐，
+   高度自动接近 —— 没有留白框，也没有一列悬在半空的空洞。
+   整组收在 780px 内，不铺满版心。 */
+.work-shots--pair {
+  grid-template-columns: var(--pair-cols, repeat(2, minmax(0, 1fr)));
+  align-items: start;
+  gap: 18px;
+  max-width: 780px;
+}
 .work-shots--pair .work-shot { display: flex; flex-direction: column; }
 .work-shots--pair .work-shot img {
-  height: 480px;
-  padding: 14px;
-  object-fit: contain;
-  background: color-mix(in srgb, var(--accent) 4%, var(--body-bg));
+  width: 100%;
+  height: auto;
+  padding: 0;
+  object-fit: initial;
+  background: none;
 }
-.work-shots--pair .work-shot figcaption { margin-top: auto; }
+.work-shots--pair .work-shot figcaption { margin-top: 0; }
+
+/* 单图收窄的规则在 work.css（旧模版页也要用），这里只管窄屏 */
 @media (max-width: 640px) {
   .work-shots--pair { grid-template-columns: minmax(0, 1fr); }
-  .work-shots--pair .work-shot img {
-    height: auto;
-    max-height: 640px;
-    padding: 8px;
-    object-fit: contain;
-  }
 }
 
 /* =====================================================================
@@ -714,17 +722,23 @@
   .work-page { padding-top: 40px; }   /* 窄屏 shell 上边距收到 80，这里补到与宽屏同一视觉高度 120 */
 }
 
-/* 首屏标题回到「人名级」字号，不再用杂志式的 56px */
+/* 首屏标题回到「人名级」字号，不再用杂志式的 56px。
+   中文大字不需要拉丁那种 -0.03em 的收字距，收到 -0.02em 就够 */
 .work-title {
-  font-size: clamp(30px, 4.4vw, 40px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-family: var(--font-primary);
+  font-size: clamp(30px, 4.4vw, var(--fs-display));
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--lh-display);
   margin-bottom: 14px;
 }
 .work-tagline {
-  font-size: 17px;
-  line-height: 1.62;
-  max-width: 36em;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  max-width: 34em;
+  /* 中文没有词边界，pretty 的「避免孤词」管不到孤字；
+     首屏导语只有几行，用 balance 把各行拉匀，末行不会只剩两个字 */
+  text-wrap: balance;
 }
 
 /* 眉标：从胶囊改成等宽小字 + 钴蓝圆点，和首页的标签语气一致 */
@@ -734,7 +748,7 @@
   border-radius: 0;
   padding: 0;
   margin-bottom: 14px;
-  font-size: 10.5px;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   color: var(--grey3);
 }
@@ -755,43 +769,19 @@
   font-size: clamp(24px, 2.9vw, 31px);
 }
 
-/* 区块标题：28px 正文黑体、编号用等宽主色，字号对齐一级标题的层级感 */
-.work-section { margin-bottom: 62px; }
-.work-section-title {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin: 0 0 20px;
-  padding-bottom: 0;
-  border-bottom: 0;
-  font-family: var(--font-primary);
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.35;
-  color: var(--body-color);
-}
-.work-section-title .idx {
-  font-family: var(--font-mono);
-  font-size: 1em;
-  font-weight: 500;
-  letter-spacing: 0;
-  color: var(--accent);
-}
-
-/* 正文：行宽放开到版心宽度（与元信息条、图表卡、截图同宽），两端与页面齐 */
-.work-lede { font-size: 16px; line-height: 1.7; max-width: none; }
-.work-body { font-size: 15px; line-height: 1.72; max-width: none; }
+/* 区块节奏：标题字号/正文字号行长统一在 work.css 里定义，全站详情页共用。
+   这里只把章节间距放宽一档（v2 页面的信息块比旧模板多）。 */
+.work-section { margin-bottom: 64px; }
 
 /* 正文两端对齐：中文由浏览器在字与字之间分配余量，末行照常左对齐、不拉伸。
-   只给成段正文用——图注、表格、卡片短标签保持左对齐，单行被拉开会显得松 */
-.work-tagline,
-.work-lede,
-.work-body p,
+   .work-lede / .work-body p 的对齐规则放在 work.css，这里补 v2 专有的两类块。
+   首屏导语只有三四行、又夹着加粗句，拉开会出大空隙，保持左对齐。 */
 .work-decision__body,
-.insight__p,
-.chart-sub {
+.insight__p {
   text-align: justify;
+  text-justify: inter-character;
+  hyphens: none;
+  text-wrap: pretty;
 }
 
 /* 元信息条：改两端对齐——首项贴左、末项贴右，中间均分剩余空间 */
@@ -899,11 +889,11 @@
 
 /* ---------- 看板内的小标题 ---------- */
 .dash-block-title {
-  margin: 24px 0 10px;
+  margin: 26px 0 12px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.14em;
   color: var(--grey3);
 }
 
@@ -920,9 +910,9 @@
 }
 [data-theme="dark"] .rank-card img { border-color: var(--border); }
 .rank-card figcaption {
-  margin-top: 10px;
-  font-size: 12px;
-  line-height: 1.6;
+  margin-top: 11px;
+  font-size: 12.5px;
+  line-height: 1.65;
   color: var(--grey3);
   text-wrap: balance;
 }
@@ -978,12 +968,12 @@
   .boost-list { gap: 14px; margin-bottom: 22px; }
   .boost-item figcaption { font-size: 11.5px; }
   .rank-card { margin-bottom: 20px; }
-  .rank-card figcaption { font-size: 11.5px; }
-  .work-title { font-size: 28px; }
+  .rank-card figcaption { font-size: 12px; }
+  .work-title { font-size: 26px; }
   .work-tagline { font-size: 15.5px; }
-  .work-section { margin-bottom: 46px; }
+  .work-section { margin-bottom: 48px; }
   .work-section-title { font-size: 22px; margin-bottom: 16px; }
-  .work-lede { font-size: 15px; }
+  .work-lede { font-size: 15.5px; }
   .work-quote { padding: 15px 16px; font-size: 14px; line-height: 1.75; }
   .work-qa__q { font-size: 14px; }
   .work-qa__a { font-size: 14px; line-height: 1.75; }
