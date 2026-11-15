@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>萌系贴贴生成器 · 冯建燊 JACK</title>
-<meta name="description" content="想发「贴贴」内容，每条都要开 Ps 抠图。我把这件事压成网页上的三步：19.2 万曝光、7,701 赞藏、13.5% 封面点击率，99.5% 的曝光来自非粉丝。">
+<title>萌系贴贴生成器 · 作品集案例 · 冯建燊 JACK</title>
+<meta name="description" content="作品集案例：我把「每条内容都要开 Ps 抠图一小时」压成网页三步，做成一个小工具，再用一条笔记把它推出去——19.2 万曝光、7,701 赞藏、13.5% 封面点击率，99.5% 来自非粉丝。">
 <meta name="author" content="冯建燊 JACK">
 
 <!-- 像素太阳 favicon -->
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="../assets/css/base.css?v=20261103-71">
 <link rel="stylesheet" href="../assets/css/deco.css?v=20261103-71">
 <link rel="stylesheet" href="../assets/css/work.css?v=20261103-71">
-<link rel="stylesheet" href="../assets/css/work-v2.css?v=20261115-2">
+<link rel="stylesheet" href="../assets/css/work-v2.css?v=20261115-4">
 </head>
 <body>
 <a class="skip-link" href="#content">跳到主要内容</a>
@@ -24,6 +24,17 @@
       <svg class="icon-moon" viewBox="0 0 200 200" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true"><circle cx="100" cy="100" r="94.147" fill="#e4e2dc"/><clipPath id="tm-moon-clip"><circle cx="100" cy="100" r="94.147"/></clipPath><g clip-path="url(#tm-moon-clip)"><path d="M173.111-46.282l59.723 39.66 25.005 67.189-19.264 69.056-56.174 44.544-71.628 3.018-59.723-39.66-25.005-67.189L45.308 1.28l56.174-44.544 71.629-3.018z" fill="#f6f4ef"/></g><path d="M158.551 135.006l-4.072 2.503 6.822 5.83 1.8-4.404-4.55-3.929zM116.907 69.037l-6.653 4.089 11.145 9.525 2.941-7.195-7.433-6.419zM67.138 119.523l-4.542 2.791 7.61 6.503 2.007-4.912-5.075-4.382zM80.286 37.068l4.825-3.028-8.193-6.873-2.097 5.268 5.465 4.633zM143.466 148.273l5.198-3.261-8.826-7.403-2.259 5.674 5.887 4.99z" fill="#e4e2dc" fill-rule="nonzero"/><path d="M163.108 73.155l2.628 13.525-12.051 6.679-10.076-9.398 5.824-12.486 13.675 1.68zM83.672 53.684l-7.194 20.408-21.332-.919-5.99-20.976 17.63-12.045 16.886 13.532zM91.359 125.589l-5.626-25.934 22.927-13.364 19.794 17.674-10.692 24.288-26.403-2.664zM35.02 112.946l-3.955-14.875 12.902-8.012 11.929 9.923-5.53 14.145-15.346-1.181zM104.602 180.886l-15.004-13.214 8.155-17.962 20.044 2.111 4.233 19.268-17.428 9.797z" fill="#e4e2dc"/></svg>
     </button>
 
+<!-- 像素云（原站 PNG 贴图 + 滚动视差，见 deco.css / site.js） -->
+<div class="deco cloud-1" aria-hidden="true"></div>
+<div class="deco cloud-2" aria-hidden="true"></div>
+
+<!-- 左下角像素小鸟（滑翔 + 落地星星，见 deco.css / site.js） -->
+<div class="bird" id="bird" aria-hidden="true">
+  <div class="bird-lift">
+    <span class="bird-stars"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span></span>
+    <svg data-art="bird"></svg>
+  </div>
+</div>
 <div class="page-shell">
   <main id="content" class="work-page">
 
@@ -42,9 +53,9 @@
     <!-- ② 首屏：标题 + 关键数字 + 封面 -->
     <div class="work-hero--split">
       <header class="work-hero">
-        <span class="work-kicker">工具产品</span>
+        <span class="work-kicker">作品集案例 · 内容运营</span>
         <h1 class="work-title">萌系贴贴生成器</h1>
-        <p class="work-tagline">想发「贴贴」内容，但发一条就得开 Ps 抠图。我把这件事压成了网页上的三步——然后它自己跑了起来：<strong>19.2 万曝光，7,701 赞藏，99.5% 的曝光来自陌生人。</strong></p>
+        <p class="work-tagline">作品集里我把它放在第一个，因为它一条里同时装了三件事：<strong>发现一个真实的重复成本、把它做成不用装软件的工具、再用一条笔记把工具推出去。</strong>19.2 万曝光，7,701 赞藏，99.5% 来自陌生人。</p>
 
         <div class="work-kpis">
           <div class="work-kpi work-kpi--hero"><b>192,294</b><span>曝光</span></div>
@@ -57,23 +68,23 @@
         <span class="work-cover__frame">
           <img src="../assets/img/shots/cute-cover.jpg" alt="这条笔记的封面：左侧是「小红书工具」「萌系贴贴」大字，右侧是工具界面实拍，旁边漂着两张成品贴纸" loading="eager" decoding="async">
         </span>
-        <figcaption>这条笔记的封面。大字只讲「这是什么」，不讲卖点。</figcaption>
+        <figcaption>这条笔记的封面。大字只回答「这是什么」，「好不好」留给正文。</figcaption>
       </figure>
     </div>
 
     <!-- ③ 30 秒摘要 -->
     <div class="work-tldr">
       <div class="work-tldr__cell">
-        <span class="work-tldr__label">背景</span>
-        <p class="work-tldr__text">想持续发「贴贴」类内容，但每条都要开 Ps 抠图，<strong>成本高到没法稳定更新</strong>。</p>
+        <span class="work-tldr__label">这道题</span>
+        <p class="work-tldr__text">想稳定发「贴贴」类内容，但每条都要开 Ps 抠图，一小时起。<strong>成本高到没法按周更</strong>。</p>
       </div>
       <div class="work-tldr__cell">
-        <span class="work-tldr__label">我做的</span>
-        <p class="work-tldr__text">把「选背景 → 选主体 → 贴表情 → 导出」做成网页三步，<strong>88 张素材全部自绘</strong>，不装任何软件。</p>
+        <span class="work-tldr__label">我的解法</span>
+        <p class="work-tldr__text">把「选背景 → 选主体 → 贴表情 → 导出」压成网页三步，<strong>88 张素材全部自绘</strong>，打开浏览器就能用。</p>
       </div>
       <div class="work-tldr__cell">
-        <span class="work-tldr__label">结果</span>
-        <p class="work-tldr__text">19.2 万曝光、7,701 赞藏、118 涨粉；<strong>收藏是点赞的 74%</strong>——工具型内容最典型的数据指纹。</p>
+        <span class="work-tldr__label">它证明了什么</span>
+        <p class="work-tldr__text">我能把一个说不清的「太麻烦」拆成能交付的东西，再用内容和数据推出去。<strong>收藏是点赞的 74%</strong>——有人真的在存着用。</p>
       </div>
     </div>
 
@@ -86,23 +97,26 @@
       <div class="meta-item"><span class="meta-label">开源</span><span class="meta-value"><a href="https://github.com/Jack028BOT/cute-face-grid" target="_blank" rel="noopener noreferrer">GitHub</a></span></div>
     </div>
 
-    <!-- ⑤ 概览 -->
+    <!-- ⑤ 01 这道题是什么 -->
     <section class="work-section">
-      <h2 class="work-section-title">概览</h2>
-      <p class="work-lede">这是我在运营小红书时顺手做出来的一个小工具。动机很具体：想发「贴贴」这种内容，但每次都要开 Ps 抠图，一条内容光做图就要一小时。于是我花了一个周末，把素材、贴纸和导出流程全部搬到了网页上。</p>
-      <div class="work-body"><p>打开就能用：<strong>选一张背景、选一个主体、选一个表情</strong>，三层叠加，直接导出。整个过程不需要设计软件，也不需要会画画——这是我给它定的门槛，也是后面所有文案和封面的出发点。</p></div>
-      <div class="work-body"><p>素材部分我全部自己画，一共 <strong>88 张</strong>：50 张食物主体、22 张波点底图、16 张表情贴纸，统一成 Y2K 粉紫 Win98 的调子。</p></div>
+      <h2 class="work-section-title"><span class="idx">01</span>这道题是什么</h2>
+      <p class="work-lede">先说清楚我为什么做它：不是想做个工具，是不想再为每条内容付一小时。</p>
+      <div class="work-body">
+        <p>账号内容线里「贴贴」这类互动最好，但制作成本也最高——选图、抠图、调比例、配表情，一条内容光做图一小时。我不是不会用 Ps，是这个成本让我没法按周更。</p>
+        <p>也试过找现成的。能用的要么要装软件，要么要付费，要么导出比例不对——拿到图还得自己裁一次。既然流程是固定的，我干脆把它搬到网页上：<strong>选一张背景、选一个主体、选一个表情</strong>，三层叠加，直接导出。</p>
+        <p>素材全部自己画，一共 <strong>88 张</strong>：50 张食物主体、22 张波点底图、16 张表情贴纸，统一成 Y2K 粉紫 Win98 的调子。这件事不是顺手做的，理由写在下面「素材做成一套」那条判断里。</p>
+      </div>
     </section>
 
-    <!-- ⑥ 决策表 -->
+    <!-- ⑥ 02 三个判断 -->
     <section class="work-section">
-      <h2 class="work-section-title">三个关键决策</h2>
+      <h2 class="work-section-title"><span class="idx">02</span>我怎么解的：三个判断</h2>
       <div class="work-decisions">
         <article class="work-decision">
           <span class="work-decision__idx">01</span>
           <div>
-            <h3 class="work-decision__title">封面不讲卖点，先讲「这是什么东西」</h3>
-            <p class="work-decision__body">刷到一条陌生笔记，第一秒决定的不是「好不好」，而是「关我什么事」。所以封面左上先用大字写品类词「小红书工具」，再用红字压在桃色高亮块上写产品名「萌系贴贴」，右边直接放工具界面实拍——过路人一眼就知道：<b>这是个能上手用的东西，不是又一篇教程</b>。卖点留给正文。</p>
+            <h3 class="work-decision__title">封面先回答「这是什么」，不回答「好不好」</h3>
+            <p class="work-decision__body">刷到一条陌生笔记，第一秒决定的不是「好不好」，而是「关我什么事」。所以封面左上用大字写品类词「小红书工具」，红字压在桃色高亮块上写产品名「萌系贴贴」，右边直接放工具界面实拍——过路人一眼就知道：<b>这是个能上手用的东西，不是又一篇教程</b>。卖点留在正文，封面只负责让人停下来。</p>
           </div>
           <p class="work-decision__result"><b>结果</b><em>13.5%</em>封面点击率，峰值 20%</p>
         </article>
@@ -110,7 +124,7 @@
         <article class="work-decision">
           <span class="work-decision__idx">02</span>
           <div>
-            <h3 class="work-decision__title">素材全部自绘，做成一套而不是一堆</h3>
+            <h3 class="work-decision__title">素材做成一套，而不是攒一堆</h3>
             <p class="work-decision__body">直接搬别人的贴纸，叠出来一定打架：这张粗描边、那张没描边，成品一眼就是「拼的」。88 张全部按同一套描边粗细、同一套粉紫配色画，<b>任意三层叠在一起都不违和</b>——这也是后面能持续出主题包的前提。</p>
           </div>
           <p class="work-decision__result"><b>结果</b><em>88 张</em>三层任意叠加不出戏</p>
@@ -119,27 +133,27 @@
         <article class="work-decision">
           <span class="work-decision__idx">03</span>
           <div>
-            <h3 class="work-decision__title">导出即成品，把最后一步也做完</h3>
-            <p class="work-decision__body">很多人做到「导出 PNG」就停了，用户拿到图还得自己裁成平台比例——等于把最难的一步又还回去。Canvas 合成时直接按方形出图，<b>导出就能发</b>，中间不留任何需要二次加工的环节。</p>
+            <h3 class="work-decision__title">把导出做成最后一步，不留二次加工</h3>
+            <p class="work-decision__body">很多人做到「导出 PNG」就停了，用户拿到图还得自己裁成平台比例——等于把最难的一步又还回去。Canvas 合成时直接按方形出图，<b>导出就能发</b>，中间不留需要二次加工的环节。</p>
           </div>
           <p class="work-decision__result"><b>结果</b><em>3,272</em>收藏，是点赞的 74%</p>
         </article>
       </div>
     </section>
 
-    <!-- ⑦ 界面与效果 -->
+    <!-- ⑦ 03 界面与效果 -->
     <section class="work-section">
-      <h2 class="work-section-title">界面与效果</h2>
+      <h2 class="work-section-title"><span class="idx">03</span>界面与效果</h2>
       <div class="work-shots work-shots--pair">
-        <figure class="work-shot"><img src="../assets/img/shots/cute-ui.jpg" alt="工具主界面：上方是画布，下方是背景、主体、表情三排素材，还有表情大小滑杆" loading="lazy"><figcaption>主界面：上为画布，下为「背景 / 主体 / 表情」三层素材，点一下即叠加，表情大小拖滑杆调。</figcaption></figure>
-        <figure class="work-shot"><img src="../assets/img/shots/cute-export.jpg" alt="导出成品：波点底上放着蛋糕主体，中间贴了一个颜文字表情" loading="lazy"><figcaption>导出成品：方形直出，带波点底和表情，拿到就能发，不用再裁。</figcaption></figure>
+        <figure class="work-shot"><img src="../assets/img/shots/cute-ui.jpg" alt="工具主界面：上方是画布，下方是背景、主体、表情三排素材，还有表情大小滑杆" loading="lazy"><figcaption>主界面：上面是画布，下面是「背景 / 主体 / 表情」三排素材，点一下即叠加，表情大小拖滑杆调。</figcaption></figure>
+        <figure class="work-shot"><img src="../assets/img/shots/cute-export.jpg" alt="导出成品：波点底上放着蛋糕主体，中间贴了一个颜文字表情" loading="lazy"><figcaption>导出成品：方形直出，带波点底和表情。不用再裁，也不用再进第二个软件。</figcaption></figure>
       </div>
     </section>
 
-    <!-- ⑧ 成果数据（数据看板） -->
+    <!-- ⑧ 04 数据佐证（数据看板） -->
     <section class="work-section">
-      <h2 class="work-section-title">成果数据</h2>
-      <p class="work-lede">下面这张看板，是我把小红书创作中心导出的两份明细合起来做的：一份是流量表（曝光、观看、点击率、时长、涨粉），一份是互动表（点赞、评论、收藏、分享）。两边字段不重叠，拼起来才是一条完整的笔记。</p>
+      <h2 class="work-section-title"><span class="idx">04</span>数据佐证</h2>
+      <p class="work-lede">作品集里放数据，不是为了显得好看，是为了让上面每个判断都能被验证。下面这份看板，是我把小红书创作中心导出的两份明细合起来做的：一份是流量表（曝光、观看、点击率、时长、涨粉），一份是互动表（点赞、评论、收藏、分享）。两边字段不重叠，拼起来才是一条完整的笔记。</p>
 
       <div class="dash">
         <div class="dash-kpis">
@@ -264,7 +278,7 @@
           </div>
         </div>
 
-        <!-- 洞察 -->
+        <h3 class="dash-block-title">从数据里读出来的四件事</h3>
         <div class="insight-grid">
           <div class="insight">
             <span class="insight__idx">01</span>
@@ -315,22 +329,46 @@
       </div>
     </section>
 
-    <!-- ⑨ 复盘 -->
+    <!-- ⑨ 05 边界 -->
     <section class="work-section">
-      <h2 class="work-section-title">复盘</h2>
-      <div class="work-review">
-        <h4>为什么能跑起来</h4>
-        <p>工具属性。收藏 3,272 是点赞的 74%，用户存的不是「好可爱」，是「这个我以后要用」。这类内容吃的是搜索和收藏的二次分发，所以第 15 天之后还有 66% 的曝光在慢慢进来。</p>
-        <h4>如果重做一次</h4>
-        <p>先做主题包，再发笔记。现在是先发内容再补素材，第 11 天开始加速的时候素材跟不上，第二波峰值没接住——看板上 D14–D15 那两天，其实可以更陡。</p>
-        <h4>还在做的事</h4>
-        <p>把素材库拆成可切换的主题包，让同一个工具能持续出内容，而不是一篇发完就没了。</p>
+      <h2 class="work-section-title"><span class="idx">05</span>这份案例的边界</h2>
+      <p class="work-lede">作品集里只讲成功的那部分，面试一问就露。所以这三条我自己先写出来。</p>
+      <div class="work-body">
+        <p><strong>只有一个案例，不能证明可复制。</strong>这条是单点爆发，账号里其余笔记都没到这个量级。它证明的是「这个选题 + 这个工具」成立，还不能证明我已经能稳定复制。</p>
+        <p><strong>归因不完整。</strong>我没做封面 A/B，也没法把「工具属性」和「标题写法」拆开算。能说的是：收藏/点赞 74% 和 66% 的长尾曝光是工具型内容的典型形状，但这是相关性，不是因果。</p>
+        <p><strong>数据本身有缺口。</strong>完播率、两秒退出率导出全是 0，判为未采集，所以我不知道内容本身留人的能力如何，只能看封面点击和互动。前面那张口径表里也标了这一点。</p>
       </div>
     </section>
 
-    <!-- ⑩ 相关作品 -->
+    <!-- ⑩ 06 面试里怎么讲 -->
     <section class="work-section">
-      <h2 class="work-section-title">相关作品</h2>
+      <h2 class="work-section-title"><span class="idx">06</span>面试里怎么讲这条</h2>
+      <p class="work-lede">如果只给 30 秒，我说这一句；如果对方追问，我再往下拆。</p>
+
+      <blockquote class="work-quote">
+        <p>「我做过一条 19 万曝光的小红书笔记，但它其实是个工具。起因很土：我想发贴贴类内容，每条都要开 Ps 抠图一小时，发不下去。我就花一个周末把流程做成网页——选背景、选主体、贴表情、导出，88 张素材自己画。发出去之后 19.2 万曝光、7,701 赞藏，99.5% 是非粉丝，收藏是点赞的 74%。人存的不是「可爱」，是「以后要用」。」</p>
+        <span class="work-quote__cap">30 秒 · 要背的是结构，不是措辞：成本 → 做法 → 数据 → 一句解释</span>
+      </blockquote>
+
+      <div class="work-qa">
+        <div class="work-qa__item">
+          <p class="work-qa__q">这条是不是运气好？</p>
+          <p class="work-qa__a">运气决定它什么时候起，判断决定它起不起来。前 6 天只有 754 次曝光、5 个赞，如果第三天就判它死刑删掉，就没有后面 19 万——所以我第一条经验是「别急着判死」。但封面在冷启动第一天点击率就到 9%–14%，说明封面本身是成立的；剩下 66% 的曝光是第 15 天之后靠搜索和收藏夹进来的。<b>这两段都不是运气能解释的。</b></p>
+        </div>
+        <div class="work-qa__item">
+          <p class="work-qa__q">你怎么知道是工具带来的，不是标题？</p>
+          <p class="work-qa__a">拆不开，我没做 A/B。能拿出来的证据是形状：收藏是点赞的 74%，普通内容不会长这样；人均观看 9.1 秒，说明人进来不是划一下就走的。<b>标题决定进不进，工具决定存不存</b>——这句话是判断，不是结论，我认。</p>
+        </div>
+        <div class="work-qa__item">
+          <p class="work-qa__q">再做一条，你会怎么改？</p>
+          <p class="work-qa__a">先做主题包，再发笔记。现在是先发内容再补素材，第 11 天开始加速时素材跟不上，第二波峰值没接住——看板上 D14–D15 那两天其实可以更陡。<b>另外会给封面留两个版本</b>，下一篇做一次真实对照，而不是凭感觉判断。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑪ 相关作品 -->
+    <section class="work-section">
+      <h2 class="work-section-title"><span class="idx">07</span>相关作品</h2>
       <div class="work-related">
         <a class="related-card" href="tincase.html">
           <span class="related-icon">盒</span>
@@ -347,7 +385,7 @@
       </div>
     </section>
 
-    <!-- ⑪ 上下站 -->
+    <!-- ⑫ 上下站 -->
     <nav class="work-pager">
       <a class="pager-link pager-link--prev" href="../index.html">
         <span class="pager-dir">&larr; 上一篇</span>
@@ -359,7 +397,7 @@
       </a>
     </nav>
 
-    <!-- ⑫ 页脚 -->
+    <!-- ⑬ 页脚 -->
     <footer class="work-foot">
       <p>冯建燊 JACK · 广东工业大学 电子商务专业 · 2028 届</p>
       <p><a href="https://xhslink.cn/o/8sBwI0HFjC2" target="_blank" rel="noopener noreferrer">小红书主页</a> · <a href="../index.html">返回首页</a></p>
@@ -368,7 +406,13 @@
   </main>
 </div>
 
-<script src="../assets/js/site.js?v=20261103-71"></script>
+
+<!-- 页底两棵树（点击摇晃）+ 蝴蝶 -->
+<div class="garden" aria-hidden="true">
+  <div class="tree tree-1" role="button" tabindex="0" aria-label="摇一摇大树"></div>
+<div class="tree tree-2" role="button" tabindex="0" aria-label="摇一摇小树"></div>
+        <span class="butterfly"><span class="bf-inner"><span class="bf-layer bf-wl"><svg viewBox="0 0 17 14"><rect x="5" y="1" width="3" height="1" fill="#ef8f2e"/><rect x="3" y="2" width="5" height="1" fill="#ef8f2e"/><rect x="2" y="3" width="6" height="1" fill="#ef8f2e"/><rect x="1" y="4" width="7" height="1" fill="#ef8f2e"/><rect x="1" y="5" width="7" height="1" fill="#ef8f2e"/><rect x="2" y="6" width="6" height="1" fill="#ef8f2e"/><rect x="3" y="7" width="4" height="1" fill="#ef8f2e"/><rect x="3" y="8" width="5" height="1" fill="#ef8f2e"/><rect x="2" y="9" width="5" height="1" fill="#ef8f2e"/><rect x="3" y="10" width="4" height="1" fill="#ef8f2e"/><rect x="4" y="11" width="3" height="1" fill="#ef8f2e"/><rect x="1" y="4" width="1" height="1" fill="#d2701d"/><rect x="1" y="5" width="1" height="1" fill="#d2701d"/><rect x="2" y="3" width="1" height="1" fill="#d2701d"/><rect x="2" y="6" width="1" height="1" fill="#d2701d"/><rect x="2" y="9" width="1" height="1" fill="#d2701d"/><rect x="3" y="8" width="1" height="1" fill="#d2701d"/><rect x="3" y="10" width="1" height="1" fill="#d2701d"/><rect x="6" y="3" width="1" height="1" fill="#9c4f15"/><rect x="6" y="9" width="1" height="1" fill="#9c4f15"/><rect x="5" y="6" width="1" height="1" fill="#9c4f15"/><rect x="3" y="4" width="1" height="1" fill="#fff"/><rect x="3" y="9" width="1" height="1" fill="#fff"/></svg></span><span class="bf-layer bf-wr"><svg viewBox="0 0 17 14"><rect x="9" y="1" width="3" height="1" fill="#ef8f2e"/><rect x="9" y="2" width="5" height="1" fill="#ef8f2e"/><rect x="9" y="3" width="6" height="1" fill="#ef8f2e"/><rect x="9" y="4" width="7" height="1" fill="#ef8f2e"/><rect x="9" y="5" width="7" height="1" fill="#ef8f2e"/><rect x="9" y="6" width="6" height="1" fill="#ef8f2e"/><rect x="10" y="7" width="4" height="1" fill="#ef8f2e"/><rect x="9" y="8" width="5" height="1" fill="#ef8f2e"/><rect x="10" y="9" width="5" height="1" fill="#ef8f2e"/><rect x="10" y="10" width="4" height="1" fill="#ef8f2e"/><rect x="10" y="11" width="3" height="1" fill="#ef8f2e"/><rect x="15" y="4" width="1" height="1" fill="#d2701d"/><rect x="15" y="5" width="1" height="1" fill="#d2701d"/><rect x="14" y="3" width="1" height="1" fill="#d2701d"/><rect x="14" y="6" width="1" height="1" fill="#d2701d"/><rect x="14" y="9" width="1" height="1" fill="#d2701d"/><rect x="13" y="8" width="1" height="1" fill="#d2701d"/><rect x="13" y="10" width="1" height="1" fill="#d2701d"/><rect x="10" y="3" width="1" height="1" fill="#9c4f15"/><rect x="10" y="9" width="1" height="1" fill="#9c4f15"/><rect x="11" y="6" width="1" height="1" fill="#9c4f15"/><rect x="13" y="4" width="1" height="1" fill="#fff"/><rect x="13" y="9" width="1" height="1" fill="#fff"/></svg></span><span class="bf-layer bf-body"><svg viewBox="0 0 17 14"><rect x="8" y="2" width="1" height="10" fill="#2e2418"/><rect x="8" y="1" width="1" height="1" fill="#2e2418"/><rect x="7" y="0" width="1" height="1" fill="#2e2418"/><rect x="9" y="0" width="1" height="1" fill="#2e2418"/><rect x="6" y="0" width="1" height="1" fill="#9c4f15"/><rect x="10" y="0" width="1" height="1" fill="#9c4f15"/></svg></span></span></span>
+    </div><script src="../assets/js/site.js?v=20261103-71"></script>
 <script>
 /* =====================================================================
    数据看板：用小红书导出的真实明细画图（原生 SVG，无第三方库）

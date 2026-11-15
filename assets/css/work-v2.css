@@ -700,3 +700,184 @@
     object-fit: contain;
   }
 }
+
+/* =====================================================================
+   与首页对齐 —— 详情页统一到首页的视觉语言
+   首页口径：版心 1000px / 标题最大 32px 且 600 字重 / 区块标题是等宽 14px
+   无下划线 / 卡片一律 12px 圆角 + 极淡描边 + 柔和投影 / 页面有云·鸟·树
+   ===================================================================== */
+
+/* 版心：page-shell 已给 96/48 的内边距，这里不再叠加 */
+.work-page { padding: 0; }
+
+/* 首屏标题回到「人名级」字号，不再用杂志式的 56px */
+.work-title {
+  font-size: clamp(30px, 4.4vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.work-tagline {
+  font-size: 17px;
+  line-height: 1.62;
+  max-width: 36em;
+}
+
+/* 眉标：从胶囊改成等宽小字 + 钴蓝圆点，和首页的标签语气一致 */
+.work-kicker {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin-bottom: 14px;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--grey3);
+}
+.work-kicker::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: 1.5px;
+}
+
+/* 关键数字：字号接近首页指标大字的量级，字重收到 600 */
+.work-kpi b {
+  font-weight: 600;
+  font-size: clamp(24px, 2.9vw, 31px);
+}
+
+/* 区块标题：等宽 14px、无下划线、编号用主色，对齐首页的 Selected work */
+.work-section { margin-bottom: 62px; }
+.work-section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 22px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--grey3);
+}
+.work-section-title .idx {
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+/* 正文：行宽与字号对齐首页段落（15px / 40em） */
+.work-lede { font-size: 16px; line-height: 1.7; max-width: 40em; }
+.work-body { font-size: 15px; line-height: 1.72; max-width: 40em; }
+
+/* 卡片语言：12px 圆角 + surface-border + 柔和投影（与首页作品卡一致） */
+.work-tldr,
+.dash-kpis,
+.chart-card,
+.phase,
+.related-card,
+.pager-link,
+.work-shot,
+.work-cover__frame {
+  border-color: var(--surface-border);
+  border-radius: 12px;
+}
+.work-tldr,
+.dash-kpis,
+.chart-card,
+.work-cover__frame {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+[data-theme="dark"] .work-tldr,
+[data-theme="dark"] .dash-kpis,
+[data-theme="dark"] .chart-card,
+[data-theme="dark"] .work-cover__frame {
+  box-shadow: none;
+}
+.work-cover__frame { box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); }
+
+/* 页脚：和首页的灰字标签同一语气 */
+.work-foot { margin-top: 52px; }
+.work-foot p { font-size: 12px; letter-spacing: 0.01em; }
+
+/* ---------- 30 秒口述稿 ---------- */
+.work-quote {
+  margin: 0 0 24px;
+  padding: 18px 22px;
+  border-left: 2px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  background: var(--chat-surface);
+  max-width: 40em;
+  font-size: 15px;
+  line-height: 1.78;
+  color: var(--grey1);
+}
+.work-quote p { margin: 0; }
+.work-quote__cap {
+  display: block;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--surface-border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--grey3);
+}
+
+/* ---------- 追问问答 ---------- */
+.work-qa { margin-top: 28px; border-top: 1px solid var(--border); }
+.work-qa__item { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.work-qa__q {
+  margin: 0 0 9px;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--grey1);
+}
+.work-qa__q::before {
+  content: "Q";
+  margin-right: 9px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.work-qa__a {
+  margin: 0;
+  padding-left: 19px;
+  max-width: 40em;
+  font-size: 14.5px;
+  line-height: 1.78;
+  color: var(--grey2);
+}
+.work-qa__a b { color: var(--grey1); font-weight: 600; }
+
+/* ---------- 看板内的小标题 ---------- */
+.dash-block-title {
+  margin: 24px 0 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  color: var(--grey3);
+}
+
+/* ---------- 窄屏 ---------- */
+@media (max-width: 640px) {
+  .work-title { font-size: 28px; }
+  .work-tagline { font-size: 15.5px; }
+  .work-section { margin-bottom: 46px; }
+  .work-section-title { font-size: 12px; margin-bottom: 18px; }
+  .work-lede { font-size: 15px; }
+  .work-quote { padding: 15px 16px; font-size: 14px; line-height: 1.75; }
+  .work-qa__q { font-size: 14px; }
+  .work-qa__a { font-size: 14px; line-height: 1.75; }
+  .work-kpi b { font-size: 21px; }
+}
