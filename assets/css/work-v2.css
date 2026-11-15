@@ -707,8 +707,12 @@
    无下划线 / 卡片一律 12px 圆角 + 极淡描边 + 柔和投影 / 页面有云·鸟·树
    ===================================================================== */
 
-/* 版心：page-shell 已给 96/48 的内边距，这里不再叠加 */
-.work-page { padding: 0; }
+/* 版心：page-shell 已给 96/48 的内边距，这里只补一段顶部留白，
+   让顶部条整体落到右上角像素云（底边 102px）以下，云不压文字和「小红书原文」 */
+.work-page { padding: 20px 0 0; }
+@media (max-width: 900px) {
+  .work-page { padding-top: 40px; }   /* 窄屏 shell 上边距收到 80，这里补到与宽屏同一视觉高度 120 */
+}
 
 /* 首屏标题回到「人名级」字号，不再用杂志式的 56px */
 .work-title {
@@ -775,9 +779,9 @@
   color: var(--accent);
 }
 
-/* 正文：行宽与字号对齐首页段落（15px / 40em） */
-.work-lede { font-size: 16px; line-height: 1.7; max-width: 40em; }
-.work-body { font-size: 15px; line-height: 1.72; max-width: 40em; }
+/* 正文：行宽放开到版心宽度（与元信息条、图表卡、截图同宽），两端与页面齐 */
+.work-lede { font-size: 16px; line-height: 1.7; max-width: none; }
+.work-body { font-size: 15px; line-height: 1.72; max-width: none; }
 
 /* 正文两端对齐：中文由浏览器在字与字之间分配余量，末行照常左对齐、不拉伸。
    只给成段正文用——图注、表格、卡片短标签保持左对齐，单行被拉开会显得松 */
@@ -905,7 +909,7 @@
 
 /* ---------- 排行榜条（横长截图，给足宽度保证里面那行字可读） ---------- */
 .nb { white-space: nowrap; }
-.rank-card { max-width: 720px; margin: 2px 0 22px; }
+.rank-card { margin: 2px 0 22px; }
 .rank-card img {
   display: block;
   width: 100%;
@@ -938,7 +942,6 @@
 .boost-list {
   display: grid;
   gap: 16px;
-  max-width: 720px;
   margin: 2px 0 26px;
 }
 .boost-item { margin: 0; }
