@@ -989,8 +989,62 @@
   background: color-mix(in srgb, var(--accent) 9%, transparent);
 }
 
+/* ---------- 用户侧：评论区截图（原图直出，两列） ----------
+   这里是整张评论截图，不裁不缩放变形：7 张高度从 405 到 732 不等，任何
+   「统一比例 + cover」的做法都会把边切掉（第一版就把布丁的 >ω 切了半截）。
+   所以用两列瀑布流：列宽一致、上沿对齐、每张完整，长短错落本身就是评论区
+   的样子。540 宽的截图缩到 380 显示，评价文字还剩 9px 左右，配上图注能读。 */
+.voice-wall {
+  columns: 2;
+  column-gap: 18px;
+  max-width: 780px;
+  margin: 4px 0 28px;
+}
+.voice-shot {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  margin: 0 0 18px;
+}
+.voice-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--surface-border);
+  border-radius: 10px;
+  background: #fff;
+}
+[data-theme="dark"] .voice-shot img { border-color: var(--border); }
+
+/* 响应口径：一句话说清「回得快不快、有没有漏」，比埋进正文里有效 */
+.voice-stat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  max-width: 780px;
+  margin: -2px 0 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: var(--fs-cap);
+  color: var(--grey3);
+}
+.voice-stat span { white-space: nowrap; }
+.voice-stat b {
+  margin-right: 3px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ---------- 窄屏 ---------- */
 @media (max-width: 640px) {
+  .voice-stat { gap: 4px 16px; margin-bottom: 18px; }
+  .voice-stat b { font-size: 14px; }
+  /* 手机上两列只剩 165px 一张、截图里的字就没了，改为单列整幅 */
+  .voice-wall { columns: 1; column-gap: 0; margin-bottom: 22px; }
+  .voice-shot { margin-bottom: 14px; }
   /* 一列还是两列交给 auto-fit 判断，这里只管间距 */
   .boost-list { gap: 14px; margin-bottom: 22px; }
   .boost-item figcaption { font-size: 11.5px; }
