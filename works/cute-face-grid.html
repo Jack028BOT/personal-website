@@ -68,7 +68,6 @@
         <span class="work-cover__frame">
           <img src="../assets/img/shots/cute-cover.jpg" alt="这条笔记的封面：左侧是「小红书工具」「萌系贴贴」大字，右侧是工具界面实拍，旁边漂着两张成品贴纸" loading="eager" decoding="async">
         </span>
-        <figcaption>这条笔记的封面。大字只回答「这是什么」，「好不好」留给正文。</figcaption>
       </figure>
     </div>
 
@@ -92,7 +91,6 @@
     <div class="work-meta">
       <div class="meta-item"><span class="meta-label">时间</span><span class="meta-value">2026 年 9 月</span></div>
       <div class="meta-item"><span class="meta-label">角色</span><span class="meta-value">设计、开发、运营</span></div>
-      <div class="meta-item"><span class="meta-label">类型</span><span class="meta-value">网页小工具</span></div>
       <div class="meta-item"><span class="meta-label">技术</span><span class="meta-value">原生 JS + Canvas</span></div>
       <div class="meta-item"><span class="meta-label">开源</span><span class="meta-value"><a href="https://github.com/Jack028BOT/cute-face-grid" target="_blank" rel="noopener noreferrer">GitHub</a></span></div>
     </div>
@@ -302,67 +300,40 @@
           </div>
         </div>
 
-        <!-- 口径 -->
-        <div class="dash-note">
-          <h3>数据口径 · 必读</h3>
-          <table class="dash-table">
-            <thead>
-              <tr><th>指标</th><th>前 15 天合计</th><th>全周期累计</th><th>15 天占比</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>曝光</td><td>65,665</td><td>192,294</td><td>34.1%</td></tr>
-              <tr><td>观看</td><td>9,295</td><td>25,919</td><td>35.9%</td></tr>
-              <tr><td>点赞</td><td>1,816</td><td>4,429</td><td>41.0%</td></tr>
-              <tr><td>收藏</td><td>1,358</td><td>3,272</td><td>41.5%</td></tr>
-              <tr><td>评论</td><td>122</td><td>259</td><td>47.1%</td></tr>
-              <tr><td>分享</td><td>255</td><td>595</td><td>42.9%</td></tr>
-              <tr><td>涨粉</td><td>47</td><td>118</td><td>39.8%</td></tr>
-            </tbody>
-          </table>
-          <ul>
-            <li>日粒度明细只覆盖 2026-09-13 至 09-27 共 15 天；「全周期累计」来自导出文件里的总览表。两者区间不同，<b>不能相加、也不能互相校验</b>。</li>
-            <li>完播率、2 秒退出率导出值为 0，判为未采集，本页不画——不想用一根 0% 的柱子假装有数据。</li>
-            <li>小时粒度只覆盖发布后 72 小时的 29 个时刻，前 3 天一共只有 5 个点赞，正好印证「当时还没被分发」。</li>
-            <li>按日表加权算点击率是 9,295 / 65,665 = 14.2%，与总览的 13.5% 有差异，差在统计区间。页面上统一用总览口径。</li>
-          </ul>
-        </div>
       </div>
     </section>
 
-    <!-- ⑨ 05 边界 -->
+    <!-- ⑨ 05 平台侧 -->
     <section class="work-section">
-      <h2 class="work-section-title"><span class="idx">05</span>这份案例的边界</h2>
+      <h2 class="work-section-title"><span class="idx">05</span>平台侧的背书</h2>
+      <p class="work-lede">上面那份数据里有一段不是我能解释的：发布二十多天后，小红书「小工具」活动两次把这条笔记选进去，官方给了流量激励。两条通知我原样贴在这里。</p>
+
+      <div class="boost-list">
+        <figure class="boost-item">
+          <img src="../assets/img/shots/xhs-boost-1.png" alt="小红书系统通知：「#小红书小工具」——你在活动中所发布的笔记《我做了一款…》已获得官方流量激励，发送者科技薯，10-08" loading="lazy" decoding="async">
+          <figcaption><span class="boost-item__tag">第一次</span>「#小红书小工具」活动，10-08。</figcaption>
+        </figure>
+        <figure class="boost-item">
+          <img src="../assets/img/shots/xhs-boost-2.png" alt="小红书系统通知：恭喜获得优质小工具激励——你在活动中所发布的笔记《小红书工具…》已获得官方流量激励，发送者科技薯" loading="lazy" decoding="async">
+          <figcaption><span class="boost-item__tag">第二次</span>「优质小工具激励」，在第一次之后。</figcaption>
+        </figure>
+      </div>
+
+      <div class="work-body">
+        <p>它解释了上面那条「大部分曝光不在前 15 天」的缺口。日粒度明细停在九月下旬，剩下 126,629 次曝光都发生在之后——<strong>第一条激励通知的时间，正好落在那段空白里</strong>。所以这条的长尾里有一部分是平台给的量，不只是搜索和收藏夹。</p>
+        <p>但我没把它算成自己的成绩。激励是平台的选择，我能做的是让工具本身值得被选：<strong>它得真能用、真能出图，才可能被当成「小工具」收录</strong>，而不是一条长得像工具的图文。</p>
+        <p>这也是我对这类内容的理解：平台会给「能被用」的东西让路，不会给「看起来像内容」的东西让路。收藏是点赞的 74%，是用户侧给出的同一个信号。</p>
+      </div>
+    </section>
+
+    <!-- ⑩ 06 边界 -->
+    <section class="work-section">
+      <h2 class="work-section-title"><span class="idx">06</span>这份案例的边界</h2>
       <p class="work-lede">作品集里只讲成功的那部分，面试一问就露。所以这三条我自己先写出来。</p>
       <div class="work-body">
         <p><strong>只有一个案例，不能证明可复制。</strong>这条是单点爆发，账号里其余笔记都没到这个量级。它证明的是「这个选题 + 这个工具」成立，还不能证明我已经能稳定复制。</p>
         <p><strong>归因不完整。</strong>我没做封面 A/B，也没法把「工具属性」和「标题写法」拆开算。能说的是：收藏/点赞 74% 和 66% 的长尾曝光是工具型内容的典型形状，但这是相关性，不是因果。</p>
-        <p><strong>数据本身有缺口。</strong>完播率、两秒退出率导出全是 0，判为未采集，所以我不知道内容本身留人的能力如何，只能看封面点击和互动。前面那张口径表里也标了这一点。</p>
-      </div>
-    </section>
-
-    <!-- ⑩ 06 面试里怎么讲 -->
-    <section class="work-section">
-      <h2 class="work-section-title"><span class="idx">06</span>面试里怎么讲这条</h2>
-      <p class="work-lede">如果只给 30 秒，我说这一句；如果对方追问，我再往下拆。</p>
-
-      <blockquote class="work-quote">
-        <p>「我做过一条 19 万曝光的小红书笔记，但它其实是个工具。起因很土：我想发贴贴类内容，每条都要开 Ps 抠图一小时，发不下去。我就花一个周末把流程做成网页——选背景、选主体、贴表情、导出，88 张素材自己画。发出去之后 19.2 万曝光、7,701 赞藏，99.5% 是非粉丝，收藏是点赞的 74%。人存的不是「可爱」，是「以后要用」。」</p>
-        <span class="work-quote__cap">30 秒 · 要背的是结构，不是措辞：成本 → 做法 → 数据 → 一句解释</span>
-      </blockquote>
-
-      <div class="work-qa">
-        <div class="work-qa__item">
-          <p class="work-qa__q">这条是不是运气好？</p>
-          <p class="work-qa__a">运气决定它什么时候起，判断决定它起不起来。前 6 天只有 754 次曝光、5 个赞，如果第三天就判它死刑删掉，就没有后面 19 万——所以我第一条经验是「别急着判死」。但封面在冷启动第一天点击率就到 9%–14%，说明封面本身是成立的；剩下 66% 的曝光是第 15 天之后靠搜索和收藏夹进来的。<b>这两段都不是运气能解释的。</b></p>
-        </div>
-        <div class="work-qa__item">
-          <p class="work-qa__q">你怎么知道是工具带来的，不是标题？</p>
-          <p class="work-qa__a">拆不开，我没做 A/B。能拿出来的证据是形状：收藏是点赞的 74%，普通内容不会长这样；人均观看 9.1 秒，说明人进来不是划一下就走的。<b>标题决定进不进，工具决定存不存</b>——这句话是判断，不是结论，我认。</p>
-        </div>
-        <div class="work-qa__item">
-          <p class="work-qa__q">再做一条，你会怎么改？</p>
-          <p class="work-qa__a">先做主题包，再发笔记。现在是先发内容再补素材，第 11 天开始加速时素材跟不上，第二波峰值没接住——看板上 D14–D15 那两天其实可以更陡。<b>另外会给封面留两个版本</b>，下一篇做一次真实对照，而不是凭感觉判断。</p>
-        </div>
+        <p><strong>数据本身有缺口。</strong>完播率、两秒退出率导出全是 0，判为未采集，所以我不知道内容本身留人的能力如何，只能看封面点击和互动。</p>
       </div>
     </section>
 
