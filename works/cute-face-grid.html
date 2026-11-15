@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>萌系贴贴生成器 · 冯建燊 JACK</title>
-<meta name="description" content="不用 Ps、不用抠图、不用会画画，在小红书里就能贴贴。一个 88 张素材的贴纸工具，最后成了账号最高赞藏的那条笔记。">
+<meta name="description" content="想发「贴贴」内容，每条都要开 Ps 抠图。我把这件事压成网页上的三步：19.2 万曝光、7,701 赞藏、13.5% 封面点击率，99.5% 的曝光来自非粉丝。">
 <meta name="author" content="冯建燊 JACK">
 
 <!-- 像素太阳 favicon -->
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../assets/css/base.css?v=20261103-71">
 <link rel="stylesheet" href="../assets/css/deco.css?v=20261103-71">
 <link rel="stylesheet" href="../assets/css/work.css?v=20261103-71">
+<link rel="stylesheet" href="../assets/css/work-v2.css?v=20261115-2">
 </head>
 <body>
 <a class="skip-link" href="#content">跳到主要内容</a>
@@ -23,96 +24,321 @@
       <svg class="icon-moon" viewBox="0 0 200 200" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true"><circle cx="100" cy="100" r="94.147" fill="#e4e2dc"/><clipPath id="tm-moon-clip"><circle cx="100" cy="100" r="94.147"/></clipPath><g clip-path="url(#tm-moon-clip)"><path d="M173.111-46.282l59.723 39.66 25.005 67.189-19.264 69.056-56.174 44.544-71.628 3.018-59.723-39.66-25.005-67.189L45.308 1.28l56.174-44.544 71.629-3.018z" fill="#f6f4ef"/></g><path d="M158.551 135.006l-4.072 2.503 6.822 5.83 1.8-4.404-4.55-3.929zM116.907 69.037l-6.653 4.089 11.145 9.525 2.941-7.195-7.433-6.419zM67.138 119.523l-4.542 2.791 7.61 6.503 2.007-4.912-5.075-4.382zM80.286 37.068l4.825-3.028-8.193-6.873-2.097 5.268 5.465 4.633zM143.466 148.273l5.198-3.261-8.826-7.403-2.259 5.674 5.887 4.99z" fill="#e4e2dc" fill-rule="nonzero"/><path d="M163.108 73.155l2.628 13.525-12.051 6.679-10.076-9.398 5.824-12.486 13.675 1.68zM83.672 53.684l-7.194 20.408-21.332-.919-5.99-20.976 17.63-12.045 16.886 13.532zM91.359 125.589l-5.626-25.934 22.927-13.364 19.794 17.674-10.692 24.288-26.403-2.664zM35.02 112.946l-3.955-14.875 12.902-8.012 11.929 9.923-5.53 14.145-15.346-1.181zM104.602 180.886l-15.004-13.214 8.155-17.962 20.044 2.111 4.233 19.268-17.428 9.797z" fill="#e4e2dc"/></svg>
     </button>
 
-
 <div class="page-shell">
   <main id="content" class="work-page">
 
-    <!-- ① 返回 + 面包屑 -->
+    <!-- ① 顶部条：返回 + 面包屑 + 原文入口 -->
     <div class="work-top">
       <a class="back-link" href="../index.html"><span class="back-link__arrow">&larr;</span> 返回全部作品</a>
-      <p class="breadcrumb">作品 / 工具产品 / <span>萌系贴贴生成器</span></p>
+      <div class="work-top__actions">
+        <p class="breadcrumb">作品 / 工具产品 / <span>萌系贴贴生成器</span></p>
+        <a class="btn-origin" href="https://www.xiaohongshu.com/discovery/item/6aa69c63000000002b01042a?source=webshare&amp;xhsshare=pc_web&amp;xsec_token=ABTfiUyEBZd9p5fzI90cLhxL6QNF-WyWnU4Yxme8t2wgo=&amp;xsec_source=pc_share" target="_blank" rel="noopener noreferrer">
+          小红书原文
+          <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 8L8 2M8 2H3.6M8 2v4.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
 
-    <!-- ② 标题 -->
-    <header class="work-hero">
-      <span class="work-kicker">工具产品</span>
-      <h1 class="work-title">萌系贴贴生成器</h1>
-      <p class="work-tagline">不用 Ps、不用抠图、不用会画画，在小红书里就能贴贴。一个 88 张素材的贴纸工具，最后成了账号最高赞藏的那条笔记。</p>
-    </header>
+    <!-- ② 首屏：标题 + 关键数字 + 封面 -->
+    <div class="work-hero--split">
+      <header class="work-hero">
+        <span class="work-kicker">工具产品</span>
+        <h1 class="work-title">萌系贴贴生成器</h1>
+        <p class="work-tagline">想发「贴贴」内容，但发一条就得开 Ps 抠图。我把这件事压成了网页上的三步——然后它自己跑了起来：<strong>19.2 万曝光，7,701 赞藏，99.5% 的曝光来自陌生人。</strong></p>
 
-    <!-- ③ 元信息条 -->
+        <div class="work-kpis">
+          <div class="work-kpi work-kpi--hero"><b>192,294</b><span>曝光</span></div>
+          <div class="work-kpi"><b>7,701</b><span>赞藏</span></div>
+          <div class="work-kpi"><b>13.5%</b><span>封面点击率</span></div>
+        </div>
+      </header>
+
+      <figure class="work-cover">
+        <span class="work-cover__frame">
+          <img src="../assets/img/shots/cute-cover.jpg" alt="这条笔记的封面：左侧是「小红书工具」「萌系贴贴」大字，右侧是工具界面实拍，旁边漂着两张成品贴纸" loading="eager" decoding="async">
+        </span>
+        <figcaption>这条笔记的封面。大字只讲「这是什么」，不讲卖点。</figcaption>
+      </figure>
+    </div>
+
+    <!-- ③ 30 秒摘要 -->
+    <div class="work-tldr">
+      <div class="work-tldr__cell">
+        <span class="work-tldr__label">背景</span>
+        <p class="work-tldr__text">想持续发「贴贴」类内容，但每条都要开 Ps 抠图，<strong>成本高到没法稳定更新</strong>。</p>
+      </div>
+      <div class="work-tldr__cell">
+        <span class="work-tldr__label">我做的</span>
+        <p class="work-tldr__text">把「选背景 → 选主体 → 贴表情 → 导出」做成网页三步，<strong>88 张素材全部自绘</strong>，不装任何软件。</p>
+      </div>
+      <div class="work-tldr__cell">
+        <span class="work-tldr__label">结果</span>
+        <p class="work-tldr__text">19.2 万曝光、7,701 赞藏、118 涨粉；<strong>收藏是点赞的 74%</strong>——工具型内容最典型的数据指纹。</p>
+      </div>
+    </div>
+
+    <!-- ④ 元信息条 -->
     <div class="work-meta">
       <div class="meta-item"><span class="meta-label">时间</span><span class="meta-value">2026 年 9 月</span></div>
-      <div class="meta-item"><span class="meta-label">角色</span><span class="meta-value">设计与开发</span></div>
+      <div class="meta-item"><span class="meta-label">角色</span><span class="meta-value">设计、开发、运营</span></div>
       <div class="meta-item"><span class="meta-label">类型</span><span class="meta-value">网页小工具</span></div>
       <div class="meta-item"><span class="meta-label">技术</span><span class="meta-value">原生 JS + Canvas</span></div>
       <div class="meta-item"><span class="meta-label">开源</span><span class="meta-value"><a href="https://github.com/Jack028BOT/cute-face-grid" target="_blank" rel="noopener noreferrer">GitHub</a></span></div>
     </div>
 
-    <!-- ④ 概览 -->
+    <!-- ⑤ 概览 -->
     <section class="work-section">
       <h2 class="work-section-title">概览</h2>
-      <p class="work-lede">这是我在运营小红书过程中顺手做出来的一个小工具。做它的原因很具体：想发「贴贴」这种内容，但每次都要开 Ps 抠图，太慢也太麻烦。于是我花了一个周末，把素材、贴纸和导出流程全部做成了网页上的三步。</p>
-      <div class="work-body"><p>现在打开就能用：<strong>选一张背景、选一个主体、选一个表情</strong>，三层叠加，直接导出 PNG。整个过程不需要任何设计软件，也不需要会画画——这是我给它定的门槛。</p></div>
-      <div class="work-body"><p>素材部分我全部自己画，一共 <strong>88 张</strong>：50 张食物主体、22 张波点底图、16 张表情贴纸，统一成 Y2K 粉紫 Win98 的调子，保证叠在一起不打架。</p></div>
+      <p class="work-lede">这是我在运营小红书时顺手做出来的一个小工具。动机很具体：想发「贴贴」这种内容，但每次都要开 Ps 抠图，一条内容光做图就要一小时。于是我花了一个周末，把素材、贴纸和导出流程全部搬到了网页上。</p>
+      <div class="work-body"><p>打开就能用：<strong>选一张背景、选一个主体、选一个表情</strong>，三层叠加，直接导出。整个过程不需要设计软件，也不需要会画画——这是我给它定的门槛，也是后面所有文案和封面的出发点。</p></div>
+      <div class="work-body"><p>素材部分我全部自己画，一共 <strong>88 张</strong>：50 张食物主体、22 张波点底图、16 张表情贴纸，统一成 Y2K 粉紫 Win98 的调子。</p></div>
     </section>
 
+    <!-- ⑥ 决策表 -->
+    <section class="work-section">
+      <h2 class="work-section-title">三个关键决策</h2>
+      <div class="work-decisions">
+        <article class="work-decision">
+          <span class="work-decision__idx">01</span>
+          <div>
+            <h3 class="work-decision__title">封面不讲卖点，先讲「这是什么东西」</h3>
+            <p class="work-decision__body">刷到一条陌生笔记，第一秒决定的不是「好不好」，而是「关我什么事」。所以封面左上先用大字写品类词「小红书工具」，再用红字压在桃色高亮块上写产品名「萌系贴贴」，右边直接放工具界面实拍——过路人一眼就知道：<b>这是个能上手用的东西，不是又一篇教程</b>。卖点留给正文。</p>
+          </div>
+          <p class="work-decision__result"><b>结果</b><em>13.5%</em>封面点击率，峰值 20%</p>
+        </article>
 
-    <!-- ⑤ 截图 -->
+        <article class="work-decision">
+          <span class="work-decision__idx">02</span>
+          <div>
+            <h3 class="work-decision__title">素材全部自绘，做成一套而不是一堆</h3>
+            <p class="work-decision__body">直接搬别人的贴纸，叠出来一定打架：这张粗描边、那张没描边，成品一眼就是「拼的」。88 张全部按同一套描边粗细、同一套粉紫配色画，<b>任意三层叠在一起都不违和</b>——这也是后面能持续出主题包的前提。</p>
+          </div>
+          <p class="work-decision__result"><b>结果</b><em>88 张</em>三层任意叠加不出戏</p>
+        </article>
+
+        <article class="work-decision">
+          <span class="work-decision__idx">03</span>
+          <div>
+            <h3 class="work-decision__title">导出即成品，把最后一步也做完</h3>
+            <p class="work-decision__body">很多人做到「导出 PNG」就停了，用户拿到图还得自己裁成平台比例——等于把最难的一步又还回去。Canvas 合成时直接按方形出图，<b>导出就能发</b>，中间不留任何需要二次加工的环节。</p>
+          </div>
+          <p class="work-decision__result"><b>结果</b><em>3,272</em>收藏，是点赞的 74%</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ⑦ 界面与效果 -->
     <section class="work-section">
       <h2 class="work-section-title">界面与效果</h2>
-      <div class="work-shots">
-        <figure class="work-shot"><img src="../assets/img/shots/cute-face-grid.png" alt="主界面：上方是背景与主体选择区，下方是表情贴纸排" loading="lazy"><figcaption>主界面：上方是背景与主体选择区，下方是表情贴纸排。</figcaption></figure>
-        <figure class="work-shot"><img src="../assets/img/shots/cute-face-grid-sticker.png" alt="贴完表情后的成品导出效果。" loading="lazy"><figcaption>贴完表情后的成品导出效果。</figcaption></figure>
+      <div class="work-shots work-shots--pair">
+        <figure class="work-shot"><img src="../assets/img/shots/cute-ui.jpg" alt="工具主界面：上方是画布，下方是背景、主体、表情三排素材，还有表情大小滑杆" loading="lazy"><figcaption>主界面：上为画布，下为「背景 / 主体 / 表情」三层素材，点一下即叠加，表情大小拖滑杆调。</figcaption></figure>
+        <figure class="work-shot"><img src="../assets/img/shots/cute-export.jpg" alt="导出成品：波点底上放着蛋糕主体，中间贴了一个颜文字表情" loading="lazy"><figcaption>导出成品：方形直出，带波点底和表情，拿到就能发，不用再裁。</figcaption></figure>
       </div>
     </section>
 
-    <!-- ⑥ 我具体做了什么 -->
-    <section class="work-section">
-      <h2 class="work-section-title">我具体做了什么</h2>
-      <ul class="work-tasks">
-        <li><b>做素材库</b>：50 张食物主体 + 22 张底图 + 16 张贴纸，全部自绘，统一色彩和描边风格。</li>
-        <li><b>做三层叠加引擎</b>：背景 → 主体 → 表情，每层独立可选，实时预览。</li>
-        <li><b>写导出逻辑</b>：Canvas 合成后导出 PNG，尺寸按小红书图文比例调好，不用二次裁剪。</li>
-        <li><b>写低门槛话术</b>：标题直接写「不用 Ps！不用抠图！不用会画画！」——把工具的价值翻译成人话。</li>
-      </ul>
-    </section>
-
-    <!-- ⑦ 成果数据 -->
+    <!-- ⑧ 成果数据（数据看板） -->
     <section class="work-section">
       <h2 class="work-section-title">成果数据</h2>
-      <div class="work-stats">
-        <div class="stat-card"><span class="gm-num stat-num stat-num--muted">7,500+</span><span class="stat-cap">单篇赞藏 · 账号最高</span></div>
-        <div class="stat-card"><span class="gm-num stat-num">88 张</span><span class="stat-cap">自绘成套素材 · 3 个开源仓库</span></div>
-        <div class="stat-card"><span class="gm-num stat-num">5 周</span><span class="stat-cap">发布后赞藏仍在涨</span></div>
+      <p class="work-lede">下面这张看板，是我把小红书创作中心导出的两份明细合起来做的：一份是流量表（曝光、观看、点击率、时长、涨粉），一份是互动表（点赞、评论、收藏、分享）。两边字段不重叠，拼起来才是一条完整的笔记。</p>
+
+      <div class="dash">
+        <div class="dash-kpis">
+          <div class="dash-kpi dash-kpi--lead"><b>192,294</b><span>曝光 · 全周期累计</span></div>
+          <div class="dash-kpi"><b>25,919</b><span>观看 · 点进来的</span></div>
+          <div class="dash-kpi"><b>13.5%</b><span>封面点击率</span></div>
+          <div class="dash-kpi"><b>7,701</b><span>赞藏（4,429 赞 + 3,272 藏）</span></div>
+          <div class="dash-kpi"><b>118</b><span>涨粉</span></div>
+          <div class="dash-kpi"><b>9.1s</b><span>人均观看时长</span></div>
+        </div>
+
+        <!-- 图 1：15 天曝光 × 观看 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">发布后 15 天：曝光 × 观看</h3>
+              <p class="chart-sub">第 6 天之前几乎是一条平线，第 11 天才真正加速。<b>前三天数据差不等于内容不行</b>——它只是还没被分发出去。</p>
+            </div>
+            <div class="seg" role="group" aria-label="纵轴刻度">
+              <button type="button" id="seg-linear" aria-pressed="true">线性</button>
+              <button type="button" id="seg-log" aria-pressed="false">对数</button>
+            </div>
+          </div>
+          <div class="chart" id="chart-trend" role="img" aria-label="15 天曝光与观看趋势图"></div>
+          <div class="legend" style="padding: 2px 0 8px;">
+            <span><i style="background: var(--bar);"></i>曝光（左轴）</span>
+            <span><i style="background: var(--accent);"></i>观看（右轴）</span>
+            <span>虚线为四个阶段的分界</span>
+          </div>
+        </div>
+
+        <!-- 图 2：封面点击率 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">封面点击率：从第 1 天起就在 13% 上下</h3>
+              <p class="chart-sub">15 天里最低 8%、最高 20%（9-19）。封面在冷启动阶段就已经成立，<b>后面起量是分发决定的，不是封面决定的</b>。</p>
+            </div>
+          </div>
+          <div class="chart" id="chart-ctr" role="img" aria-label="每日封面点击率折线图"></div>
+          <div class="legend" style="padding: 2px 0 8px;">
+            <span><i style="background: var(--accent);"></i>当日点击率</span>
+            <span><i style="background: var(--s3);"></i>全周期均值 13.5%</span>
+          </div>
+        </div>
+
+        <!-- 图 3：每日互动结构 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">每日互动：收藏始终咬住点赞</h3>
+              <p class="chart-sub">点赞和收藏两根柱子几乎一样高，评论和分享很少。这是「工具型内容」才有的形状——普通内容不会长这样。</p>
+            </div>
+          </div>
+          <div class="chart" id="chart-engage" role="img" aria-label="每日点赞收藏评论分享堆叠柱状图"></div>
+          <div class="legend" style="padding: 2px 0 8px;">
+            <span><i style="background: var(--accent);"></i>点赞</span>
+            <span><i style="background: var(--s2);"></i>收藏</span>
+            <span><i style="background: var(--s3);"></i>评论</span>
+            <span><i style="background: var(--s4);"></i>分享</span>
+          </div>
+        </div>
+
+        <!-- 漏斗 -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-head__text">
+              <h3 class="chart-title">从曝光到涨粉，每一层漏掉多少</h3>
+              <p class="chart-sub">13.5% 的人点进来；进来的人里 <b>33% 会点赞或收藏</b>；每 1,000 次观看换来 4.6 个粉丝。</p>
+            </div>
+          </div>
+          <div class="funnel">
+            <div class="funnel-row">
+              <span class="funnel-name">曝光<em>被推荐出去</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 100%;"></span></span>
+              <span class="funnel-val">192,294</span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-name">观看<em>点进来了</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 80%;"></span></span>
+              <span class="funnel-val">25,919<em>曝光的 13.5%</em></span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-name">互动<em>赞藏评享</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 68%;"></span></span>
+              <span class="funnel-val">8,555<em>观看的 33.0%</em></span>
+            </div>
+            <div class="funnel-row">
+              <span class="funnel-name">涨粉<em>留下来</em></span>
+              <span class="funnel-track"><span class="funnel-bar" style="width: 25%;"></span></span>
+              <span class="funnel-val">118<em>观看的 0.46%</em></span>
+            </div>
+          </div>
+          <p class="chart-sub" style="padding-bottom: 8px;">条形长度按对数缩放，只为让末端看得见；右侧百分比是真实转化率。</p>
+        </div>
+
+        <!-- 四阶段 -->
+        <div class="phase-grid">
+          <div class="phase">
+            <span class="phase__t">D1–D6</span>
+            <p class="phase__n">冷启动 <span>· 6 天</span></p>
+            <p class="phase__v">754<i>1.1%</i></p>
+            <p class="phase__d">曝光一共 754 次，涨粉 0。这个阶段能做的只有「别删」。</p>
+          </div>
+          <div class="phase">
+            <span class="phase__t">D7–D10</span>
+            <p class="phase__n">起势 <span>· 4 天</span></p>
+            <p class="phase__v">2,827<i>4.3%</i></p>
+            <p class="phase__d">9-19 点击率冲到 20%，系统开始给第二波量。</p>
+          </div>
+          <div class="phase">
+            <span class="phase__t">D11–D13</span>
+            <p class="phase__n">加速 <span>· 3 天</span></p>
+            <p class="phase__v">29,939<i>45.6%</i></p>
+            <p class="phase__d">三天吃掉近一半曝光，涨粉 25 人全在这几天。</p>
+          </div>
+          <div class="phase">
+            <span class="phase__t">D14–D15</span>
+            <p class="phase__n">峰值 <span>· 2 天</span></p>
+            <p class="phase__v">32,145<i>49.0%</i></p>
+            <p class="phase__d">单日最高 21,711 曝光，占整条笔记的 11%。</p>
+          </div>
+        </div>
+
+        <!-- 洞察 -->
+        <div class="insight-grid">
+          <div class="insight">
+            <span class="insight__idx">01</span>
+            <h3 class="insight__h">收藏是点赞的 <b>74%</b></h3>
+            <p class="insight__p">3,272 收藏对 4,429 点赞。人刷到内容会点赞，但只有「准备以后用」才会收藏——这是工具型内容的指纹，也解释了它为什么长尾特别长。</p>
+          </div>
+          <div class="insight">
+            <span class="insight__idx">02</span>
+            <h3 class="insight__h"><b>99.5%</b> 的曝光来自非粉丝</h3>
+            <p class="insight__p">粉丝曝光占比只有 0.5%，观看占比 1.3%。这条没靠老粉，是纯公域跑出来的——所以它证明的是内容本身，不是账号存量。</p>
+          </div>
+          <div class="insight">
+            <span class="insight__idx">03</span>
+            <h3 class="insight__h">前 15 天只占 <b>34%</b> 曝光</h3>
+            <p class="insight__p">15 天 65,665 次曝光，全周期 192,294 次。剩下 66% 是第 15 天之后慢慢来的：靠搜索、靠收藏夹被二次打开。</p>
+          </div>
+          <div class="insight">
+            <span class="insight__idx">04</span>
+            <h3 class="insight__h">前 6 天只占 <b>1.1%</b></h3>
+            <p class="insight__p">冷启动 6 天一共 754 次曝光、5 个赞。如果第三天就判定「这条不行」删掉，就没有后面的 19 万。</p>
+          </div>
+        </div>
+
+        <!-- 口径 -->
+        <div class="dash-note">
+          <h3>数据口径 · 必读</h3>
+          <table class="dash-table">
+            <thead>
+              <tr><th>指标</th><th>前 15 天合计</th><th>全周期累计</th><th>15 天占比</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>曝光</td><td>65,665</td><td>192,294</td><td>34.1%</td></tr>
+              <tr><td>观看</td><td>9,295</td><td>25,919</td><td>35.9%</td></tr>
+              <tr><td>点赞</td><td>1,816</td><td>4,429</td><td>41.0%</td></tr>
+              <tr><td>收藏</td><td>1,358</td><td>3,272</td><td>41.5%</td></tr>
+              <tr><td>评论</td><td>122</td><td>259</td><td>47.1%</td></tr>
+              <tr><td>分享</td><td>255</td><td>595</td><td>42.9%</td></tr>
+              <tr><td>涨粉</td><td>47</td><td>118</td><td>39.8%</td></tr>
+            </tbody>
+          </table>
+          <ul>
+            <li>日粒度明细只覆盖 2026-09-13 至 09-27 共 15 天；「全周期累计」来自导出文件里的总览表。两者区间不同，<b>不能相加、也不能互相校验</b>。</li>
+            <li>完播率、2 秒退出率导出值为 0，判为未采集，本页不画——不想用一根 0% 的柱子假装有数据。</li>
+            <li>小时粒度只覆盖发布后 72 小时的 29 个时刻，前 3 天一共只有 5 个点赞，正好印证「当时还没被分发」。</li>
+            <li>按日表加权算点击率是 9,295 / 65,665 = 14.2%，与总览的 13.5% 有差异，差在统计区间。页面上统一用总览口径。</li>
+          </ul>
+        </div>
       </div>
-      <p class="stat-note">赞藏为 2026-10-31 后台口径。发布 5 周内赞藏从约 2,000 涨到 7,500+，是典型的工具类内容长尾。</p>
     </section>
 
-    <!-- ⑧ 复盘 -->
+    <!-- ⑨ 复盘 -->
     <section class="work-section">
       <h2 class="work-section-title">复盘</h2>
       <div class="work-review">
-        <h4>为什么能爆</h4>
-        <p>工具属性——实用价值大于情绪价值。用户收藏的是「这个我以后要用」，不是「这条好可爱」。</p>
-        <h4>关键动作</h4>
-        <p>低门槛话术。标题不写「贴纸生成器」，写「不用 Ps！不用抠图！不用会画画！」，把门槛感先消掉再讲功能。</p>
+        <h4>为什么能跑起来</h4>
+        <p>工具属性。收藏 3,272 是点赞的 74%，用户存的不是「好可爱」，是「这个我以后要用」。这类内容吃的是搜索和收藏的二次分发，所以第 15 天之后还有 66% 的曝光在慢慢进来。</p>
+        <h4>如果重做一次</h4>
+        <p>先做主题包，再发笔记。现在是先发内容再补素材，第 11 天开始加速的时候素材跟不上，第二波峰值没接住——看板上 D14–D15 那两天，其实可以更陡。</p>
         <h4>还在做的事</h4>
-        <p>把素材库做成可切换的主题包，让同一个工具能持续发新内容，而不是一篇发完就没了。</p>
+        <p>把素材库拆成可切换的主题包，让同一个工具能持续出内容，而不是一篇发完就没了。</p>
       </div>
     </section>
 
-    <!-- ⑨ 相关作品 -->
+    <!-- ⑩ 相关作品 -->
     <section class="work-section">
       <h2 class="work-section-title">相关作品</h2>
       <div class="work-related">
         <a class="related-card" href="tincase.html">
           <span class="related-icon">盒</span>
-          <span class="related-text"><span class="related-name">铁盒贴</span><span class="related-desc">同系列的贴纸工具，封面点击率 17.6%。</span></span>
+          <span class="related-text"><span class="related-name">铁盒贴</span><span class="related-desc">同系列贴纸工具，封面点击率 17.6%。</span></span>
         </a>
-        <a class="related-card" href="../index.html">
-          <span class="related-icon">3</span>
-          <span class="related-text"><span class="related-name">locker-portfolio</span><span class="related-desc">React + three.js 的 3D 作品集，已上线。</span></span>
+        <a class="related-card" href="data-review.html">
+          <span class="related-icon">数</span>
+          <span class="related-text"><span class="related-name">数据复盘</span><span class="related-desc">「账号最高」这个判断是怎么算出来的。</span></span>
         </a>
         <a class="related-card" href="workspace.html">
           <span class="related-icon">工</span>
@@ -121,11 +347,11 @@
       </div>
     </section>
 
-    <!-- ⑩ 上下站 -->
+    <!-- ⑪ 上下站 -->
     <nav class="work-pager">
-      <a class="pager-link pager-link--prev" href="workspace.html">
+      <a class="pager-link pager-link--prev" href="../index.html">
         <span class="pager-dir">&larr; 上一篇</span>
-        <span class="pager-name">我的大学工作台</span>
+        <span class="pager-name">返回全部作品</span>
       </a>
       <a class="pager-link pager-link--next" href="tincase.html">
         <span class="pager-dir">下一篇 &rarr;</span>
@@ -133,7 +359,7 @@
       </a>
     </nav>
 
-    <!-- ⑪ 页脚 -->
+    <!-- ⑫ 页脚 -->
     <footer class="work-foot">
       <p>冯建燊 JACK · 广东工业大学 电子商务专业 · 2028 届</p>
       <p><a href="https://xhslink.cn/o/8sBwI0HFjC2" target="_blank" rel="noopener noreferrer">小红书主页</a> · <a href="../index.html">返回首页</a></p>
@@ -143,5 +369,390 @@
 </div>
 
 <script src="../assets/js/site.js?v=20261103-71"></script>
+<script>
+/* =====================================================================
+   数据看板：用小红书导出的真实明细画图（原生 SVG，无第三方库）
+   ===================================================================== */
+(function () {
+  "use strict";
+
+  var D = {
+    label: ["09-13","09-14","09-15","09-16","09-17","09-18","09-19","09-20",
+            "09-21","09-22","09-23","09-24","09-25","09-26","09-27"],
+    exp:   [203, 199, 95, 70, 92, 95, 536, 532, 597, 1162, 2959, 6748, 20232, 21711, 10434],
+    view:  [19, 24, 14, 8, 8, 10, 106, 84, 93, 203, 452, 1079, 2982, 2787, 1426],
+    ctr:   [9, 12, 14, 11, 8, 10, 20, 16, 15, 17, 15, 16, 15, 13, 13],
+    like:  [3, 2, 0, 1, 1, 1, 14, 16, 11, 49, 95, 261, 603, 493, 266],
+    col:   [1, 2, 1, 2, 1, 0, 9, 11, 12, 38, 73, 172, 440, 408, 188],
+    cmt:   [0, 0, 1, 0, 0, 0, 1, 0, 6, 3, 2, 5, 38, 38, 28],
+    shr:   [1, 1, 0, 0, 1, 0, 1, 1, 0, 4, 11, 45, 87, 68, 35]
+  };
+  var PHASE = [
+    { i: 0, n: 6, name: "冷启动" },
+    { i: 6, n: 4, name: "起势" },
+    { i: 10, n: 3, name: "加速" },
+    { i: 13, n: 2, name: "峰值" }
+  ];
+
+  var P = {};
+  var dashEl = document.querySelector(".dash");
+  if (!dashEl) return;
+
+  function cssVar(name) {
+    return getComputedStyle(dashEl).getPropertyValue(name).trim();
+  }
+  function readPalette() {
+    P = {
+      ink3: cssVar("--grey3"),
+      line: cssVar("--border"),
+      accent: cssVar("--accent"),
+      bar: cssVar("--bar"),
+      s2: cssVar("--s2"),
+      s3: cssVar("--s3"),
+      s4: cssVar("--s4"),
+      surface: cssVar("--chat-surface")
+    };
+  }
+  function nf(n) { return n.toLocaleString("en-US"); }
+  function shortNum(v) {
+    if (v >= 10000) {
+      var w = v / 10000;
+      return (w % 1 === 0 ? w : w.toFixed(1)) + "万";
+    }
+    return nf(v);
+  }
+  function tag(name, attrs, inner) {
+    var s = "<" + name;
+    for (var k in attrs) {
+      if (attrs[k] === undefined || attrs[k] === null) continue;
+      s += " " + k + '="' + attrs[k] + '"';
+    }
+    if (inner === undefined) return s + "/>";
+    return s + ">" + inner + "</" + name + ">";
+  }
+  function niceScale(max, steps) {
+    steps = steps || 4;
+    var raw = max / steps;
+    var p = Math.pow(10, Math.floor(Math.log10(raw)));
+    var f = raw / p;
+    var m = f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10;
+    var step = m * p;
+    var count = Math.ceil(max / step);
+    if (count > 6) { step *= 2; count = Math.ceil(max / step); }
+    var ticks = [];
+    for (var i = 0; i <= count; i++) ticks.push(step * i);
+    return { step: step, max: step * count, ticks: ticks };
+  }
+  function bindHits(host, render) {
+    var tip = host.querySelector(".chart-tip");
+    if (!tip) {
+      tip = document.createElement("div");
+      tip.className = "chart-tip";
+      host.appendChild(tip);
+    }
+    host.addEventListener("pointermove", function (e) {
+      var r = host.getBoundingClientRect();
+      tip.style.left = (e.clientX - r.left) + "px";
+      tip.style.top = (e.clientY - r.top - 10) + "px";
+    });
+    host.querySelectorAll("[data-hit]").forEach(function (node) {
+      node.addEventListener("pointerenter", function () {
+        tip.innerHTML = render(+node.getAttribute("data-hit"));
+        tip.classList.add("is-on");
+      });
+      node.addEventListener("pointerleave", function () {
+        tip.classList.remove("is-on");
+      });
+    });
+  }
+  function xAxis(parts, M, iw, n, all) {
+    var slot = iw / n;
+    var every = all ? 1 : 2;
+    for (var i = 0; i < n; i++) {
+      if (i % every !== 0 && i !== n - 1) continue;
+      parts.push(tag("text", {
+        x: M.l + slot * (i + 0.5), y: M.t + M.h + 16,
+        "text-anchor": "middle", "font-size": all ? 10 : 9.5, fill: P.ink3
+      }, D.label[i]));
+    }
+  }
+
+  /* ---------- 图 1：曝光 × 观看 ---------- */
+  var trendLog = false;
+  function renderTrend() {
+    var host = document.getElementById("chart-trend");
+    if (!host) return;
+    var W = host.clientWidth, H = host.clientHeight;
+    if (!W || !H) return;
+    var narrow = W < 620;
+    var M = { l: narrow ? 40 : 54, r: narrow ? 40 : 58, t: 30, b: 28 };
+    M.w = W - M.l - M.r;
+    M.h = H - M.t - M.b;
+    var iw = M.w, ih = M.h, n = D.exp.length, slot = iw / n;
+    var parts = [];
+
+    PHASE.forEach(function (ph, idx) {
+      var x = M.l + slot * ph.i;
+      var w = slot * ph.n;
+      parts.push(tag("rect", {
+        x: x, y: M.t - 8, width: w, height: ih + 8,
+        fill: P.accent, "fill-opacity": idx % 2 === 0 ? 0.035 : 0.012
+      }));
+      if (!narrow) {
+        parts.push(tag("text", {
+          x: x + w / 2, y: M.t - 13, "text-anchor": "middle",
+          "font-size": 9.5, fill: P.ink3, "letter-spacing": "0.06em"
+        }, ph.name));
+      }
+    });
+
+    var maxE = Math.max.apply(null, D.exp);
+    var maxV = Math.max.apply(null, D.view);
+    var scE = niceScale(maxE), scV = niceScale(maxV * 1.12);
+    var yE, yV, ticksL, ticksR;
+
+    if (trendLog) {
+      var d0 = 1, d1 = 5;
+      yE = function (v) {
+        return M.t + ih * (1 - (Math.log10(Math.max(v, 1)) - d0) / (d1 - d0));
+      };
+      yV = yE;
+      ticksL = [10, 100, 1000, 10000, 100000];
+      ticksR = [];
+    } else {
+      yE = function (v) { return M.t + ih * (1 - v / scE.max); };
+      yV = function (v) { return M.t + ih * (1 - v / scV.max); };
+      ticksL = scE.ticks;
+      ticksR = scV.ticks;
+    }
+
+    ticksL.forEach(function (t) {
+      var y = yE(t);
+      parts.push(tag("line", { x1: M.l, y1: y, x2: M.l + iw, y2: y, stroke: P.line, "stroke-width": 1 }));
+      parts.push(tag("text", {
+        x: M.l - 8, y: y + 3.5, "text-anchor": "end", "font-size": 10, fill: P.ink3
+      }, shortNum(t)));
+    });
+    if (ticksR.length) {
+      ticksR.forEach(function (t) {
+        var y = yV(t);
+        parts.push(tag("text", {
+          x: M.l + iw + 9, y: y + 3.5, "text-anchor": "start", "font-size": 10, fill: P.accent
+        }, shortNum(t)));
+      });
+    }
+    parts.push(tag("text", { x: M.l - 8, y: M.t - 13, "text-anchor": "end", "font-size": 9.5, fill: P.ink3 }, "曝光"));
+    if (!trendLog) {
+      parts.push(tag("text", { x: M.l + iw + 9, y: M.t - 13, "text-anchor": "start", "font-size": 9.5, fill: P.accent }, "观看"));
+    }
+
+    for (var i = 0; i < n; i++) {
+      var bx = M.l + slot * i + slot * 0.2;
+      var bw = slot * 0.6;
+      var by = yE(D.exp[i]);
+      var h = M.t + ih - by;
+      if (h < 1) h = 1;
+      parts.push(tag("rect", { x: bx, y: by, width: bw, height: h, fill: P.bar }));
+    }
+
+    var pts = D.view.map(function (v, k) {
+      return (M.l + slot * (k + 0.5)) + "," + yV(v);
+    }).join(" ");
+    parts.push(tag("polyline", {
+      points: pts, fill: "none", stroke: P.accent, "stroke-width": 1.9,
+      "stroke-linejoin": "round", "stroke-linecap": "round"
+    }));
+    D.view.forEach(function (v, k) {
+      parts.push(tag("circle", {
+        cx: M.l + slot * (k + 0.5), cy: yV(v), r: 2.7,
+        fill: P.surface, stroke: P.accent, "stroke-width": 1.5
+      }));
+    });
+
+    xAxis(parts, M, iw, n, !narrow);
+
+    for (var j = 0; j < n; j++) {
+      parts.push(tag("rect", {
+        x: M.l + slot * j, y: M.t, width: slot, height: ih,
+        fill: "transparent", "data-hit": j, style: "cursor:crosshair"
+      }));
+    }
+
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" aria-hidden="true">' + parts.join("") + "</svg>";
+    bindHits(host, function (k) {
+      return "<b>2026-" + D.label[k] + "</b>" +
+        "<kbd>曝光</kbd> <u>" + nf(D.exp[k]) + "</u><br>" +
+        "<kbd>观看</kbd> <u>" + nf(D.view[k]) + "</u><br>" +
+        "<kbd>点击率</kbd> <u>" + D.ctr[k] + "%</u>";
+    });
+  }
+
+  /* ---------- 图 2：封面点击率 ---------- */
+  function renderCtr() {
+    var host = document.getElementById("chart-ctr");
+    if (!host) return;
+    var W = host.clientWidth, H = host.clientHeight;
+    if (!W || !H) return;
+    var narrow = W < 620;
+    var M = { l: narrow ? 36 : 44, r: 16, t: 20, b: 28 };
+    M.w = W - M.l - M.r;
+    M.h = H - M.t - M.b;
+    var iw = M.w, ih = M.h, n = D.ctr.length, slot = iw / n;
+    var sc = niceScale(24, 5);
+    var y = function (v) { return M.t + ih * (1 - v / sc.max); };
+    var parts = [];
+
+    sc.ticks.forEach(function (t) {
+      var yy = y(t);
+      parts.push(tag("line", { x1: M.l, y1: yy, x2: M.l + iw, y2: yy, stroke: P.line, "stroke-width": 1 }));
+      parts.push(tag("text", { x: M.l - 8, y: yy + 3.5, "text-anchor": "end", "font-size": 10, fill: P.ink3 }, t + "%"));
+    });
+
+    var x0 = M.l + slot * 0.5, xN = M.l + slot * (n - 0.5);
+    var area = "M" + x0 + "," + (M.t + ih) + " " +
+      D.ctr.map(function (v, k) { return "L" + (M.l + slot * (k + 0.5)) + "," + y(v); }).join(" ") +
+      " L" + xN + "," + (M.t + ih) + " Z";
+    parts.push(tag("path", { d: area, fill: P.accent, "fill-opacity": 0.09 }));
+
+    var line = D.ctr.map(function (v, k) { return (M.l + slot * (k + 0.5)) + "," + y(v); }).join(" ");
+    parts.push(tag("polyline", {
+      points: line, fill: "none", stroke: P.accent, "stroke-width": 1.9,
+      "stroke-linejoin": "round", "stroke-linecap": "round"
+    }));
+    D.ctr.forEach(function (v, k) {
+      parts.push(tag("circle", {
+        cx: M.l + slot * (k + 0.5), cy: y(v), r: 2.7,
+        fill: P.surface, stroke: P.accent, "stroke-width": 1.5
+      }));
+    });
+
+    var av = y(13.5);
+    parts.push(tag("line", {
+      x1: M.l, y1: av, x2: M.l + iw, y2: av,
+      stroke: P.s3, "stroke-width": 1, "stroke-dasharray": "4 4"
+    }));
+    parts.push(tag("text", {
+      x: M.l + iw, y: M.t + 9, "text-anchor": "end", "font-size": 9.5, fill: P.ink3
+    }, "全周期均值 13.5%"));
+
+    xAxis(parts, M, iw, n, !narrow);
+
+    for (var j = 0; j < n; j++) {
+      parts.push(tag("rect", {
+        x: M.l + slot * j, y: M.t, width: slot, height: ih,
+        fill: "transparent", "data-hit": j, style: "cursor:crosshair"
+      }));
+    }
+
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" aria-hidden="true">' + parts.join("") + "</svg>";
+    bindHits(host, function (k) {
+      return "<b>2026-" + D.label[k] + "</b>" +
+        "<kbd>点击率</kbd> <u>" + D.ctr[k] + "%</u><br>" +
+        "<kbd>曝光</kbd> <u>" + nf(D.exp[k]) + "</u><br>" +
+        "<kbd>观看</kbd> <u>" + nf(D.view[k]) + "</u>";
+    });
+  }
+
+  /* ---------- 图 3：每日互动堆叠 ---------- */
+  function renderEngage() {
+    var host = document.getElementById("chart-engage");
+    if (!host) return;
+    var W = host.clientWidth, H = host.clientHeight;
+    if (!W || !H) return;
+    var narrow = W < 620;
+    var M = { l: narrow ? 38 : 48, r: 14, t: 20, b: 28 };
+    M.w = W - M.l - M.r;
+    M.h = H - M.t - M.b;
+    var iw = M.w, ih = M.h, n = D.like.length, slot = iw / n;
+    var totals = D.like.map(function (_, k) {
+      return D.like[k] + D.col[k] + D.cmt[k] + D.shr[k];
+    });
+    var sc = niceScale(Math.max.apply(null, totals));
+    var y = function (v) { return M.t + ih * (1 - v / sc.max); };
+    var parts = [];
+
+    sc.ticks.forEach(function (t) {
+      var yy = y(t);
+      parts.push(tag("line", { x1: M.l, y1: yy, x2: M.l + iw, y2: yy, stroke: P.line, "stroke-width": 1 }));
+      parts.push(tag("text", { x: M.l - 8, y: yy + 3.5, "text-anchor": "end", "font-size": 10, fill: P.ink3 }, nf(t)));
+    });
+
+    var series = [
+      { key: "like", color: P.accent },
+      { key: "col", color: P.s2 },
+      { key: "cmt", color: P.s3 },
+      { key: "shr", color: P.s4 }
+    ];
+
+    for (var i = 0; i < n; i++) {
+      var bx = M.l + slot * i + slot * 0.22;
+      var bw = slot * 0.56;
+      var acc = 0;
+      for (var si = 0; si < series.length; si++) {
+        var v = D[series[si].key][i];
+        if (v <= 0) continue;
+        var yTop = y(acc + v);
+        var hh = y(acc) - yTop;
+        if (hh < 1.2) hh = 1.2;
+        parts.push(tag("rect", { x: bx, y: yTop, width: bw, height: hh, fill: series[si].color }));
+        acc += v;
+      }
+    }
+
+    xAxis(parts, M, iw, n, !narrow);
+
+    for (var j = 0; j < n; j++) {
+      parts.push(tag("rect", {
+        x: M.l + slot * j, y: M.t, width: slot, height: ih,
+        fill: "transparent", "data-hit": j, style: "cursor:crosshair"
+      }));
+    }
+
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" aria-hidden="true">' + parts.join("") + "</svg>";
+    bindHits(host, function (k) {
+      return "<b>2026-" + D.label[k] + "</b>" +
+        "<kbd>点赞</kbd> <u>" + nf(D.like[k]) + "</u><br>" +
+        "<kbd>收藏</kbd> <u>" + nf(D.col[k]) + "</u><br>" +
+        "<kbd>评论</kbd> <u>" + nf(D.cmt[k]) + "</u><br>" +
+        "<kbd>分享</kbd> <u>" + nf(D.shr[k]) + "</u>";
+    });
+  }
+
+  function renderAll() {
+    readPalette();
+    renderTrend();
+    renderCtr();
+    renderEngage();
+  }
+
+  var bLinear = document.getElementById("seg-linear");
+  var bLog = document.getElementById("seg-log");
+  function setMode(log) {
+    trendLog = log;
+    bLinear.setAttribute("aria-pressed", String(!log));
+    bLog.setAttribute("aria-pressed", String(log));
+    renderTrend();
+  }
+  if (bLinear && bLog) {
+    bLinear.addEventListener("click", function () { setMode(false); });
+    bLog.addEventListener("click", function () { setMode(true); });
+  }
+
+  new MutationObserver(function () {
+    requestAnimationFrame(renderAll);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  var rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(renderAll, 160);
+  });
+
+  renderAll();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { renderAll(); });
+  }
+})();
+</script>
 </body>
 </html>
