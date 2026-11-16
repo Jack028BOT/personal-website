@@ -331,43 +331,93 @@
   color: var(--grey3);
 }
 
-/* ---------- ⑩ 上下站 ---------- */
+/* ---------- ⑩ 上下站 ----------
+   只有一个去处时不要拉成通栏（空荡荡一条），所以卡片定宽 340、
+   超出换行；箭头做成圆形徽标贴在卡片外侧，悬停时顺着方向轻推一下。 */
 .work-pager {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 14px;
   margin-top: 56px;
   padding-top: 28px;
   border-top: 1px solid var(--border);
 }
 .pager-link {
+  position: relative;
+  flex: 0 1 340px;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 18px 20px;
-  border: 1px solid var(--border);
+  justify-content: center;
+  gap: 5px;
+  min-height: 76px;
+  padding: 14px 20px 14px 60px;
+  border: 1px solid var(--surface-border);
   border-radius: 12px;
+  background: var(--chat-surface);
   text-decoration: none;
-  transition: border-color 0.18s ease, background 0.18s ease;
+  transition: border-color 0.2s ease, background 0.2s ease,
+              transform 0.2s var(--ease-out), box-shadow 0.2s ease;
+}
+.pager-link::before {
+  content: "\2190";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: var(--accent);
+  font-size: 13px;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: transform 0.2s var(--ease-out),
+              background 0.2s ease;
 }
 .pager-link:hover {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-  background: color-mix(in srgb, var(--accent) 4%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--surface-border));
+  background: color-mix(in srgb, var(--accent) 5%, var(--chat-surface));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
 }
-.pager-link--next { text-align: right; }
+.pager-link:hover::before {
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.pager-link--prev:hover::before { transform: translateY(-50%) translateX(-3px); }
+
+.pager-link--next {
+  margin-left: auto;
+  padding: 14px 60px 14px 20px;
+  text-align: right;
+}
+.pager-link--next::before {
+  content: "\2192";
+  left: auto;
+  right: 16px;
+}
+.pager-link--next:hover::before { transform: translateY(-50%) translateX(3px); }
+
 .pager-dir {
   font-family: var(--font-mono);
   font-size: 10.5px;
-  letter-spacing: 0.1em;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
   color: var(--grey3);
 }
 .pager-name {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 17px;
+  font-weight: 650;
+  font-size: 16px;
+  line-height: 1.35;
   color: var(--grey1);
   letter-spacing: -0.015em;
+  transition: color 0.2s ease;
 }
+.pager-link:hover .pager-name { color: var(--accent); }
+[data-theme="dark"] .pager-link:hover { box-shadow: none; }
 
 /* ---------- ⑪ 页脚 ---------- */
 .work-foot {
@@ -463,6 +513,10 @@
   /* 三列在手机上太挤，改两列；奇数个时最后一张跨满整行 */
   .work-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .work-stats > :last-child:nth-child(odd) { grid-column: 1 / -1; }
-  .pager-link--next { text-align: left; }
+  /* 单列堆叠时左右的空间线索没了，两张统一成「箭头在左、文字在左」 */
+  .pager-link,
+  .pager-link--next { flex: 1 1 100%; max-width: none; }
+  .pager-link--next { margin-left: 0; padding: 14px 20px 14px 60px; text-align: left; }
+  .pager-link--next::before { left: 16px; right: auto; }
   .work-foot { flex-direction: column; align-items: flex-start; }
 }
